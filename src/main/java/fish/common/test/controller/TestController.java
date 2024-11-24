@@ -9,9 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- *  localhost:8080/save를 호출 시 test 테이블에 데이터 적재
-* */
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,10 +18,10 @@ public class TestController {
 
     private final TestService testService;
 
-    @GetMapping("/test")
-    public String test() {
-        return "test";
-    }
+    /**
+     * localhost:8080/save를 호출 시 test 테이블에 데이터 적재
+     *
+     */
 
     @GetMapping("/save")
     public ResponseEntity<Object> save(TestRequest request) {
@@ -30,6 +29,45 @@ public class TestController {
         request.toRequest("test", "test");
         TestEntity entity = request.toEntity(request);
         testService.save(entity);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    /**
+     * localhost:8080/find-all
+     *
+     * @return data
+     */
+
+    @GetMapping("/find-all")
+    public Object findAll() {
+        Map<String, Object> data = new HashMap<>();
+        data.put("data", testService.findAll());
+        return data;
+    }
+
+    /**
+     * localhost:8080/find-one?id=test
+     * 요렇게 테스트
+     * @param id
+     * @return
+     */
+    @GetMapping("/find-one")
+    public Object findOne(String id) {
+        Map<String, Object> data = new HashMap<>();
+        data.put("data", testService.findById(id));
+        return data;
+    }
+
+    /**
+     * localhost:8080/delete?id=test
+     * 요렇게 테스트
+     * @param id
+     * @return
+     */
+
+    @GetMapping("/delete")
+    public Object delete(String id) {
+        testService.deleteById(id);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 }
