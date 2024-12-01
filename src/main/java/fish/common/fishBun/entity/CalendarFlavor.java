@@ -1,22 +1,25 @@
 package fish.common.fishBun.entity;
 
-import fish.common.user.entity.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "user_fish_bun_book")
+@Table(name = "calendar_flavor")
 @Getter
 @Entity
 @NoArgsConstructor
-public class UserFishBunBook {
+public class CalendarFlavor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "calendar_id")
+    private FishBunCalendar fishBunCalendar;
 
-    private String completed_flavor;
+    @ManyToOne
+    @JoinColumn(name = "flavor_id")
+    private FishBunFlavor fishBunFlavor;
+
+
 }

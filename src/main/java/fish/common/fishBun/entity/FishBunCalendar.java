@@ -26,6 +26,6 @@ public class FishBunCalendar {
     @CreationTimestamp
     private LocalDateTime date = LocalDateTime.now();
 
-    @OneToMany
-    private List<FishBun> fishBuns = new ArrayList<>();
+    @OneToMany(mappedBy = "fishBunCalendar", cascade = CascadeType.ALL)
+    private List<CalendarFlavor> flavors = new ArrayList<>();
 }

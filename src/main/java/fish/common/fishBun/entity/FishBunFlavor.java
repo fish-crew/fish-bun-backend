@@ -4,11 +4,14 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "fish_bun")
+import java.util.ArrayList;
+import java.util.List;
+
+@Table(name = "fish_bun_flavor")
 @Getter
 @Entity
 @NoArgsConstructor
-public class FishBun {
+public class FishBunFlavor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,4 +20,7 @@ public class FishBun {
     private String flavor;
 
     private String image;
+
+    @OneToMany(mappedBy = "fishBunFlavor", cascade = CascadeType.ALL)
+    private List<CalendarFlavor> dates = new ArrayList<>();
 }
