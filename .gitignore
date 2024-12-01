@@ -5,6 +5,9 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### private file ####
+application-private.yml
+
 ### STS ###
 .apt_generated
 .classpath
