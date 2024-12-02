@@ -18,5 +18,5 @@ public class UserFishBunBook {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private String completed_flavor;
+    private String completedFlavor;
 }
