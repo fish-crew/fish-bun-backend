@@ -2,6 +2,7 @@ package fish.common.fishBun.controller;
 
 import fish.common.fishBun.dto.response.CalendarDetailResDTO;
 import fish.common.fishBun.dto.response.CalendarResDTO;
+import fish.common.fishBun.dto.response.FlavorResDTO;
 import fish.common.fishBun.service.FishBunService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,5 +30,10 @@ public class FishBunController {
     @GetMapping(value = "/calendar/detail/{calendarId}")
     public ResponseEntity<CalendarDetailResDTO> getCalendarDetail(@PathVariable("calendarId") Long calendarId) {
         return ResponseEntity.ok(fishBunService.findCalendarDetail(calendarId));
+    }
+
+    @GetMapping(value = "/flavors")
+    public ResponseEntity<List<FlavorResDTO>> getFlavorList() {
+        return ResponseEntity.ok(fishBunService.findAllFlavors());
     }
 }

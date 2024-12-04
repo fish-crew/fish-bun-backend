@@ -6,6 +6,7 @@ import fish.common.fishBun.dto.response.FlavorResDTO;
 import fish.common.fishBun.entity.FishBunCalendar;
 import fish.common.fishBun.repository.FishBunBookRepository;
 import fish.common.fishBun.repository.FishBunCalendarRepository;
+import fish.common.fishBun.repository.FishBunFlavorRepository;
 import fish.common.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class FishBunService {
     private final FishBunCalendarRepository fishBunCalendarRepository;
     private final FishBunBookRepository fishBunBookRepository;
+    private final FishBunFlavorRepository fishBunFlavorRepository;
     private final UserService userService;
 
     public List<CalendarResDTO> findAllCalendarDate(String userUUID) {
@@ -38,5 +40,12 @@ public class FishBunService {
                         .toList();
 
         return CalendarDetailResDTO.toResDTO(fishBunCalendar, FlavorResDTOListByDate);
+    }
+
+    public List<FlavorResDTO> findAllFlavors() {
+        return fishBunFlavorRepository.findAll()
+                .stream()
+                .map(FlavorResDTO::toResponseDTO)
+                .toList();
     }
 }
