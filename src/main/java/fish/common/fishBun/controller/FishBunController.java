@@ -26,7 +26,7 @@ public class FishBunController {
         return ResponseEntity.ok(data);
     }
 
-    @GetMapping(value = "/fish-bun/calendar/detail/{calendarId}")
+    @GetMapping(value = "/calendar/detail/{calendarId}")
     public ResponseEntity<CalendarDetailResDTO> getCalendarDetail(@PathVariable("calendarId") Long calendarId) {
         return ResponseEntity.ok(fishBunService.findCalendarDetail(calendarId));
     }
