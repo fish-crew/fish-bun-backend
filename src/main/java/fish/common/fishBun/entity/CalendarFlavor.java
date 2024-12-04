@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "calendar_flavor")
+@Table(name = "CALENDAR_FLAVOR")
 @Getter
 @Entity
 @NoArgsConstructor

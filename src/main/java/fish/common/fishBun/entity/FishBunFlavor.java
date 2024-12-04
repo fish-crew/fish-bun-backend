@@ -3,11 +3,9 @@ package fish.common.fishBun.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.ArrayList;
 import java.util.List;
 
-@Table(name = "fish_bun_flavor")
+@Table(name = "FISH_BUN_FLAVOR")
 @Getter
 @Entity
 @NoArgsConstructor
@@ -22,5 +20,5 @@ public class FishBunFlavor {
     private String image;
 
     @OneToMany(mappedBy = "fishBunFlavor", cascade = CascadeType.ALL)
-    private List<CalendarFlavor> dates = new ArrayList<>();
+    private List<CalendarFlavor> dates;
 }

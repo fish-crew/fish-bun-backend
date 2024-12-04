@@ -5,10 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-@Table(name = "fish_bun_calendar")
+@Table(name = "FISH_BUN_CALENDAR")
 @Getter
 @Entity
 @NoArgsConstructor
@@ -24,8 +23,8 @@ public class FishBunCalendar {
     private String photo;
 
     @CreationTimestamp
-    private LocalDateTime date = LocalDateTime.now();
+    private LocalDateTime date;
 
     @OneToMany(mappedBy = "fishBunCalendar", cascade = CascadeType.ALL)
-    private List<CalendarFlavor> flavors = new ArrayList<>();
+    private List<CalendarFlavor> flavors;
 }
