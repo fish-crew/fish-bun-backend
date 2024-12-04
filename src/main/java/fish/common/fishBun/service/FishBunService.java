@@ -2,8 +2,8 @@ package fish.common.fishBun.service;
 
 import fish.common.fishBun.dto.response.CalendarDetailResDTO;
 import fish.common.fishBun.dto.response.CalendarResDTO;
+import fish.common.fishBun.dto.response.FlavorResDTO;
 import fish.common.fishBun.entity.FishBunCalendar;
-import fish.common.fishBun.entity.FishBunFlavor;
 import fish.common.fishBun.repository.FishBunBookRepository;
 import fish.common.fishBun.repository.FishBunCalendarRepository;
 import fish.common.user.UserService;
@@ -31,8 +31,12 @@ public class FishBunService {
     public CalendarDetailResDTO findCalendarDetail(Long calendarId) {
         FishBunCalendar fishBunCalendar = fishBunCalendarRepository.findById(calendarId)
                 .orElseThrow(() -> new IllegalArgumentException("Calendar data not found with id: " + calendarId));
-        List<FishBunFlavor> fishBunFlavorList = fishBunCalendarRepository.findTodayFlavorsByCalendarId(calendarId);
+        List<FlavorResDTO> flavorResDTOList =
+                fishBunCalendarRepository.findTodayFlavorsByCalendarId(calendarId)
+                        .stream()
+                        .map(FlavorResDTO::toResponseDTO)
+                        .toList();
 
-        return CalendarDetailResDTO.toResDTO(fishBunCalendar, fishBunFlavorList);
+        return CalendarDetailResDTO.toResDTO(fishBunCalendar, flavorResDTOList);
     }
 }
