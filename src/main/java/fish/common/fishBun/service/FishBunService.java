@@ -31,12 +31,12 @@ public class FishBunService {
     public CalendarDetailResDTO findCalendarDetail(Long calendarId) {
         FishBunCalendar fishBunCalendar = fishBunCalendarRepository.findById(calendarId)
                 .orElseThrow(() -> new IllegalArgumentException("Calendar data not found with id: " + calendarId));
-        List<FlavorResDTO> flavorResDTOList =
+        List<FlavorResDTO> FlavorResDTOListByDate =
                 fishBunCalendarRepository.findTodayFlavorsByCalendarId(calendarId)
                         .stream()
                         .map(FlavorResDTO::toResponseDTO)
                         .toList();
 
-        return CalendarDetailResDTO.toResDTO(fishBunCalendar, flavorResDTOList);
+        return CalendarDetailResDTO.toResDTO(fishBunCalendar, FlavorResDTOListByDate);
     }
 }
