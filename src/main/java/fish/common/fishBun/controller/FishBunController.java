@@ -20,7 +20,7 @@ public class FishBunController {
     private final FishBunService fishBunService;
 
     @GetMapping(value = "/calendar/{userUUID}")
-    public ResponseEntity<List<CalendarResDTO>> getCalendarList(@RequestParam String userUUID) {
+    public ResponseEntity<List<CalendarResDTO>> getCalendarList(@PathVariable String userUUID) {
         List<CalendarResDTO> data = fishBunService.findAllCalendarDate(userUUID);
 
         return ResponseEntity.ok(data);
