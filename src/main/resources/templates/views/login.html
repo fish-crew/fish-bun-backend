@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    pageObject.init();
+  });
+
+  var pageObject = {
+    init : function(){
+      var me = this;
+      me.bind();
+    },
+    bind : function () {
+      $('#kakaoLoginBtn').bind('click', function () {
+        pageObject.processKakaoLogin();
+      });
+    },
+    // 테스트용 -> 프론트 개발
+    processKakaoLogin : function () {
+      var scope = $('#scope').val();
+      var redirectUri = $('#redirectUri').val();
+      var oauthUri = $('#oauthUri').val();
+      var clientId = $('#clientId').val();
+      var uri = oauthUri + "?" +
+              "client_id=" + clientId +
+              "&redirect_uri=" + redirectUri +
+              "&response_type=" + "code" +
+              "&scope=" + scope;
+      window.location.href = uri;
+    },
+  }
+</script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body><img id="kakaoLoginBtn" th:src="@{'/images/login-button.png'}" alt="kakaoLoginBtn"/>
+<input th:value="${scope}" type="hidden" id = "scope"/>
+<input th:value="${oauthUri}" type="hidden" id = "oauthUri"/>
+<input th:value="${redirectUri}" type="hidden" id = "redirectUri"/>
+<input th:value="${clientId}" type="hidden" id = "clientId"/>
+</body>
+</html>

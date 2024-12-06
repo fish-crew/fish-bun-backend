@@ -3,7 +3,8 @@ package fish.common.fishBun.service;
 import fish.common.fishBun.dto.response.CalendarResDTO;
 import fish.common.fishBun.repository.FishBunBookRepository;
 import fish.common.fishBun.repository.FishBunCalendarRepository;
-import fish.common.user.UserService;
+
+import fish.common.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
