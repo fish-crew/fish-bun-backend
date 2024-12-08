@@ -1,4 +1,4 @@
-package fish.common.fishBun.entity;
+package fish.common.book.entity;
 
 import fish.common.user.entity.User;
 import jakarta.persistence.*;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor
-public class UserFishBunBook {
+public class UserBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

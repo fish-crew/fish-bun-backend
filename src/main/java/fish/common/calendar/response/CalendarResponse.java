@@ -1,24 +1,24 @@
-package fish.common.fishBun.dto.response;
+package fish.common.calendar.response;
 
-import fish.common.fishBun.entity.FishBunCalendar;
+import fish.common.calendar.entity.FishBunCalendar;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
-public class CalendarResDTO {
+public class CalendarResponse {
     private Long id;
     private LocalDateTime date;
 
     @Builder
-    public CalendarResDTO(Long id, LocalDateTime date) {
+    public CalendarResponse(Long id, LocalDateTime date) {
         this.id = id;
         this.date = date;
     }
 
-    public static CalendarResDTO toResponseDTO(FishBunCalendar fishBunCalendar) {
-        return CalendarResDTO.builder()
+    public static CalendarResponse toResponseDTO(FishBunCalendar fishBunCalendar) {
+        return CalendarResponse.builder()
                 .id(fishBunCalendar.getId())
                 .date(fishBunCalendar.getDate())
                 .build();

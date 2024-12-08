@@ -1,4 +1,4 @@
-package fish.common.fishBun.entity;
+package fish.common.calendar.entity;
 
 import fish.common.user.entity.User;
 import jakarta.persistence.*;
@@ -24,7 +24,4 @@ public class FishBunCalendar {
 
     @CreationTimestamp
     private LocalDateTime date;
-
-    @OneToMany(mappedBy = "fishBunCalendar", cascade = CascadeType.ALL)
-    private List<CalendarFlavor> flavors;
 }
