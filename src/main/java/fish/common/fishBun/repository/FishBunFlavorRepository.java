@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FishBunBookRepository extends JpaRepository<FishBunFlavor, Long> {
+public interface FishBunFlavorRepository extends JpaRepository<FishBunFlavor, Long> {
 }
