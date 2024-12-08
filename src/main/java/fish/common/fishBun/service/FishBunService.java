@@ -6,9 +6,9 @@ import fish.common.fishBun.dto.response.FlavorResDTO;
 import fish.common.fishBun.dto.response.UserFishBunBookResDTO;
 import fish.common.fishBun.entity.FishBunCalendar;
 import fish.common.fishBun.repository.FishBunCalendarRepository;
+import fish.common.user.service.UserService;
 import fish.common.fishBun.repository.FishBunFlavorRepository;
 import fish.common.fishBun.repository.UserFishBunBookRepository;
-import fish.common.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

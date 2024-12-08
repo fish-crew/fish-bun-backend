@@ -4,26 +4,30 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
 import java.util.UUID;
 
-@Table(name = "users")
+@Table(name = "USER")
 @Getter
 @Entity
 @NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userNum;
 
     @Column(unique = true, nullable = false)
     private String uuid;
 
     // OAuth scope data
-    private String providerId;
-    private String picture;
+    private Long providerId;
+    private String profileUrl;
+    private String providerNickname;
 
     private String nickname;
     private Long level;
+
+    private String type; //타입 구분
 
     @PrePersist
     public void generateUUID() {
@@ -32,11 +36,12 @@ public class User {
         }
     }
 
-    public User(String providerId, String picture, String nickname, Long level) {
-        this.providerId = providerId;
-        this.picture = picture;
-        this.nickname = nickname;
-        this.level = level;
+    public User(Map<String, Object> userInfo, String type) {
+        Map<String, Object> properties = ((Map<String, Object>) userInfo.get("properties"));
+        this.providerId = (Long) userInfo.get("id");
+        this.providerNickname = properties.get("nickname").toString();
+        this.profileUrl = properties.get("profile_image").toString();
+        this.type = type;
     }
 }
 
