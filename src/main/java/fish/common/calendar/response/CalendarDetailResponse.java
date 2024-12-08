@@ -13,22 +13,22 @@ public class CalendarDetailResponse {
     private Long id;
     private String photo;
     private LocalDateTime date;
-    private List<FlavorResponse> todayFishBun;
+    private String todayFishBun;
 
     @Builder
-    public CalendarDetailResponse(Long id, String photo, LocalDateTime date, List<FlavorResponse> todayFishBun) {
+    public CalendarDetailResponse(Long id, String photo, LocalDateTime date, String todayFishBun) {
         this.id = id;
         this.photo = photo;
         this.date = date;
         this.todayFishBun = todayFishBun;
     }
 
-    public static CalendarDetailResponse toResDTO(FishBunCalendar fishBunCalendar, List<FlavorResponse> flavorResDTOList) {
+    public static CalendarDetailResponse toResDTO(FishBunCalendar fishBunCalendar) {
         return CalendarDetailResponse.builder()
                 .id(fishBunCalendar.getId())
                 .photo(fishBunCalendar.getPhoto())
                 .date(fishBunCalendar.getDate())
-                .todayFishBun(flavorResDTOList)
+                .todayFishBun("dsfsfdf")
                 .build();
     }
 }

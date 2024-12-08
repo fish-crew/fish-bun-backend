@@ -17,7 +17,7 @@ public class BookService {
     public List<UserBookResponse> findAllUserFishBunBook(String userUUID) {
         Long userId = userService.getUserId(userUUID);
 
-        return userBookRepository.findAllByUserId(userId).stream()
+        return userBookRepository.findAllById(userId).stream()
                 .map(UserBookResponse::toResponseDTO)
                 .toList();
     }

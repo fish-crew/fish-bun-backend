@@ -23,7 +23,7 @@ public class CalendarService {
     public List<CalendarResponse> findAllCalendarDate(String userUUID) {
         Long userId = userService.getUserId(userUUID);
 
-        return calendarRepository.findAllByUserId(userId).stream()
+        return calendarRepository.findAllById(userId).stream()
                 .map(CalendarResponse::toResponseDTO)
                 .collect(Collectors.toList());
     }
@@ -31,13 +31,8 @@ public class CalendarService {
     public CalendarDetailResponse findCalendarDetail(Long calendarId) {
         FishBunCalendar fishBunCalendar = calendarRepository.findById(calendarId)
                 .orElseThrow(() -> new IllegalArgumentException("Calendar data not found with id: " + calendarId));
-        List<FlavorResponse> FlavorResDTOListByDate =
-                calendarRepository.findTodayFlavorsByCalendarId(calendarId)
-                        .stream()
-                        .map(FlavorResponse::toResponseDTO)
-                        .toList();
 
-        return CalendarDetailResponse.toResDTO(fishBunCalendar, FlavorResDTOListByDate);
+        return CalendarDetailResponse.toResDTO(fishBunCalendar);
     }
 
 }

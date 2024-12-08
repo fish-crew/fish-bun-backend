@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CalendarRepository extends JpaRepository<FishBunCalendar, Long> {
-    List<FishBunCalendar> findAllByUserId(Long id);
+    List<FishBunCalendar> findAllById(Long id);
 }
