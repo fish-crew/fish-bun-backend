@@ -1,6 +1,7 @@
-package fish.common.fishBun.dto.response;
+package fish.common.calendar.response;
 
-import fish.common.fishBun.entity.FishBunCalendar;
+import fish.common.calendar.entity.FishBunCalendar;
+import fish.common.flavor.response.FlavorResponse;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -8,22 +9,22 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
-public class CalendarDetailResDTO {
+public class CalendarDetailResponse {
     private Long id;
     private String photo;
     private LocalDateTime date;
-    private List<FlavorResDTO> todayFishBun;
+    private List<FlavorResponse> todayFishBun;
 
     @Builder
-    public CalendarDetailResDTO(Long id, String photo, LocalDateTime date, List<FlavorResDTO> todayFishBun) {
+    public CalendarDetailResponse(Long id, String photo, LocalDateTime date, List<FlavorResponse> todayFishBun) {
         this.id = id;
         this.photo = photo;
         this.date = date;
         this.todayFishBun = todayFishBun;
     }
 
-    public static CalendarDetailResDTO toResDTO(FishBunCalendar fishBunCalendar, List<FlavorResDTO> flavorResDTOList) {
-        return CalendarDetailResDTO.builder()
+    public static CalendarDetailResponse toResDTO(FishBunCalendar fishBunCalendar, List<FlavorResponse> flavorResDTOList) {
+        return CalendarDetailResponse.builder()
                 .id(fishBunCalendar.getId())
                 .photo(fishBunCalendar.getPhoto())
                 .date(fishBunCalendar.getDate())

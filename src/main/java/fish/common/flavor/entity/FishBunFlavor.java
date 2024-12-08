@@ -1,4 +1,4 @@
-package fish.common.fishBun.entity;
+package fish.common.flavor.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
