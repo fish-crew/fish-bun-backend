@@ -4,9 +4,6 @@ import fish.common.calendar.entity.FishBunCalendar;
 import fish.common.calendar.repository.CalendarRepository;
 import fish.common.calendar.response.CalendarDetailResponse;
 import fish.common.calendar.response.CalendarResponse;
-import fish.common.flavor.repository.FlavorRepository;
-import fish.common.flavor.response.FlavorResponse;
-import fish.common.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +14,8 @@ import java.util.stream.Collectors;
 @Service
 public class CalendarService {
     private final CalendarRepository calendarRepository;
-    private final UserService userService;
-    private final FlavorRepository flavorRepository;
 
-    public List<CalendarResponse> findAllCalendarDate(String userUUID) {
-        Long userId = userService.getUserId(userUUID);
-
+    public List<CalendarResponse> findAllCalendarDate(Long userId) {
         return calendarRepository.findAllById(userId).stream()
                 .map(CalendarResponse::toResponseDTO)
                 .collect(Collectors.toList());

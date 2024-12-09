@@ -1,7 +1,7 @@
-insert into USER (provider_id, profile_url, nickname, level, uuid, type) values (1, 'fjuwrmy.png', 'Dredi', 1, 'fuangs-13941-dsdddf', 'kakao');
-insert into USER (provider_id, profile_url, nickname, level, uuid, type) values (2, 'scospuz.png', 'Hildagard', 2, 'djsklg-23523-dsdddf', 'kakao');
-insert into USER (provider_id, profile_url, nickname, level, uuid, type) values (3, 'gcvmqnq.png', 'Aurelia', 1, 'dgdgsd-13941-qwrgs', 'kakao');
-insert into USER (provider_id, profile_url, nickname, level, uuid, type) values (4, 'akoquen.png', 'Nancy', 3, 'ndhdvx-426235-dsdddf', 'kakao');
+insert into USER (provider_id, provider_profile, nickname, level, uuid, provider) values (1, 'fjuwrmy.png', 'Dredi', 1, 'fuangs-13941-dsdddf', 'kakao');
+insert into USER (provider_id, provider_profile, nickname, level, uuid, provider) values (2, 'scospuz.png', 'Hildagard', 2, 'djsklg-23523-dsdddf', 'kakao');
+insert into USER (provider_id, provider_profile, nickname, level, uuid, provider) values (3, 'gcvmqnq.png', 'Aurelia', 1, 'dgdgsd-13941-qwrgs', 'kakao');
+insert into USER (provider_id, provider_profile, nickname, level, uuid, provider) values (4, 'akoquen.png', 'Nancy', 3, 'ndhdvx-426235-dsdddf', 'kakao');
 
 insert into FISH_BUN_CALENDAR (user_id, photo, date) values (1, 'eowgt.png', '2024-07-21 15:13:09');
 insert into FISH_BUN_CALENDAR (user_id, photo, date) values (2, 'fhntv.png', '2024-09-22 06:02:23');
@@ -23,15 +23,15 @@ insert into FISH_BUN_FLAVOR (id, flavor, image) values (6, '고구마 붕어빵'
 insert into FISH_BUN_FLAVOR (id, flavor, image) values (7, '애플파이 붕어빵', 'fhwjd.png');
 insert into FISH_BUN_FLAVOR (id, flavor, image) values (8, '귀여운 붕어빵', 'sgkrq.png');
 
-insert into USER_BOOK (user_id, completed_flavor) values (1, '피자 붕어빵');
-insert into USER_BOOK (user_id, completed_flavor) values (1, '팥 붕어빵');
-insert into USER_BOOK (user_id, completed_flavor) values (2, '피자 붕어빵');
-insert into USER_BOOK (user_id, completed_flavor) values (2, '고구마 붕어빵');
-insert into USER_BOOK (user_id, completed_flavor) values (3, '피자 붕어빵');
-insert into USER_BOOK (user_id, completed_flavor) values (3, '고구마 붕어빵');
-insert into USER_BOOK (user_id, completed_flavor) values (3, '뿌링클 붕어빵');
-insert into USER_BOOK (user_id, completed_flavor) values (3, '팥 붕어빵');
-insert into USER_BOOK (user_id, completed_flavor) values (4, '팥 붕어빵');
+insert into USER_BOOK (user_id, completed_flavor) values (5, '피자 붕어빵');
+insert into USER_BOOK (user_id, completed_flavor) values (5, '팥 붕어빵');
+insert into USER_BOOK (user_id, completed_flavor) values (5, '피자 붕어빵');
+insert into USER_BOOK (user_id, completed_flavor) values (5, '고구마 붕어빵');
+insert into USER_BOOK (user_id, completed_flavor) values (5, '피자 붕어빵');
+insert into USER_BOOK (user_id, completed_flavor) values (5, '고구마 붕어빵');
+insert into USER_BOOK (user_id, completed_flavor) values (5, '뿌링클 붕어빵');
+insert into USER_BOOK (user_id, completed_flavor) values (5, '팥 붕어빵');
+insert into USER_BOOK (user_id, completed_flavor) values (5, '팥 붕어빵');
 
 
 --insert into calendar_flavor (calendar_id, flavor_id) values (1, 1);

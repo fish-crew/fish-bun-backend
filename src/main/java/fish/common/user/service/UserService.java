@@ -5,27 +5,15 @@ import fish.common.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @RequiredArgsConstructor
 @Service
 public class UserService {
     private final UserRepository userRepository;
-
-
-    public Long getUserId(String uuid) {
-        User user = userRepository.findByUuid(uuid)
-                .orElseThrow(() -> new IllegalArgumentException("User not found with UUID: " + uuid));
-        return user.getProviderId();
+    // 서드파티 에서 제공한 providerId가 존재 시에 User 리턴, 존재하지 않으면 User 등록
+    public User saveUser(User user) {
+        return userRepository.findByProviderId(user.getProviderId())
+                .orElseGet(() ->
+                        userRepository.save(user)
+                );
     }
-
-
-    public Boolean isExistedId(Long id) {
-        return userRepository.existsByProviderId(id);
-    }
-
-    public void saveUser(User user) {
-        userRepository.save(user);
-    }
-
 }
