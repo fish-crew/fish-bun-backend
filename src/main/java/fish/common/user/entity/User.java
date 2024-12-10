@@ -21,7 +21,7 @@ public class User {
     // OAuth scope data
     private Long providerId;
 
-    private String provider; //타입 구분(kakao, google, naver)
+    private String providerType; //타입 구분(kakao, google, naver)
     private String providerProfile;
 
     private String nickname;
@@ -37,7 +37,7 @@ public class User {
     public User(OAuth2UserInfo userInfo) {
         this.providerId = userInfo.getProviderId();
         this.providerProfile = userInfo.getProviderProfile();
-        this.provider = userInfo.getProvider();
+        this.providerType = userInfo.getProviderType();
     }
 }
 

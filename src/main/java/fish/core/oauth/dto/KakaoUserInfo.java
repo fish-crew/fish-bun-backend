@@ -18,7 +18,7 @@ public class KakaoUserInfo implements OAuth2UserInfo {
     }
 
     @Override
-    public String getProvider() {
+    public String getProviderType() {
         return "kakao";
     }
 
@@ -26,6 +26,5 @@ public class KakaoUserInfo implements OAuth2UserInfo {
     public String getProviderProfile() {
         return ((Map)attributes.get("properties")).get("profile_image").toString();
     }
-
 
 }

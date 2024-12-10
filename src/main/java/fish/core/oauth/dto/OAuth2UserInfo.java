@@ -6,6 +6,6 @@ package fish.core.oauth.dto;
 public interface OAuth2UserInfo {
 
     Long getProviderId();
-    String getProvider();
+    String getProviderType();
     String getProviderProfile();
 }
