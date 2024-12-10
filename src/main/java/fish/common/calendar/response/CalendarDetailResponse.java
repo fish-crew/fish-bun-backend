@@ -24,6 +24,7 @@ public class CalendarDetailResponse {
     public static CalendarDetailResponse toResDTO(FishBunDetail fishBunDetail) {
         return CalendarDetailResponse.builder()
                 .id(fishBunDetail.getId())
+                .photo("Photo Test Url")
                 .date(fishBunDetail.getDate())
                 .flavors(fishBunDetail.getFlavors())
                 .build();

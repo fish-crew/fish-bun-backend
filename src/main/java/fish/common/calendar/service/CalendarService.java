@@ -16,7 +16,7 @@ public class CalendarService {
     private final CalendarRepository calendarRepository;
 
     public List<CalendarResponse> findAllCalendarDate(Long userId) {
-        return calendarRepository.findAllById(userId).stream()
+        return calendarRepository.findAllByUserId(userId).stream()
                 .map(CalendarResponse::toResponseDTO)
                 .collect(Collectors.toList());
     }
