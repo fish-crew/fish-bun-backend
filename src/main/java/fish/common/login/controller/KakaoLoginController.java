@@ -23,7 +23,7 @@ public class KakaoLoginController {
     }
 
     @GetMapping(value = "/success")
-    public ModelAndView logout(@AuthenticationPrincipal AuthUserInfo userInfo) {
+    public ModelAndView login(@AuthenticationPrincipal AuthUserInfo userInfo) {
         ModelAndView mnv = new ModelAndView();
         mnv.setViewName("views/loginSuccess");
         return mnv;
