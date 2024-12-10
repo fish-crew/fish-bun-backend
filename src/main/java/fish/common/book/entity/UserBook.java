@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name = "USER_BOOK")
+import java.time.LocalDateTime;
+
+@Table(name = "USER_FISH_BUN_BOOK")
 @Getter
 @Entity
 @NoArgsConstructor
@@ -14,4 +16,5 @@ public class UserBook {
     private Long id;
     private Long userId;
     private String completedFlavor;
+    private LocalDateTime date;
 }
