@@ -1,10 +1,9 @@
 package fish.common.user.entity;
 
+import fish.core.oauth.dto.OAuth2UserInfo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.Map;
 import java.util.UUID;
 
 @Table(name = "USER")
@@ -14,18 +13,19 @@ import java.util.UUID;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userNum;
+    private Long id;
 
     @Column(unique = true, nullable = false)
     private String uuid;
 
     // OAuth scope data
     private Long providerId;
-    private String profileUrl;
+
+    private String providerType; //타입 구분(kakao, google, naver)
+    private String providerProfile;
+
     private String nickname;
     private Long level;
-
-    private String type; //타입 구분
 
     @PrePersist
     public void generateUUID() {
@@ -34,12 +34,10 @@ public class User {
         }
     }
 
-    public User(Map<String, Object> userInfo, String type) {
-        Map<String, Object> properties = ((Map<String, Object>) userInfo.get("properties"));
-        this.providerId = (Long) userInfo.get("id");
-//        this.providerNickname = properties.get("nickname").toString();
-        this.profileUrl = properties.get("profile_image").toString();
-        this.type = type;
+    public User(OAuth2UserInfo userInfo) {
+        this.providerId = userInfo.getProviderId();
+        this.providerProfile = userInfo.getProviderProfile();
+        this.providerType = userInfo.getProviderType();
     }
 }
 

@@ -8,6 +8,8 @@ spring:
     import: application-private.yml
   jpa:
     hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: create
     properties:
       hibernate:

@@ -1,37 +1,41 @@
 package fish.core.oauth.service;
 
-
+import fish.core.oauth.dto.AuthUserInfo;
+import fish.core.oauth.dto.KakaoUserInfo;
+import fish.core.oauth.dto.OAuth2UserInfo;
+import fish.common.user.entity.User;
+import fish.common.user.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
-import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
-import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-
 @Service
+@RequiredArgsConstructor
 public class OAuthUserService extends DefaultOAuth2UserService {
+    private final UserService userService;
     @Override
-    public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        // 부모 클래스가 제공하는 기본 구현으로 사용자 정보 로드
+    public OAuth2User loadUser(OAuth2UserRequest userRequest) {
         OAuth2User oAuth2User = super.loadUser(userRequest);
+        String registrationId = userRequest.getClientRegistration().getRegistrationId();
+        OAuth2UserInfo userInfo;
+        //현재 카카오톡만 있기에 카카오톡 처리만 들어감. (추후에 네이버, 구글 로그인도 들어갈 예정)
+        switch (registrationId) {
+            case "kakao": userInfo = new KakaoUserInfo(oAuth2User.getAttributes()); break;
+            default: return null;
+        }
 
-        // Kakao 사용자 정보 추출
-        Map<String, Object> attributes = oAuth2User.getAttributes();
-        Map<String, Object> kakaoAccount = (Map<String, Object>) attributes.get("kakao_account");
-        Map<String, Object> profile = (Map<String, Object>) kakaoAccount.get("profile");
-
-        // 필요한 정보 가져오기
-        String id = attributes.get("id").toString(); // 사용자 고유 ID
-        String nickname = (String) profile.get("nickname");
-        String email = (String) kakaoAccount.get("email");
-
-        // 사용자 정보를 커스터마이징하여 반환
-        return new DefaultOAuth2User(
+        User user = saveUser(userInfo);
+        return new AuthUserInfo(
                 oAuth2User.getAuthorities(),
-                Map.of("id", id, "nickname", nickname, "email", email),
-                "id" // 기본 속성으로 사용할 필드
+                oAuth2User.getAttributes(),
+                "id",
+                user
         );
+    }
+
+    private User saveUser(OAuth2UserInfo oauth2UserInfo) {
+        return userService.saveUser(new User(oauth2UserInfo));
     }
 }

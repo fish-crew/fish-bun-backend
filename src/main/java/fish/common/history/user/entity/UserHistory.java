@@ -1,4 +1,4 @@
-package fish.common.history.login.entity;
+package fish.common.history.user.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -7,20 +7,20 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
-@Table(name = "LOGIN_HISTORY")
+@Table(name = "USER_HISTORY")
 @Getter
 @NoArgsConstructor
 @Entity
-public class LoginHistory {
+public class UserHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long logNum;
+    private Long id;
     private Long providerId;
     private String ip;
     @CreationTimestamp
     private LocalDateTime date;
 
-    public LoginHistory(String ip, Long providerId) {
+    public UserHistory(Long providerId, String ip) {
         this.providerId = providerId;
         this.ip = ip;
     }
