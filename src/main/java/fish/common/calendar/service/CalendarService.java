@@ -1,6 +1,6 @@
 package fish.common.calendar.service;
 
-import fish.common.calendar.entity.FishBunCalendar;
+import fish.common.main.entity.FishBunDetail;
 import fish.common.calendar.repository.CalendarRepository;
 import fish.common.calendar.response.CalendarDetailResponse;
 import fish.common.calendar.response.CalendarResponse;
@@ -22,10 +22,10 @@ public class CalendarService {
     }
 
     public CalendarDetailResponse findCalendarDetail(Long calendarId) {
-        FishBunCalendar fishBunCalendar = calendarRepository.findById(calendarId)
+        FishBunDetail fishBunDetail = calendarRepository.findById(calendarId)
                 .orElseThrow(() -> new IllegalArgumentException("Calendar data not found with id: " + calendarId));
 
-        return CalendarDetailResponse.toResDTO(fishBunCalendar);
+        return CalendarDetailResponse.toResDTO(fishBunDetail);
     }
 
 }

@@ -1,20 +1,20 @@
-package fish.common.calendar.entity;
+package fish.common.main.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
-@Table(name = "FISH_BUN_CALENDAR")
+@Table(name = "FISH_BUN_DETAIL")
 @Getter
 @Entity
 @NoArgsConstructor
-public class FishBunCalendar {
+public class FishBunDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long userId;
-    private String photo;
+    private String flavors;         // 비정규화
     @CreationTimestamp
     private LocalDateTime date;
 }

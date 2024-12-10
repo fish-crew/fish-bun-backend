@@ -1,6 +1,6 @@
 package fish.common.calendar.response;
 
-import fish.common.calendar.entity.FishBunCalendar;
+import fish.common.main.entity.FishBunDetail;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -17,10 +17,10 @@ public class CalendarResponse {
         this.date = date;
     }
 
-    public static CalendarResponse toResponseDTO(FishBunCalendar fishBunCalendar) {
+    public static CalendarResponse toResponseDTO(FishBunDetail fishBunDetail) {
         return CalendarResponse.builder()
-                .id(fishBunCalendar.getId())
-                .date(fishBunCalendar.getDate())
+                .id(fishBunDetail.getId())
+                .date(fishBunDetail.getDate())
                 .build();
     }
 }
