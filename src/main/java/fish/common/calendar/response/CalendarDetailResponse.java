@@ -1,6 +1,6 @@
 package fish.common.calendar.response;
 
-import fish.common.main.entity.FishBunDetail;
+import fish.common.detail.entity.DetailEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -21,7 +21,7 @@ public class CalendarDetailResponse {
         this.flavors = flavors;
     }
 
-    public static CalendarDetailResponse toResDTO(FishBunDetail fishBunDetail) {
+    public static CalendarDetailResponse toResDTO(DetailEntity fishBunDetail) {
         return CalendarDetailResponse.builder()
                 .id(fishBunDetail.getId())
                 .photo("Photo Test Url")

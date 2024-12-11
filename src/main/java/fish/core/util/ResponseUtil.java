@@ -1,5 +1,6 @@
 package fish.core.util;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -9,6 +10,7 @@ public class ResponseUtil<T> {
     private static final String MESSAGE_SUCCESS = "success";
     private static final String CODE_SUCCESS = "200";
 
+    @JsonIgnore
     private T data;
     private String result;
     private String statusCode;
@@ -16,6 +18,10 @@ public class ResponseUtil<T> {
 
     public static <T> ResponseUtil<T> success(T data) {
         return new ResponseUtil<>(data, MESSAGE_SUCCESS, CODE_SUCCESS);
+    }
+
+    public static <T> ResponseUtil<T> success() {
+        return new ResponseUtil<>(null, MESSAGE_SUCCESS, CODE_SUCCESS);
     }
 
     public static <T> ResponseUtil<T> fail(String errorMessage, String errorCode) {

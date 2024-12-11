@@ -1,6 +1,6 @@
 package fish.common.calendar.response;
 
-import fish.common.main.entity.FishBunDetail;
+import fish.common.detail.entity.DetailEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -17,7 +17,7 @@ public class CalendarResponse {
         this.date = date;
     }
 
-    public static CalendarResponse toResponseDTO(FishBunDetail fishBunDetail) {
+    public static CalendarResponse toResponseDTO(DetailEntity fishBunDetail) {
         return CalendarResponse.builder()
                 .id(fishBunDetail.getId())
                 .date(fishBunDetail.getDate())
