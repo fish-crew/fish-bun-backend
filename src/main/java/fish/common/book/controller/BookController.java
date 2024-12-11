@@ -2,7 +2,7 @@ package fish.common.book.controller;
 
 import fish.common.book.response.UserBookResponse;
 import fish.common.book.service.BookService;
-import fish.common.response.FishBunResponse;
+import fish.core.util.ResponseUtil;
 import fish.core.oauth.dto.AuthUserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +20,8 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping(value = "/user")
-    public ResponseEntity<FishBunResponse<List<UserBookResponse>>> getUserFishBunBookList(@AuthenticationPrincipal AuthUserInfo principal) {
+    public ResponseEntity<ResponseUtil<List<UserBookResponse>>> getUserFishBunBookList(@AuthenticationPrincipal AuthUserInfo principal) {
         List<UserBookResponse> data = bookService.findAllUserFishBunBook(principal.getUser().getId());
-        return ResponseEntity.ok(new FishBunResponse<>(data));
+        return ResponseEntity.ok(ResponseUtil.success(data));
     }
 }

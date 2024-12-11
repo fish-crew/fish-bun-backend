@@ -3,7 +3,7 @@ package fish.common.calendar.controller;
 import fish.common.calendar.response.CalendarDetailResponse;
 import fish.common.calendar.response.CalendarResponse;
 import fish.common.calendar.service.CalendarService;
-import fish.common.response.FishBunResponse;
+import fish.core.util.ResponseUtil;
 import fish.core.oauth.dto.AuthUserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,14 +22,14 @@ public class CalendarController {
     private final CalendarService calendarService;
 
     @GetMapping()
-    public ResponseEntity<FishBunResponse<List<CalendarResponse>>> getCalendarList(@AuthenticationPrincipal AuthUserInfo authUserInfo) {
+    public ResponseEntity<ResponseUtil<List<CalendarResponse>>> getCalendarList(@AuthenticationPrincipal AuthUserInfo authUserInfo) {
         List<CalendarResponse> data = calendarService.findAllCalendarDate(authUserInfo.getUser().getId());
-        return ResponseEntity.ok(new FishBunResponse<>(data));
+        return ResponseEntity.ok(ResponseUtil.success(data));
     }
 
     @GetMapping(value = "/detail/{calendarId}")
-    public ResponseEntity<FishBunResponse<CalendarDetailResponse>> getCalendarDetail(@PathVariable("calendarId") Long calendarId) {
+    public ResponseEntity<ResponseUtil<CalendarDetailResponse>> getCalendarDetail(@PathVariable("calendarId") Long calendarId) {
         CalendarDetailResponse data = calendarService.findCalendarDetail(calendarId);
-        return ResponseEntity.ok(new FishBunResponse<>(data));
+        return ResponseEntity.ok(ResponseUtil.success(data));
     }
 }

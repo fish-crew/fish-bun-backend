@@ -2,7 +2,7 @@ package fish.common.flavor.controller;
 
 import fish.common.flavor.response.FlavorResponse;
 import fish.common.flavor.service.FlavorService;
-import fish.common.response.FishBunResponse;
+import fish.core.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +18,8 @@ public class FlavorController {
     private final FlavorService flavorService;
 
     @GetMapping(value = "/flavors")
-    public ResponseEntity<FishBunResponse<List<FlavorResponse>>> getFlavorList() {
+    public ResponseEntity<ResponseUtil<List<FlavorResponse>>> getFlavorList() {
         List<FlavorResponse> data = flavorService.findAllFlavors();
-        return ResponseEntity.ok(new FishBunResponse<>(data));
+        return ResponseEntity.ok(ResponseUtil.success(data));
     }
 }
