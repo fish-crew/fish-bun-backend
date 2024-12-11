@@ -1,34 +1,32 @@
 package fish.common.calendar.response;
 
-import fish.common.calendar.entity.FishBunCalendar;
-import fish.common.flavor.response.FlavorResponse;
+import fish.common.main.entity.FishBunDetail;
 import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 public class CalendarDetailResponse {
     private Long id;
     private String photo;
     private LocalDateTime date;
-    private String todayFishBun;
+    private String flavors;
 
     @Builder
-    public CalendarDetailResponse(Long id, String photo, LocalDateTime date, String todayFishBun) {
+    public CalendarDetailResponse(Long id, String photo, LocalDateTime date, String flavors) {
         this.id = id;
         this.photo = photo;
         this.date = date;
-        this.todayFishBun = todayFishBun;
+        this.flavors = flavors;
     }
 
-    public static CalendarDetailResponse toResDTO(FishBunCalendar fishBunCalendar) {
+    public static CalendarDetailResponse toResDTO(FishBunDetail fishBunDetail) {
         return CalendarDetailResponse.builder()
-                .id(fishBunCalendar.getId())
-                .photo(fishBunCalendar.getPhoto())
-                .date(fishBunCalendar.getDate())
-                .todayFishBun("dsfsfdf")
+                .id(fishBunDetail.getId())
+                .photo("Photo Test Url")
+                .date(fishBunDetail.getDate())
+                .flavors(fishBunDetail.getFlavors())
                 .build();
     }
 }
