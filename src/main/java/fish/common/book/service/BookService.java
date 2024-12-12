@@ -12,8 +12,8 @@ import java.util.List;
 public class BookService {
     private final UserBookRepository userBookRepository;
 
-    public List<UserBookResponse> findAllUserFishBunBook(Long id) {
-        return userBookRepository.findAllByUserId(id).stream()
+    public List<UserBookResponse> findAllUserFishBunBook(Long userId) {
+        return userBookRepository.findAllByUserId(userId).stream()
                 .map(UserBookResponse::toResponseDTO)
                 .toList();
     }

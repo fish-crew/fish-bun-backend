@@ -9,6 +9,10 @@ INSERT INTO FISH_BUN_DETAIL (userId, flavors, date, fileId) values (3, '팥 붕�
 INSERT INTO FISH_BUN_DETAIL (userId, flavors, date, fileId) values (3, '누텔라 붕어빵, 팥 붕어빵', '2024-10-01 15:28:44', 4);
 INSERT INTO FISH_BUN_DETAIL (userId, flavors, date, fileId) values (5, '애플파이 붕어빵, 팥 붕어빵', '2024-11-22 11:12:58', 5);
 INSERT INTO FISH_BUN_DETAIL (userId, flavors, date, fileId) values (5, '슈크림 붕어빵', '2024-11-23 21:00:58', 6);
+INSERT INTO FISH_BUN_DETAIL (userId, flavors, date, fileId) values (5, '슈크림 붕어빵', '2024-12-10 21:00:58', 1);
+INSERT INTO FISH_BUN_DETAIL (userId, flavors, date, fileId) values (5, '슈크림 붕어빵', '2024-12-11 21:00:58', 2);
+INSERT INTO FISH_BUN_DETAIL (userId, flavors, date, fileId) values (5, '슈크림 붕어빵', '2024-12-15 21:00:58', 3);
+INSERT INTO FISH_BUN_DETAIL (userId, flavors, date, fileId) values (5, '슈크림 붕어빵', '2024-12-17 21:00:58', 4);
 
 INSERT INTO FISH_BUN_FLAVOR (flavor, image) values ('피자 붕어빵', 'wuziu.png');
 INSERT INTO FISH_BUN_FLAVOR (flavor, image) values ('두부 붕어빵', 'golms.png');
