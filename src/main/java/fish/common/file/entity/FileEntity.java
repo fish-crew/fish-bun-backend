@@ -13,7 +13,7 @@ public class FileEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;                   //파일넘버
-    private String originFileName;     //사용자가 등록한
+    private String originFileName;     //사용자가 등록한 파일 이름
     private String systemFileName;     //시스템 상 파일 이름
     private String filePath;           //파일 경로
     private Long fileSize;             //파일 사이즈

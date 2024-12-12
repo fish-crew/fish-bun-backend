@@ -53,7 +53,6 @@ public class FileUtils {
         }
         if (!isAllowed) {
             return null;
-            //throw new CustomException("== [파일업로드] 허용된 확장자가 아닙니다. ext :  " + originFileExtension, ErrorCode.NOT_ALLOWED_EXT);
         }
 
         // 절대 경로로 변환
