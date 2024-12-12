@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/fish-bun")
+@RequestMapping(value = "/api/fish-bun")
 public class FlavorController {
     private final FlavorService flavorService;
 

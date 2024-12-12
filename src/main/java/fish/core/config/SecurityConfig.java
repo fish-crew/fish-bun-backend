@@ -29,7 +29,7 @@ public class SecurityConfig {
                                     , "/images/**"
                                     , "/js/**"
                             ).permitAll() // 인증 없이 접근 가능
-                    .requestMatchers("/fish-bun/**").authenticated()
+                    .requestMatchers("/api/fish-bun/**").authenticated()
             ;
         });
         http.oauth2Login(form -> {
