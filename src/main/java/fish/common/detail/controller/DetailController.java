@@ -3,7 +3,7 @@ package fish.common.detail.controller;
 import fish.common.detail.dto.DetailRequest;
 import fish.common.detail.entity.DetailEntity;
 import fish.common.detail.service.DetailService;
-import fish.core.oauth.dto.AuthUserInfo;
+import fish.common.user.entity.User;
 import fish.core.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +20,8 @@ public class DetailController {
 
     @PostMapping(value="/save", consumes = {"multipart/form-data"})
     public ResponseEntity save(@ModelAttribute DetailRequest request,
-                     @AuthenticationPrincipal AuthUserInfo userInfo) throws IOException {
-        DetailEntity entity = request.toEntity(request, userInfo.getUser().getId());
+                     @AuthenticationPrincipal User user) throws IOException {
+        DetailEntity entity = request.toEntity(request, user.getId());
         mainService.save(entity, request.getPicture());
         return ResponseEntity.ok(ResponseUtil.success());
     }
