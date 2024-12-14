@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/fish-bun/detail")
+@RequestMapping(value = "/api/fish-bun/detail")
 public class DetailController {
     private final DetailService mainService;
 

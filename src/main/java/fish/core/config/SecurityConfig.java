@@ -36,7 +36,7 @@ public class SecurityConfig {
                                     , "/images/**"
                                     , "/js/**"
                             ).permitAll() // 인증 없이 접근 가능
-                   .requestMatchers("/fish-bun/**").authenticated()
+                    .requestMatchers("/fish-bun/**").authenticated()
             ;
         });
 
