@@ -60,15 +60,12 @@ public class OAuth2TokenFilter extends OncePerRequestFilter {
             return;
         }
 
-        // SecurityContext에 인증되지 않은 사용자를 설정
-        if (SecurityContextHolder.getContext().getAuthentication() == null) {
-            Authentication authentication = new UsernamePasswordAuthenticationToken(
-                    user, // Principal 대신 Access Token
-                    token, // Credentials
-                    null
-            );
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        }
+       Authentication authentication = new UsernamePasswordAuthenticationToken(
+                user, // Principal 대신 Access Token
+                token, // Credentials
+                null
+        );
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         // 다음 필터로 요청을 전달
         filterChain.doFilter(request, response);

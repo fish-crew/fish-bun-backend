@@ -9,6 +9,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.web.cors.CorsConfiguration;
+import java.util.List;
 
 @Configuration
 @RequiredArgsConstructor
@@ -20,6 +22,17 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http, LoginAuthHandler authHandler) throws Exception {
+        http.cors(cors -> cors
+                .configurationSource(request -> {
+                    CorsConfiguration configuration = new CorsConfiguration();
+                    configuration.setAllowedOrigins(List.of("http://localhost:3001", "https://bunglog.me"));
+                    configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    configuration.setAllowedHeaders(List.of("*"));
+                    configuration.setAllowCredentials(true);
+                    return configuration;
+                })
+        );
+
         http.csrf(csrf -> csrf
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .ignoringRequestMatchers(
@@ -43,12 +56,11 @@ public class SecurityConfig {
         http.oauth2Login(form -> {
             form
                     .userInfoEndpoint(userInfoEndpointConfig -> {
-                       userInfoEndpointConfig.userService(oAuthUserService);
+                        userInfoEndpointConfig.userService(oAuthUserService);
                     })
                     .successHandler(authHandler)
                     .failureHandler(authHandler);
         });
-        http.requestCache();
         http.addFilterBefore(
                 oAuth2TokenFilter, OAuth2AuthorizationRequestRedirectFilter.class
         );

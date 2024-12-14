@@ -64,10 +64,10 @@ public class LoginAuthHandler extends SimpleUrlAuthenticationSuccessHandler
                 clientRegistrationId, oauthToken.getName());
         // Access Token을 HttpOnly Cookie로 저장
         Cookie cookie = new Cookie("accessToken", authorizedClient.getAccessToken().getTokenValue());
-        cookie.setHttpOnly(true); // JavaScript에서 접근 불가능
+        cookie.setHttpOnly(false);
         cookie.setSecure(true); // HTTPS 환경에서만 전송 (필수)
         cookie.setPath("/");
-        cookie.setMaxAge(LOGIN_SESSION); // 3시간 유효
+        cookie.setMaxAge(LOGIN_SESSION); // 6시간 유효
         return cookie;
     }
 
