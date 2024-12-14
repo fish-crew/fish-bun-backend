@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/fish-bun/calendar")
+@RequestMapping(value = "/api/fish-bun/calendar")
 public class CalendarController {
     private final CalendarService calendarService;
 

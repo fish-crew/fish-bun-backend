@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/fish-bun")
+@RequestMapping(value = "/api/fish-bun")
 public class MainController {
     private final MainService mainService;
 

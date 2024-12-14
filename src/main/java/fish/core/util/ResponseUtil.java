@@ -1,6 +1,6 @@
 package fish.core.util;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -10,7 +10,7 @@ public class ResponseUtil<T> {
     private static final String MESSAGE_SUCCESS = "success";
     private static final String CODE_SUCCESS = "200";
 
-    @JsonIgnore
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
     private String result;
     private String statusCode;
