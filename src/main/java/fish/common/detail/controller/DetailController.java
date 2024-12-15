@@ -22,7 +22,7 @@ public class DetailController {
     public ResponseEntity save(@ModelAttribute DetailRequest request,
                      @AuthenticationPrincipal User user) throws IOException {
         DetailEntity entity = request.toEntity(request, user.getId());
-        mainService.save(entity, request.getPicture());
-        return ResponseEntity.ok(ResponseUtil.success());
+        Long id = mainService.save(entity, request.getPicture());
+        return ResponseEntity.ok(ResponseUtil.success(id));
     }
 }

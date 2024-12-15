@@ -20,10 +20,10 @@ public class DetailService {
     private final FileService fileService;
 
     @Transactional
-    public void save(DetailEntity entity, MultipartFile picture) throws IOException {
+    public Long save(DetailEntity entity, MultipartFile picture) throws IOException {
         FileEntity fileEntity = FileUtils.fileUpload(picture, "fishbun");
         fileService.save(fileEntity);
         entity.addFileId(fileEntity.getId());
-        detailRepository.save(entity);
+        return detailRepository.save(entity).getId();
     }
 }
