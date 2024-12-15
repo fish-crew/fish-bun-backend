@@ -3,8 +3,8 @@ package fish.common.calendar.controller;
 import fish.common.calendar.response.CalendarDetailResponse;
 import fish.common.calendar.response.CalendarResponse;
 import fish.common.calendar.service.CalendarService;
+import fish.common.user.entity.User;
 import fish.core.util.ResponseUtil;
-import fish.core.oauth.dto.AuthUserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,8 +22,9 @@ public class CalendarController {
     private final CalendarService calendarService;
 
     @GetMapping()
-    public ResponseEntity<ResponseUtil<List<CalendarResponse>>> getCalendarList(@AuthenticationPrincipal AuthUserInfo authUserInfo) {
-        List<CalendarResponse> data = calendarService.findAllCalendarDate(authUserInfo.getUser().getId());
+    public ResponseEntity<ResponseUtil<List<CalendarResponse>>> getCalendarList
+            (@AuthenticationPrincipal User user) {
+        List<CalendarResponse> data = calendarService.findAllCalendarDate(user.getId());
         return ResponseEntity.ok(ResponseUtil.success(data));
     }
 

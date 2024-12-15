@@ -10,10 +10,8 @@ spring:
     hibernate:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: create
     properties:
       hibernate:
         show-sql: true
         format-sql: true
         dialect: org.hibernate.dialect.MySQLDialect
-    defer-datasource-initialization: true

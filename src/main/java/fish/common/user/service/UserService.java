@@ -16,4 +16,11 @@ public class UserService {
                         userRepository.save(user)
                 );
     }
+
+    public User getUserById(long providerId) {
+        return userRepository.findByProviderId(providerId)
+                .orElseGet(() ->
+                        null
+                );
+    }
 }
