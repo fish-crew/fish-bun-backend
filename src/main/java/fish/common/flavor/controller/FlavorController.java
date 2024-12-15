@@ -15,13 +15,13 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/api/fish-bun")
+@RequestMapping(value = "/fish-bun")
 public class FlavorController {
     private final FlavorService flavorService;
 
     @GetMapping(value = "/flavors")
     public ResponseEntity<ResponseUtil<List<FlavorResponse>>> getFlavorList() {
-        List<FlavorResponse> data = flavorService.findAllFlavors();
+        List<FlavorResponse> data = flavorService.findAllFlavorsOrderBySeq();
         return ResponseEntity.ok(ResponseUtil.success(data));
     }
 
