@@ -16,13 +16,14 @@ public class MainService {
 
     public FishBunDayCountResponse countFishBunDaysInWeek(Long userId) {
         Map<String, Object> result = mainRepository.countCurrentWeekData(userId);
+        int monthlyCount = mainRepository.countCurrentMonthData(userId);
 
         if (result != null) {
             int count = Integer.parseInt(result.get("weeklyCount").toString());
             List<String> days = Arrays.asList(result.get("days").toString().split(","));
 
-            return new FishBunDayCountResponse(days, count);
+            return new FishBunDayCountResponse(days, count, monthlyCount);
         }
-        return new FishBunDayCountResponse(Collections.emptyList(), 0);
+        return new FishBunDayCountResponse(Collections.emptyList(), 0, 0);
     }
 }

@@ -9,4 +9,5 @@ import java.util.List;
 public class FishBunDayCountResponse {
     private List<String> daysInWeek;
     private int weeklyCount;
+    private int monthlyCount;
 }
