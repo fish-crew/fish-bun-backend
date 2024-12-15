@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.util.Map;
+
 @Getter
 @AllArgsConstructor
 public class ResponseUtil<T> {
@@ -12,20 +14,26 @@ public class ResponseUtil<T> {
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Map<Object, Object> additionalData;
     private String result;
     private String statusCode;
 
 
     public static <T> ResponseUtil<T> success(T data) {
-        return new ResponseUtil<>(data, MESSAGE_SUCCESS, CODE_SUCCESS);
+        return new ResponseUtil<>(data, null, MESSAGE_SUCCESS, CODE_SUCCESS);
+    }
+
+    public static <T> ResponseUtil<T> success(T data, Map<Object, Object> additionalData) {
+        return new ResponseUtil<>(data, additionalData, MESSAGE_SUCCESS, CODE_SUCCESS);
     }
 
     public static <T> ResponseUtil<T> success() {
-        return new ResponseUtil<>(null, MESSAGE_SUCCESS, CODE_SUCCESS);
+        return new ResponseUtil<>(null, null, MESSAGE_SUCCESS, CODE_SUCCESS);
     }
 
     public static <T> ResponseUtil<T> fail(String errorMessage, String errorCode) {
-        return new ResponseUtil<>(null, errorMessage, errorCode);
+        return new ResponseUtil<>(null, null, errorMessage, errorCode);
     }
 }
 

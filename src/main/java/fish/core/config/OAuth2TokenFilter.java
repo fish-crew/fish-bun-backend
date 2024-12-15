@@ -22,7 +22,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Map;
 
-@WebFilter(urlPatterns = "/api/fish-bun/**")
+@WebFilter(urlPatterns = "/fish-bun/**")
 @Component
 public class OAuth2TokenFilter extends OncePerRequestFilter {
 

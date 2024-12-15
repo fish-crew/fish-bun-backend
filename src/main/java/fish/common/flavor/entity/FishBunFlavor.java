@@ -16,5 +16,7 @@ public class FishBunFlavor {
     @Column(unique = true, nullable = false)
     private String flavor;
 
-    private String image;
+    private String iconCode;
+
+    private int seq;
 }

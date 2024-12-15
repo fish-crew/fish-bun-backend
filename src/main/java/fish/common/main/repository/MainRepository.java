@@ -15,4 +15,9 @@ public interface MainRepository extends JpaRepository<DetailEntity, Long> {
                     "DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY) AND " +
                     "DATE_ADD(DATE_SUB(CURDATE(), INTERVAL WEEKDAY(CURDATE()) DAY), INTERVAL 7 DAY)", nativeQuery = true)
     Map<String, Object> countCurrentWeekData(Long userId);
+
+    @Query(value = "SELECT COUNT(*) " +
+                    "FROM FISH_BUN_DETAIL " +
+                    "WHERE userID =?1 AND MONTH(`date`) = MONTH(CURDATE()) AND YEAR(`date`) = YEAR(CURDATE())", nativeQuery = true)
+    int countCurrentMonthData(Long userId);
 }
