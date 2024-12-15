@@ -8,21 +8,23 @@ import lombok.Getter;
 public class FlavorResponse {
     private Long id;
     private String flavor;
-    private String image;
+    private String iconCode;
+    private int seq;
 
     @Builder
-    public FlavorResponse(Long id, String flavor, String image) {
+    public FlavorResponse(Long id, String flavor, String iconCode, int seq) {
         this.id = id;
         this.flavor = flavor;
-        this.image = image;
-
+        this.iconCode = iconCode;
+        this.seq = seq;
     }
 
     public static FlavorResponse toResponseDTO(FishBunFlavor fishBunFlavor) {
         return FlavorResponse.builder()
                 .id(fishBunFlavor.getId())
                 .flavor(fishBunFlavor.getFlavor())
-                .image(fishBunFlavor.getImage())
+                .iconCode(fishBunFlavor.getIconCode())
+                .seq(fishBunFlavor.getSeq())
                 .build();
     }
 }
