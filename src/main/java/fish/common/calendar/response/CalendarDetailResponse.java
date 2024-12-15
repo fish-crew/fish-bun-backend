@@ -9,22 +9,22 @@ import java.time.LocalDateTime;
 @Getter
 public class CalendarDetailResponse {
     private Long id;
-    private String photo;
+    private String fileUrl;
     private LocalDateTime date;
     private String flavors;
 
     @Builder
-    public CalendarDetailResponse(Long id, String photo, LocalDateTime date, String flavors) {
+    public CalendarDetailResponse(Long id, String fileUrl, LocalDateTime date, String flavors) {
         this.id = id;
-        this.photo = photo;
+        this.fileUrl = fileUrl;
         this.date = date;
         this.flavors = flavors;
     }
 
-    public static CalendarDetailResponse toResDTO(DetailEntity fishBunDetail) {
+    public static CalendarDetailResponse toResDTO(DetailEntity fishBunDetail, String fileUrl) {
         return CalendarDetailResponse.builder()
                 .id(fishBunDetail.getId())
-                .photo("Photo Test Url")
+                .fileUrl(fileUrl)
                 .date(fishBunDetail.getDate())
                 .flavors(fishBunDetail.getFlavors())
                 .build();

@@ -16,7 +16,7 @@ public class FlavorService {
     private final FlavorReportRepository flavorReportRepository;
 
     public List<FlavorResponse> findAllFlavorsOrderBySeq() {
-        return fishBunFlavorRepository.findAllOrderBySeq()
+        return fishBunFlavorRepository.findAllByOrderBySeqAsc()
                 .stream()
                 .map(FlavorResponse::toResponseDTO)
                 .toList();

@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface FlavorRepository extends JpaRepository<FishBunFlavor, Long> {
-    List<FishBunFlavor> findAllOrderBySeq();
+    List<FishBunFlavor> findAllByOrderBySeqAsc();
 }
