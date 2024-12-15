@@ -1,7 +1,7 @@
-package fish.common.main.entity.service;
+package fish.common.main.service;
 
-import fish.common.main.entity.repository.MainRepository;
-import fish.common.main.entity.response.FishBunDayCountResponse;
+import fish.common.main.repository.MainRepository;
+import fish.common.main.response.FishBunDayCountResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

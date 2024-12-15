@@ -1,7 +1,7 @@
-package fish.common.main.entity.controller;
+package fish.common.main.controller;
 
-import fish.common.main.entity.response.FishBunDayCountResponse;
-import fish.common.main.entity.service.MainService;
+import fish.common.main.response.FishBunDayCountResponse;
+import fish.common.main.service.MainService;
 import fish.common.user.entity.User;
 import fish.core.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;

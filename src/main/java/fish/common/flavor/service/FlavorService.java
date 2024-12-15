@@ -22,6 +22,15 @@ public class FlavorService {
                 .toList();
     }
 
+    public List<FlavorResponse> findAllFlavors1() {
+        return fishBunFlavorRepository.findAll()
+                .stream()
+                .map(FlavorResponse::toResponseDTO)
+                .toList();
+    }
+
+
+
     public void saveReportData(String flavor, Long userId) {
         FishBunFlavorReport flavorReport = FishBunFlavorReport.toEntity(flavor, userId);
         flavorReportRepository.save(flavorReport);

@@ -1,4 +1,4 @@
-package fish.common.main.entity.response;
+package fish.common.main.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

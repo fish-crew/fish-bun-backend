@@ -1,4 +1,4 @@
-package fish.common.main.entity.repository;
+package fish.common.main.repository;
 
 import fish.common.detail.entity.DetailEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
