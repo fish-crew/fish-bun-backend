@@ -1,5 +1,6 @@
 package fish.common.calendar.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import fish.common.calendar.response.CalendarDetailResponse;
 import fish.common.calendar.response.CalendarResponse;
 import fish.common.calendar.service.CalendarService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,11 +23,16 @@ import java.util.List;
 public class CalendarController {
     private final CalendarService calendarService;
 
-    @GetMapping()
+    @GetMapping(value = "/{date}")
     public ResponseEntity<ResponseUtil<List<CalendarResponse>>> getCalendarList
-            (@AuthenticationPrincipal User user) {
+            (@AuthenticationPrincipal User user, @PathVariable("date") String date) throws JsonProcessingException {
+        String[] part = date.split("-");
+        int year = Integer.parseInt(part[0]);
+        int month = Integer.parseInt(part[1]);
         List<CalendarResponse> data = calendarService.findAllCalendarDate(user.getId());
-        return ResponseEntity.ok(ResponseUtil.success(data));
+        int monthlyCount = calendarService.getFishBunCountByMonth(year, month);
+        Map<Object, Object> map = Map.of("monthlyCount", monthlyCount);
+        return ResponseEntity.ok(ResponseUtil.success(data, map));
     }
 
     @GetMapping(value = "/detail/{calendarId}")

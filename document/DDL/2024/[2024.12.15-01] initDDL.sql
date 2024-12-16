@@ -3,7 +3,7 @@ CREATE TABLE `FISH_BUN_DETAIL` (
 	`date` datetime(6) DEFAULT NULL,
   	`fileId` bigint DEFAULT NULL,
  	`userId` bigint DEFAULT NULL,
- 	`flavors` varchar(30) DEFAULT NULL,
+ 	`flavors` varchar(500) DEFAULT NULL,
   	PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 ;
@@ -53,7 +53,7 @@ CREATE TABLE `USER_FISH_BUN_BOOK` (
                                       `id` bigint NOT NULL AUTO_INCREMENT,
                                       `date` datetime(6) DEFAULT NULL,
                                       `userId` bigint DEFAULT NULL,
-                                      `completedFlavor` varchar(30) DEFAULT NULL,
+                                      `completedFlavorId` bigint DEFAULT NULL,
                                       PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
 ;

@@ -9,20 +9,20 @@ import java.time.LocalDateTime;
 @Getter
 public class UserBookResponse {
     private Long id;
-    private String completed_flavor;
+    private Long completedFlavorId;
     private LocalDateTime date;
 
     @Builder
-    public UserBookResponse(Long id, String completed_flavor, LocalDateTime date) {
+    public UserBookResponse(Long id, Long completedFlavorId, LocalDateTime date) {
         this.id = id;
-        this.completed_flavor = completed_flavor;
+        this.completedFlavorId = completedFlavorId;
         this.date = date;
     }
 
     public static UserBookResponse toResponseDTO(UserBook userFishBunBook) {
         return UserBookResponse.builder()
                 .id(userFishBunBook.getId())
-                .completed_flavor(userFishBunBook.getCompletedFlavor())
+                .completedFlavorId(userFishBunBook.getCompletedFlavorId())
                 .date(userFishBunBook.getDate())
                 .build();
     }

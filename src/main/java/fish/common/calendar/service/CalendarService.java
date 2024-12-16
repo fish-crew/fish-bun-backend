@@ -1,5 +1,8 @@
 package fish.common.calendar.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fish.common.detail.dto.DetailFlavor;
 import fish.common.detail.entity.DetailEntity;
 import fish.common.calendar.repository.CalendarRepository;
 import fish.common.calendar.response.CalendarDetailResponse;
@@ -33,6 +36,21 @@ public class CalendarService {
         String fileUrl = fileEntity.getFilePath() + fileEntity.getSystemFileName();
 
         return CalendarDetailResponse.toResDTO(detail, fileUrl);
+    }
+
+    public int getFishBunCountByMonth(int year, int month) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        List<String> flavorJson = calendarRepository.getMonthlyCountByMonth(year, month);
+
+        int monthlyTotal = 0;
+        for (String flavors : flavorJson) {
+            DetailFlavor[] detailFlavors = objectMapper.readValue(flavors, DetailFlavor[].class);
+            for (DetailFlavor detailFlavor : detailFlavors) {
+                monthlyTotal += detailFlavor.getCount();
+            }
+        }
+        return monthlyTotal;
     }
 
 }
