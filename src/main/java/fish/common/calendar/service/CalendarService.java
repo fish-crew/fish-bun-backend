@@ -10,6 +10,7 @@ import fish.common.calendar.response.CalendarResponse;
 import fish.common.file.entity.FileEntity;
 import fish.common.file.repository.FileRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class CalendarService {
+    @Value("${file.filePath}")
+    private String filePath;
+
     private final CalendarRepository calendarRepository;
     private final FileRepository fileRepository;
 
@@ -33,7 +37,7 @@ public class CalendarService {
         FileEntity fileEntity = fileRepository.findById(detail.getFileId())
                 .orElseThrow(() -> new IllegalArgumentException("File data not found with id: " + detail.getFileId()));
 
-        String fileUrl = fileEntity.getFilePath() + fileEntity.getSystemFileName();
+        String fileUrl = filePath + fileEntity.getFilePath() + "/" +fileEntity.getSystemFileName();
 
         return CalendarDetailResponse.toResDTO(detail, fileUrl);
     }

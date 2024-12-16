@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/fish-bun")
+@RequestMapping("/fish-bun/user")
 public class UserController {
 
     private final UserService userService;
