@@ -23,4 +23,8 @@ public class UserService {
                         null
                 );
     }
+
+    public void updateUser(User user) {
+        userRepository.save(user);
+    }
 }

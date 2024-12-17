@@ -46,7 +46,7 @@ public class DetailService {
         return Arrays.stream(detailFlavors)
                 .map(detailFlavor -> {
                     Long flavorId = detailFlavor.getFlavorId();
-                    String iconCode = flavorRepository.findIconCodeById(flavorId);
+                    String iconCode = flavorRepository.findIconCodeById(flavorId).getIconCode();
                     return DetailResponse.toResponse(flavorId, iconCode);
                 })
                 .collect(Collectors.toList());

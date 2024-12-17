@@ -4,6 +4,7 @@ import fish.core.oauth.dto.OAuth2UserInfo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import java.util.UUID;
 
 @Table(name = "USER")
@@ -24,6 +25,7 @@ public class User {
     private String providerType; //타입 구분(kakao, google, naver)
     private String providerProfile;
 
+    @Setter
     private String nickname;
     private Long level;
 

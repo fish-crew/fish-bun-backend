@@ -10,5 +10,5 @@ import java.util.List;
 public interface FlavorRepository extends JpaRepository<FishBunFlavor, Long> {
     List<FishBunFlavor> findAllByOrderBySeqAsc();
 
-    String findIconCodeById(Long id);
+    FishBunFlavor findIconCodeById(Long id);
 }
