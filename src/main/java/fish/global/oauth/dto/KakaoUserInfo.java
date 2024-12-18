@@ -1,5 +1,5 @@
 
-package fish.core.oauth.dto;
+package fish.global.oauth.dto;
 
 import lombok.Getter;
 import java.util.Map;

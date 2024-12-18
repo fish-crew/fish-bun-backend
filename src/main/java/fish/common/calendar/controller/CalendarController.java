@@ -5,7 +5,7 @@ import fish.common.calendar.response.CalendarDetailResponse;
 import fish.common.calendar.response.CalendarResponse;
 import fish.common.calendar.service.CalendarService;
 import fish.common.user.entity.User;
-import fish.core.util.ResponseUtil;
+import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,7 +30,7 @@ public class CalendarController {
         int year = Integer.parseInt(part[0]);
         int month = Integer.parseInt(part[1]);
         List<CalendarResponse> data = calendarService.findAllCalendarDate(user.getId());
-        int monthlyCount = calendarService.getFishBunCountByMonth(year, month);
+        int monthlyCount = calendarService.getFishBunCountByMonth(year, month, user.getId());
         Map<Object, Object> map = Map.of("monthlyCount", monthlyCount);
         return ResponseEntity.ok(ResponseUtil.success(data, map));
     }

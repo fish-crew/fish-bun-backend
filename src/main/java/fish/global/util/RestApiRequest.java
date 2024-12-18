@@ -1,4 +1,4 @@
-package fish.core.util;
+package fish.global.util;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

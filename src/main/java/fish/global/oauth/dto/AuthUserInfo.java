@@ -1,5 +1,5 @@
 
-package fish.core.oauth.dto;
+package fish.global.oauth.dto;
 
 import fish.common.user.entity.User;
 import lombok.Getter;

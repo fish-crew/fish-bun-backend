@@ -1,6 +1,6 @@
 package fish.common.user.entity;
 
-import fish.core.oauth.dto.OAuth2UserInfo;
+import fish.global.oauth.dto.OAuth2UserInfo;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

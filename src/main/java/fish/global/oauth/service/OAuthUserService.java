@@ -1,8 +1,8 @@
-package fish.core.oauth.service;
+package fish.global.oauth.service;
 
-import fish.core.oauth.dto.AuthUserInfo;
-import fish.core.oauth.dto.KakaoUserInfo;
-import fish.core.oauth.dto.OAuth2UserInfo;
+import fish.global.oauth.dto.AuthUserInfo;
+import fish.global.oauth.dto.KakaoUserInfo;
+import fish.global.oauth.dto.OAuth2UserInfo;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
 import lombok.RequiredArgsConstructor;

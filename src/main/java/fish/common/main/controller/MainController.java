@@ -3,7 +3,7 @@ package fish.common.main.controller;
 import fish.common.main.response.FishBunDayCountResponse;
 import fish.common.main.service.MainService;
 import fish.common.user.entity.User;
-import fish.core.util.ResponseUtil;
+import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -13,6 +13,6 @@ public interface CalendarRepository extends JpaRepository<DetailEntity, Long> {
 
     @Query(value = "SELECT F.flavors " +
                     "FROM FISH_BUN_DETAIL F " +
-                    "WHERE YEAR(`date`) = ?1 AND MONTH(`date`) = ?2", nativeQuery = true)
-    List<String> getMonthlyCountByMonth(int year, int month);
+                    "WHERE YEAR(`date`) = ?1 AND MONTH(`date`) = ?2 AND F.userId = ?3", nativeQuery = true)
+    List<String> getMonthlyCountByMonth(int year, int month, Long userId);
 }

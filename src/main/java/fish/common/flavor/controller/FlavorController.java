@@ -4,7 +4,7 @@ import fish.common.flavor.request.FlavorReportRequest;
 import fish.common.flavor.response.FlavorResponse;
 import fish.common.flavor.service.FlavorService;
 import fish.common.user.entity.User;
-import fish.core.util.ResponseUtil;
+import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

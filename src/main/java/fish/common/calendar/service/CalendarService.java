@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class CalendarService {
-    @Value("${file.filePath}")
-    private String filePath;
+    @Value("${file-uri}")
+    private String fileUri;
 
     private final CalendarRepository calendarRepository;
     private final FileRepository fileRepository;
@@ -37,15 +37,15 @@ public class CalendarService {
         FileEntity fileEntity = fileRepository.findById(detail.getFileId())
                 .orElseThrow(() -> new IllegalArgumentException("File data not found with id: " + detail.getFileId()));
 
-        String fileUrl = filePath + fileEntity.getFilePath() + "/" +fileEntity.getSystemFileName();
+        String fileUrl = fileUri + fileEntity.getFilePath() + "/" +fileEntity.getSystemFileName();
 
         return CalendarDetailResponse.toResDTO(detail, fileUrl);
     }
 
-    public int getFishBunCountByMonth(int year, int month) throws JsonProcessingException {
+    public int getFishBunCountByMonth(int year, int month, Long userId) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
 
-        List<String> flavorJson = calendarRepository.getMonthlyCountByMonth(year, month);
+        List<String> flavorJson = calendarRepository.getMonthlyCountByMonth(year, month, userId);
 
         int monthlyTotal = 0;
         for (String flavors : flavorJson) {

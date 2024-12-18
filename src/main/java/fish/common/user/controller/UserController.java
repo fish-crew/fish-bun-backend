@@ -3,7 +3,7 @@ package fish.common.user.controller;
 import fish.common.user.dto.UserRequest;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
-import fish.core.util.ResponseUtil;
+import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
