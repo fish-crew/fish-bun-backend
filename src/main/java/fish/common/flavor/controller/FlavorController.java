@@ -3,7 +3,7 @@ package fish.common.flavor.controller;
 import fish.common.flavor.request.FlavorReportRequest;
 import fish.common.flavor.response.FlavorResponse;
 import fish.common.flavor.service.FlavorService;
-import fish.core.oauth.dto.AuthUserInfo;
+import fish.common.user.entity.User;
 import fish.core.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -26,10 +26,10 @@ public class FlavorController {
     }
 
     @PostMapping(value = "/report")
-    public ResponseEntity report(@RequestBody FlavorReportRequest request, @AuthenticationPrincipal AuthUserInfo authUserInfo) {
+    public ResponseEntity report(@RequestBody FlavorReportRequest request, @AuthenticationPrincipal User user) {
         List<String> flavors = Arrays.stream(request.getFlavors().split(",\\s*")).map(String::trim).toList();
         for (String flavor: flavors) {
-            flavorService.saveReportData(flavor, authUserInfo.getUser().getId());
+            flavorService.saveReportData(flavor, user.getId());
         }
 
         return ResponseEntity.ok(ResponseUtil.success());
