@@ -1,4 +1,4 @@
-package fish.core.util;
+package fish.global.util;
 
 import fish.common.file.entity.FileEntity;
 import lombok.RequiredArgsConstructor;

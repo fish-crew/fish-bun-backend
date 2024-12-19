@@ -1,10 +1,10 @@
-package fish.core.config;
+package fish.global.config;
 
 import fish.common.history.user.entity.UserHistory;
 import fish.common.history.user.serivce.UserHistoryService;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
-import fish.core.util.IpAddressUtil;
+import fish.global.util.IpAddressUtil;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

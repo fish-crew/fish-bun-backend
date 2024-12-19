@@ -1,4 +1,4 @@
-package fish.core.config;
+package fish.global.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fish.common.user.entity.User;

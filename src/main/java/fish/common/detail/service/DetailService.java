@@ -9,7 +9,7 @@ import fish.common.file.service.FileService;
 import fish.common.detail.entity.DetailEntity;
 import fish.common.detail.repository.DetailRepository;
 import fish.common.flavor.repository.FlavorRepository;
-import fish.core.util.FileUtils;
+import fish.global.util.FileUtils;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package fish.core.util;
+package fish.global.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 

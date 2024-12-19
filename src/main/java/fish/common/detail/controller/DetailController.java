@@ -8,7 +8,7 @@ import fish.common.detail.entity.DetailEntity;
 import fish.common.detail.response.DetailResponse;
 import fish.common.detail.service.DetailService;
 import fish.common.user.entity.User;
-import fish.core.util.ResponseUtil;
+import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

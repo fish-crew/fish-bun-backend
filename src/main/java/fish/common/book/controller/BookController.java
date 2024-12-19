@@ -3,7 +3,7 @@ package fish.common.book.controller;
 import fish.common.book.response.UserBookResponse;
 import fish.common.book.service.BookService;
 import fish.common.user.entity.User;
-import fish.core.util.ResponseUtil;
+import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

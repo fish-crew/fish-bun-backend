@@ -1,3 +1,11 @@
+server:
+  port: 8080  # 개발 서버 포트
+  context-path: / # 컨텍스트 경로 (필요시 설정)
+  servlet:
+    context-parameters:
+      app.base-url: https://bunglog.me  #  애플리케이션 URL 설정
+front-url: https://bunglog.me
+file-uri: https://bunglog.me/file
 spring:
   sql:
     init:
@@ -5,7 +13,7 @@ spring:
   profiles:
     active: local
   config:
-    import: application-private.yml
+    import: application-prod.yml
   jpa:
     hibernate:
       naming:
@@ -15,3 +23,7 @@ spring:
         show-sql: true
         format-sql: true
         dialect: org.hibernate.dialect.MySQLDialect
+logging:
+  level:
+    org:
+      springframework: debug

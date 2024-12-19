@@ -1,6 +1,6 @@
-package fish.core.config;
+package fish.global.config;
 
-import fish.core.oauth.service.OAuthUserService;
+import fish.global.oauth.service.OAuthUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +25,7 @@ public class SecurityConfig {
         http.cors(cors -> cors
                 .configurationSource(request -> {
                     CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.setAllowedOrigins(List.of("http://localhost:3001", "https://bunglog.me"));
+                    configuration.setAllowedOrigins(List.of("https://bunglog.me"));
                     configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
                     configuration.setAllowedHeaders(List.of("*"));
                     configuration.setAllowCredentials(true);
