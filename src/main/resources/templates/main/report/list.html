@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+<th:block layout:fragment="views">
+    <script src="/js/main/report.js"></script>
+
+    <section class="page-section" id="portfolio">
+        <div class="container">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>유저명</th>
+                    <th>맛</th>
+                    <th>상태</th>
+                </tr>
+                </thead>
+                <tbody id="table">
+                </tbody>
+            </table>
+        </div>
+    </section>
+</th:block>
+</html>
