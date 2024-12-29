@@ -3,10 +3,12 @@ package fish.common.flavor.entity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Table(name = "FISH_BUN_FLAVOR_REPORT")
 @Entity
 @Getter
+@NoArgsConstructor
 public class FishBunFlavorReport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

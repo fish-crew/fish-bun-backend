@@ -29,15 +29,16 @@ public class CalendarController {
         String[] part = date.split("-");
         int year = Integer.parseInt(part[0]);
         int month = Integer.parseInt(part[1]);
-        List<CalendarResponse> data = calendarService.findAllCalendarDate(user.getId());
+        List<CalendarResponse> data = calendarService.findAllCalendarDate(year, month, user.getId());
         int monthlyCount = calendarService.getFishBunCountByMonth(year, month, user.getId());
         Map<Object, Object> map = Map.of("monthlyCount", monthlyCount);
         return ResponseEntity.ok(ResponseUtil.success(data, map));
     }
 
     @GetMapping(value = "/detail/{calendarId}")
-    public ResponseEntity<ResponseUtil<CalendarDetailResponse>> getCalendarDetail(@PathVariable("calendarId") Long calendarId) {
-        CalendarDetailResponse data = calendarService.findCalendarDetail(calendarId);
+    public ResponseEntity<ResponseUtil<CalendarDetailResponse>> getCalendarDetail(
+            @AuthenticationPrincipal User user, @PathVariable("calendarId") Long calendarId) {
+        CalendarDetailResponse data = calendarService.findCalendarDetail(calendarId, user.getId());
         return ResponseEntity.ok(ResponseUtil.success(data));
     }
 }

@@ -1,10 +1,12 @@
 package fish.common.calendar.response;
 
-import fish.common.detail.entity.DetailEntity;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Map;
+
 
 @Getter
 public class CalendarResponse {
@@ -17,10 +19,11 @@ public class CalendarResponse {
         this.date = date;
     }
 
-    public static CalendarResponse toResponseDTO(DetailEntity fishBunDetail) {
+    public static CalendarResponse toResponseDTO(Map<String, Object> fishBunDetail) {
+        Timestamp timestamp = Timestamp.valueOf(fishBunDetail.get("date").toString());
         return CalendarResponse.builder()
-                .id(fishBunDetail.getId())
-                .date(fishBunDetail.getDate())
+                .id(Long.parseLong(fishBunDetail.get("id").toString()))
+                .date(timestamp.toLocalDateTime())
                 .build();
     }
 }
