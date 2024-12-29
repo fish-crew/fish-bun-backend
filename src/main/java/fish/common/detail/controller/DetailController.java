@@ -40,7 +40,8 @@ public class DetailController {
     }
 
     @GetMapping(value = "/save-success/{detailId}")
-    public ResponseEntity<ResponseUtil<List<DetailResponse>>> findRegistrationData(@PathVariable Long detailId) throws IOException {
-        return ResponseEntity.ok(ResponseUtil.success(detailService.findRegistrationData(detailId)));
+    public ResponseEntity<ResponseUtil<List<DetailResponse>>> findRegistrationData(@PathVariable Long detailId,
+                               @AuthenticationPrincipal User user) throws IOException {
+        return ResponseEntity.ok(ResponseUtil.success(detailService.findRegistrationData(detailId, user.getId())));
     }
 }

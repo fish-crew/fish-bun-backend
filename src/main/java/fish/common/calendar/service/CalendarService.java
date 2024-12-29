@@ -25,14 +25,14 @@ public class CalendarService {
     private final CalendarRepository calendarRepository;
     private final FileRepository fileRepository;
 
-    public List<CalendarResponse> findAllCalendarDate(Long userId) {
-        return calendarRepository.findAllByUserId(userId).stream()
+    public List<CalendarResponse> findAllCalendarDate(int year, int month, Long userId) {
+        return calendarRepository.findAllByUserId(year, month, userId).stream()
                 .map(CalendarResponse::toResponseDTO)
                 .collect(Collectors.toList());
     }
 
-    public CalendarDetailResponse findCalendarDetail(Long calendarId) {
-        DetailEntity detail = calendarRepository.findById(calendarId)
+    public CalendarDetailResponse findCalendarDetail(Long calendarId, Long userId) {
+        DetailEntity detail = calendarRepository.findByIdAndUserId(calendarId, userId)
                 .orElseThrow(() -> new IllegalArgumentException("Calendar data not found with id: " + calendarId));
         FileEntity fileEntity = fileRepository.findById(detail.getFileId())
                 .orElseThrow(() -> new IllegalArgumentException("File data not found with id: " + detail.getFileId()));

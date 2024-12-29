@@ -38,8 +38,8 @@ public class DetailService {
         return detailRepository.save(entity).getId();
     }
 
-    public List<DetailResponse> findRegistrationData(Long detailId) throws JsonProcessingException {
-        DetailEntity detailEntity = detailRepository.findById(detailId)
+    public List<DetailResponse> findRegistrationData(Long detailId, Long userId) throws JsonProcessingException {
+        DetailEntity detailEntity = detailRepository.findByIdAndUserId(detailId, userId)
                 .orElseThrow(() -> new EntityNotFoundException("Detail Entity not found with ID: " + detailId));
         DetailFlavor[] detailFlavors = objectMapper.readValue(detailEntity.getFlavors(), DetailFlavor[].class);
 

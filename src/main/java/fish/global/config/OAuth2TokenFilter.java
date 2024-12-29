@@ -13,7 +13,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -34,7 +33,7 @@ public class OAuth2TokenFilter extends OncePerRequestFilter {
         // 필터를 적용할 경로 설정
         RequestMatcher fishBunMatcher = new AntPathRequestMatcher("/fish-bun/**");
         // 두 조건 중 하나라도 만족하면 필터를 적용
-        this.shouldFilterMatcher = new OrRequestMatcher(fishBunMatcher);
+        this.shouldFilterMatcher = fishBunMatcher;
         this.userService = userService;
     }
 
