@@ -4,6 +4,7 @@ import fish.common.user.entity.User;
 import fish.common.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -26,5 +27,9 @@ public class UserService {
 
     public void updateUser(User user) {
         userRepository.save(user);
+    }
+
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
     }
 }

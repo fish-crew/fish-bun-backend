@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -22,11 +23,8 @@ public class FlavorService {
                 .toList();
     }
 
-    public List<FlavorResponse> findAllFlavors1() {
-        return fishBunFlavorRepository.findAll()
-                .stream()
-                .map(FlavorResponse::toResponseDTO)
-                .toList();
+    public List<Map<String, Object>> findAllReports() {
+        return flavorReportRepository.findAllReports();
     }
 
 
