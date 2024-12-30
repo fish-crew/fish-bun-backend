@@ -22,6 +22,6 @@ public class MainService {
             List<String> days = Arrays.asList(result.get("days").toString().split(","));
             return new FishBunDayCountResponse(days, weeklyCount, monthlyCount);
         }
-        return new FishBunDayCountResponse(Collections.emptyList(), 0, 0);
+        return new FishBunDayCountResponse(Collections.emptyList(), 0, monthlyCount);
     }
 }
