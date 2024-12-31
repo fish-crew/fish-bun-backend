@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
 <th:block layout:fragment="views">
-    <script src="/js/main/user.js"></script>
+    <script th:src="@{/js/main/user.js}"></script>
 
     <section class="page-section" id="portfolio">
         <div class="container">
