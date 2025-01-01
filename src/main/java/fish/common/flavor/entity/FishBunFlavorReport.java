@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Table(name = "FISH_BUN_FLAVOR_REPORT")
 @Entity
@@ -18,6 +21,8 @@ public class FishBunFlavorReport {
     private Long userId;
     @Enumerated(EnumType.STRING)
     private Status status;
+    @CreationTimestamp
+    private LocalDateTime regDate;
 
     @Builder
     public FishBunFlavorReport(String flavor, Long userId, Status status) {

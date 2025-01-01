@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 public class UserBookResponse {
     private Long id;
     private Long completedFlavorId;
-    private LocalDateTime date;
+    private LocalDateTime regDate;
     private String iconCode;
     private int seq;
 
@@ -20,7 +20,7 @@ public class UserBookResponse {
     public UserBookResponse(Long id, Long completedFlavorId, LocalDateTime date, String iconCode, int seq) {
         this.id = id;
         this.completedFlavorId = completedFlavorId;
-        this.date = date;
+        this.regDate = date;
         this.iconCode = iconCode;
         this.seq = seq;
     }
@@ -29,7 +29,7 @@ public class UserBookResponse {
         return UserBookResponse.builder()
                 .id(userFishBunBook.getId())
                 .completedFlavorId(userFishBunBook.getCompletedFlavorId())
-                .date(userFishBunBook.getDate())
+                .date(userFishBunBook.getRegDate())
                 .iconCode(flavor.getIconCode())
                 .seq(flavor.getSeq())
                 .build();
