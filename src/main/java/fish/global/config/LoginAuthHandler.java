@@ -48,6 +48,9 @@ public class LoginAuthHandler extends SimpleUrlAuthenticationSuccessHandler
         //유저 값 가져와서
         User user = userService.getUserById(providerId);
         response.addCookie(setCookie(authentication));
+        // 최근 접속 일자 업데이트
+        userService.updateLastDate(user);
+
         //유저가 닉네임이 등록되어있을 시에 Main으로 리턴, 존재하지 않을 시 Nickname 등록 URL로 리턴
         String path = user.getNickname() != null ? MAIN_URL : NICKNAME_URL;
         String redirectUrl = frontUrl + path;
