@@ -31,6 +31,7 @@ public class User {
     @Setter
     private String nickname;
     private Long level;
+    private String isFirstLogin;
     @CreationTimestamp
     private LocalDateTime regDate;
     private LocalDateTime lastDate;  // 최근 접속 일자
@@ -50,6 +51,10 @@ public class User {
         this.providerId = userInfo.getProviderId();
         this.providerProfile = userInfo.getProviderProfile();
         this.providerType = userInfo.getProviderType();
+    }
+
+    public void updateIsFirstLogin() {
+        this.isFirstLogin = "N";
     }
 }
 

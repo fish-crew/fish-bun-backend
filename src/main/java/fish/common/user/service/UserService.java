@@ -32,4 +32,9 @@ public class UserService {
         user.updateLastDate();
         userRepository.save(user);
     }
+
+    public void updateFirstLogin(User user) {
+        user.updateIsFirstLogin();
+        userRepository.save(user);
+    }
 }
