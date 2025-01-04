@@ -39,7 +39,7 @@ public class LoginAuthHandler extends SimpleUrlAuthenticationSuccessHandler
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException {
-        long providerId = Long.parseLong(authentication.getName());
+        String providerId = authentication.getName();
         //로그인 이력 히스토리 쌓음
         userHistoryService.saveHistory(
                 new UserHistory(providerId , IpAddressUtil.getClientIp(request)

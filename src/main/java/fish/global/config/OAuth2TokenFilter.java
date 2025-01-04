@@ -86,7 +86,7 @@ public class OAuth2TokenFilter extends OncePerRequestFilter {
 
             ObjectMapper objectMapper = new ObjectMapper();
             Map<String, Object> responseData = objectMapper.readValue(entity.getBody(), Map.class);
-            return userService.getUserById((Long)responseData.get("id"));
+            return userService.getUserById(responseData.get("id").toString());
         } catch (Exception e) {
             return null;
         }

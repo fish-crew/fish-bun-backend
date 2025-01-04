@@ -20,7 +20,7 @@ public class User {
     private String uuid;
 
     // OAuth scope data
-    private Long providerId;
+    private String providerId;
 
     private String providerType; //타입 구분(kakao, google, naver)
     private String providerProfile;
