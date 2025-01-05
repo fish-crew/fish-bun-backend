@@ -19,7 +19,6 @@ public class OAuthUserService extends DefaultOAuth2UserService {
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         OAuth2UserInfo userInfo;
         String attributeKey;
-        //현재 카카오톡만 있기에 카카오톡 처리만 들어감. (추후에 네이버, 구글 로그인도 들어갈 예정)
         switch (registrationId) {
             case "kakao":
                 userInfo = new KakaoUserInfo(oAuth2User.getAttributes());
