@@ -36,7 +36,8 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .ignoringRequestMatchers(
-                        "/fish-bun/**" // CSRF 비활성화 경로
+                        "/fish-bun/**"
+                        , "/admin/**"           // CSRF 비활성화 경로
                 )
         );
 
@@ -48,6 +49,7 @@ public class SecurityConfig {
                                     , "/css/**"
                                     , "/images/**"
                                     , "/js/**"
+                                    , "/admin/**"
                             ).permitAll() // 인증 없이 접근 가능
                     .requestMatchers("/fish-bun/**").authenticated()
             ;
