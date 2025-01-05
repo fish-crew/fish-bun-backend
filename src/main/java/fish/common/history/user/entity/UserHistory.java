@@ -15,12 +15,12 @@ public class UserHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long providerId;
+    private String providerId;
     private String ip;
     @CreationTimestamp
     private LocalDateTime date;
 
-    public UserHistory(Long providerId, String ip) {
+    public UserHistory(String providerId, String ip) {
         this.providerId = providerId;
         this.ip = ip;
     }

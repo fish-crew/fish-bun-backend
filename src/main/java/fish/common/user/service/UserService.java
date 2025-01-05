@@ -18,7 +18,7 @@ public class UserService {
                 );
     }
 
-    public User getUserById(long providerId) {
+    public User getUserByProviderId(String providerId) {
         return userRepository.findByProviderId(providerId)
                 .orElseGet(() ->
                         null
