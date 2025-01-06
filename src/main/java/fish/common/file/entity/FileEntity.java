@@ -3,6 +3,9 @@ package fish.common.file.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Table(name="FISH_BUN_FILE")
@@ -18,6 +21,8 @@ public class FileEntity {
     private String filePath;           //파일 경로
     private Long fileSize;             //파일 사이즈
     private String fileExtension;      //파일 확장자
+    @CreationTimestamp
+    private LocalDateTime regDate;
 
     public FileEntity(String originFileName, String systemFileName, String filePath, Long fileSize, String fileExtension) {
         this.originFileName = originFileName;

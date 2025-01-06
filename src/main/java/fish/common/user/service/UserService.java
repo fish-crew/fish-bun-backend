@@ -29,7 +29,18 @@ public class UserService {
         userRepository.save(user);
     }
 
+    public void updateLastDate(User user) {
+        user.updateLastDate();
+        userRepository.save(user);
+    }
+
+    public void updateFirstLogin(User user) {
+        user.updateIsFirstLogin();
+        userRepository.save(user);
+    }
+  
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
+  
 }

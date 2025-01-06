@@ -19,7 +19,7 @@ public class UserBook {
     private Long userId;
     private Long completedFlavorId;
     @CreationTimestamp
-    private LocalDateTime date;
+    private LocalDateTime regDate;
 
     @Builder
     public UserBook(Long userId, Long completedFlavorId) {

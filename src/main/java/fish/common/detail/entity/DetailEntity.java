@@ -19,7 +19,7 @@ public class DetailEntity {
     private Long userId;
     private String flavors;
     @CreationTimestamp
-    private LocalDateTime date;
+    private LocalDateTime regDate;
     private Long fileId;
     public void addFileId(Long fileId) {
         this.fileId = fileId;

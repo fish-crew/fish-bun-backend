@@ -18,7 +18,7 @@ public class UserHistory {
     private String providerId;
     private String ip;
     @CreationTimestamp
-    private LocalDateTime date;
+    private LocalDateTime regDate;
 
     public UserHistory(String providerId, String ip) {
         this.providerId = providerId;

@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Table(name = "USER")
@@ -28,6 +31,10 @@ public class User {
     @Setter
     private String nickname;
     private Long level;
+    private String isFirstLogin;
+    @CreationTimestamp
+    private LocalDateTime regDate;
+    private LocalDateTime lastDate;  // 최근 접속 일자
 
     @PrePersist
     public void generateUUID() {
@@ -36,10 +43,18 @@ public class User {
         }
     }
 
+    public void updateLastDate() {
+        this.lastDate = LocalDateTime.now();
+    }
+
     public User(OAuth2UserInfo userInfo) {
         this.providerId = userInfo.getProviderId();
         this.providerProfile = userInfo.getProviderProfile();
         this.providerType = userInfo.getProviderType();
+    }
+
+    public void updateIsFirstLogin() {
+        this.isFirstLogin = "N";
     }
 }
 

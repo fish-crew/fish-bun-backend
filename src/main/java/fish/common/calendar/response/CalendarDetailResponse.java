@@ -10,14 +10,14 @@ import java.time.LocalDateTime;
 public class CalendarDetailResponse {
     private Long id;
     private String fileUrl;
-    private LocalDateTime date;
+    private LocalDateTime regDate;
     private String flavors;
 
     @Builder
     public CalendarDetailResponse(Long id, String fileUrl, LocalDateTime date, String flavors) {
         this.id = id;
         this.fileUrl = fileUrl;
-        this.date = date;
+        this.regDate = date;
         this.flavors = flavors;
     }
 
@@ -25,7 +25,7 @@ public class CalendarDetailResponse {
         return CalendarDetailResponse.builder()
                 .id(fishBunDetail.getId())
                 .fileUrl(fileUrl)
-                .date(fishBunDetail.getDate())
+                .date(fishBunDetail.getRegDate())
                 .flavors(fishBunDetail.getFlavors())
                 .build();
     }
