@@ -4,6 +4,7 @@ import fish.common.user.entity.User;
 import fish.common.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -17,7 +18,7 @@ public class UserService {
                 );
     }
 
-    public User getUserById(long providerId) {
+    public User getUserByProviderId(String providerId) {
         return userRepository.findByProviderId(providerId)
                 .orElseGet(() ->
                         null
@@ -37,4 +38,9 @@ public class UserService {
         user.updateIsFirstLogin();
         userRepository.save(user);
     }
+  
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
+    }
+  
 }

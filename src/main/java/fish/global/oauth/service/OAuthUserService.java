@@ -1,8 +1,6 @@
 package fish.global.oauth.service;
 
-import fish.global.oauth.dto.AuthUserInfo;
-import fish.global.oauth.dto.KakaoUserInfo;
-import fish.global.oauth.dto.OAuth2UserInfo;
+import fish.global.oauth.dto.*;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -20,9 +18,20 @@ public class OAuthUserService extends DefaultOAuth2UserService {
         OAuth2User oAuth2User = super.loadUser(userRequest);
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         OAuth2UserInfo userInfo;
-        //현재 카카오톡만 있기에 카카오톡 처리만 들어감. (추후에 네이버, 구글 로그인도 들어갈 예정)
+        String attributeKey;
         switch (registrationId) {
-            case "kakao": userInfo = new KakaoUserInfo(oAuth2User.getAttributes()); break;
+            case "kakao":
+                userInfo = new KakaoUserInfo(oAuth2User.getAttributes());
+                attributeKey = "id";
+                break;
+            case "google":
+                userInfo = new GoogleUserInfo(oAuth2User.getAttributes());
+                attributeKey = "sub";
+                break;
+            case "naver":
+                userInfo = new NaverUserInfo(oAuth2User.getAttributes());
+                attributeKey = "id";
+                break;
             default: return null;
         }
 
@@ -30,7 +39,7 @@ public class OAuthUserService extends DefaultOAuth2UserService {
         return new AuthUserInfo(
                 oAuth2User.getAuthorities(),
                 oAuth2User.getAttributes(),
-                "id",
+                attributeKey,
                 user
         );
     }
