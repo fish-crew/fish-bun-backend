@@ -1,10 +1,13 @@
 package fish.common.detail.entity;
 
+import fish.common.detail.converter.DetailFlavorConverter;
+import fish.common.detail.dto.DetailFlavor;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "FISH_BUN_DETAIL")
@@ -17,7 +20,8 @@ public class DetailEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long userId;
-    private String flavors;
+    @Convert(converter = DetailFlavorConverter.class)
+    private List<DetailFlavor> flavors;
     @CreationTimestamp
     private LocalDateTime regDate;
     private Long fileId;

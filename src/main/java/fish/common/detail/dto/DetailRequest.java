@@ -1,9 +1,14 @@
 package fish.common.detail.dto;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fish.common.detail.entity.DetailEntity;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Data
 @RequiredArgsConstructor
@@ -11,9 +16,12 @@ public class DetailRequest {
     private String flavors;
     private MultipartFile picture;
 
-    public DetailEntity toEntity(DetailRequest request, Long userId) {
+    ObjectMapper objectMapper = new ObjectMapper();
+
+    public DetailEntity toEntity(DetailRequest request, Long userId) throws JsonProcessingException {
+        List<DetailFlavor> detailFlavors = Arrays.asList(objectMapper.readValue(request.flavors, DetailFlavor[].class));
         return DetailEntity.builder()
-                .flavors(request.flavors)
+                .flavors(detailFlavors)
                 .userId(userId)
                 .build();
     }

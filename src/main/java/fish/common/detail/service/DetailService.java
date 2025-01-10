@@ -1,8 +1,6 @@
 package fish.common.detail.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import fish.common.detail.dto.DetailFlavor;
 import fish.common.detail.response.DetailResponse;
 import fish.common.file.entity.FileEntity;
 import fish.common.file.service.FileService;
@@ -17,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +25,6 @@ public class DetailService {
     private final DetailRepository detailRepository;
     private final FlavorRepository flavorRepository;
     private final FileService fileService;
-    ObjectMapper objectMapper = new ObjectMapper();
 
     @Transactional
     public Long save(DetailEntity entity, MultipartFile picture) throws IOException {
@@ -41,9 +37,8 @@ public class DetailService {
     public List<DetailResponse> findRegistrationData(Long detailId, Long userId) throws JsonProcessingException {
         DetailEntity detailEntity = detailRepository.findByIdAndUserId(detailId, userId)
                 .orElseThrow(() -> new EntityNotFoundException("Detail Entity not found with ID: " + detailId));
-        DetailFlavor[] detailFlavors = objectMapper.readValue(detailEntity.getFlavors(), DetailFlavor[].class);
 
-        return Arrays.stream(detailFlavors)
+        return detailEntity.getFlavors().stream()
                 .map(detailFlavor -> {
                     Long flavorId = detailFlavor.getFlavorId();
                     String iconCode = flavorRepository.findIconCodeById(flavorId).getIconCode();
