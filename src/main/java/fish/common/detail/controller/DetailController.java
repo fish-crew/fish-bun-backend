@@ -24,16 +24,14 @@ import java.util.List;
 public class DetailController {
     private final DetailService detailService;
     private final BookService bookService;
-    ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping(value = "/save", consumes = {"multipart/form-data"})
     public ResponseEntity<ResponseUtil<Long>> save(@ModelAttribute DetailRequest request,
-                               @AuthenticationPrincipal User user) throws IOException {
+                                                   @AuthenticationPrincipal User user) throws IOException {
         DetailEntity entity = request.toEntity(request, user.getId());
         Long id = detailService.save(entity, request.getPicture());
         // Update the user book for a new flavor
-        DetailFlavor[] detailFlavors = objectMapper.readValue(entity.getFlavors(), DetailFlavor[].class);
-        List<Long> flavorIdList = Arrays.stream(detailFlavors).map(DetailFlavor::getFlavorId).toList();
+        List<Long> flavorIdList = entity.getFlavors().stream().map(DetailFlavor::getFlavorId).toList();
         bookService.saveUserCompletedFlavor(flavorIdList, user.getId());
 
         return ResponseEntity.ok(ResponseUtil.success(id));

@@ -16,10 +16,10 @@ public interface CalendarRepository extends JpaRepository<DetailEntity, Long> {
             "WHERE YEAR(`regDate`) = ?1 AND MONTH(`regDate`) = ?2 AND F.userId = ?3", nativeQuery = true)
     List<Map<String, Object>> findAllByUserId(int year, int month, Long userId);
 
-    @Query(value = "SELECT F.flavors " +
-                    "FROM FISH_BUN_DETAIL F " +
-                    "WHERE YEAR(`regDate`) = ?1 AND MONTH(`regDate`) = ?2 AND F.userId = ?3", nativeQuery = true)
-    List<String> getMonthlyCountByMonth(int year, int month, Long userId);
+    @Query("SELECT f " +
+            "FROM DetailEntity f " +
+            "WHERE YEAR(f.regDate) = ?1 AND MONTH(f.regDate) = ?2 AND f.userId = ?3")
+    List<DetailEntity> getMonthlyCountByMonth(int year, int month, Long userId);
 
     Optional<DetailEntity> findByIdAndUserId(Long id, Long userId);
 }

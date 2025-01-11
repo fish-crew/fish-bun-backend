@@ -43,18 +43,9 @@ public class CalendarService {
     }
 
     public int getFishBunCountByMonth(int year, int month, Long userId) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
+        List<DetailEntity> detailEntity = calendarRepository.getMonthlyCountByMonth(year, month, userId);
 
-        List<String> flavorJson = calendarRepository.getMonthlyCountByMonth(year, month, userId);
-
-        int monthlyTotal = 0;
-        for (String flavors : flavorJson) {
-            DetailFlavor[] detailFlavors = objectMapper.readValue(flavors, DetailFlavor[].class);
-            for (DetailFlavor detailFlavor : detailFlavors) {
-                monthlyTotal += detailFlavor.getCount();
-            }
-        }
-        return monthlyTotal;
+        return detailEntity.stream().flatMap(entity -> entity.getFlavors().stream()).mapToInt(DetailFlavor::getCount).sum();
     }
 
 }
