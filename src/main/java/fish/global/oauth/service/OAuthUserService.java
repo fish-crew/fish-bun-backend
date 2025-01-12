@@ -30,7 +30,7 @@ public class OAuthUserService extends DefaultOAuth2UserService {
                 break;
             case "naver":
                 userInfo = new NaverUserInfo(oAuth2User.getAttributes());
-                attributeKey = "id";
+                attributeKey = "response";
                 break;
             default: return null;
         }

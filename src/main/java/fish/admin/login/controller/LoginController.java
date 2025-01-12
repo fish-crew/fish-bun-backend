@@ -1,6 +1,5 @@
 package fish.admin.login.controller;
 
-import fish.common.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;

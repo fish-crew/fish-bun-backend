@@ -4,6 +4,7 @@ import fish.common.history.user.entity.UserHistory;
 import fish.common.history.user.serivce.UserHistoryService;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
+import fish.global.oauth.dto.AuthUserInfo;
 import fish.global.util.IpAddressUtil;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,7 +40,9 @@ public class LoginAuthHandler extends SimpleUrlAuthenticationSuccessHandler
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
             throws IOException {
-        String providerId = authentication.getName();
+        AuthUserInfo userInfo = (AuthUserInfo)authentication.getPrincipal();
+        String providerId = userInfo.getUser().getProviderId();
+
         //로그인 이력 히스토리 쌓음
         userHistoryService.saveHistory(
                 new UserHistory(providerId , IpAddressUtil.getClientIp(request)
