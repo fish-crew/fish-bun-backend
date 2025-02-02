@@ -15,6 +15,7 @@ import java.util.List;
 public class DetailRequest {
     private String flavors;
     private MultipartFile picture;
+    private String date;
 
     ObjectMapper objectMapper = new ObjectMapper();
 
@@ -23,6 +24,7 @@ public class DetailRequest {
         return DetailEntity.builder()
                 .flavors(detailFlavors)
                 .userId(userId)
+                .date(date)
                 .build();
     }
 }

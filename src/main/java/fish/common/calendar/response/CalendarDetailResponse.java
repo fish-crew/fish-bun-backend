@@ -4,22 +4,20 @@ import fish.common.detail.dto.DetailFlavor;
 import fish.common.detail.entity.DetailEntity;
 import lombok.Builder;
 import lombok.Getter;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
 public class CalendarDetailResponse {
     private Long id;
     private String fileUrl;
-    private LocalDateTime regDate;
+    private String date;
     private List<DetailFlavor> flavors;
 
     @Builder
-    public CalendarDetailResponse(Long id, String fileUrl, LocalDateTime date, List<DetailFlavor> flavors) {
+    public CalendarDetailResponse(Long id, String fileUrl, String date, List<DetailFlavor> flavors) {
         this.id = id;
         this.fileUrl = fileUrl;
-        this.regDate = date;
+        this.date = date;
         this.flavors = flavors;
     }
 
@@ -27,7 +25,7 @@ public class CalendarDetailResponse {
         return CalendarDetailResponse.builder()
                 .id(fishBunDetail.getId())
                 .fileUrl(fileUrl)
-                .date(fishBunDetail.getRegDate())
+                .date(fishBunDetail.getDate())
                 .flavors(fishBunDetail.getFlavors())
                 .build();
     }

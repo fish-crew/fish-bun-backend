@@ -1,6 +1,5 @@
 package fish.common.calendar.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import fish.common.calendar.response.CalendarDetailResponse;
 import fish.common.calendar.response.CalendarResponse;
 import fish.common.calendar.service.CalendarService;
@@ -25,12 +24,9 @@ public class CalendarController {
 
     @GetMapping(value = "/{date}")
     public ResponseEntity<ResponseUtil<List<CalendarResponse>>> getCalendarList
-            (@AuthenticationPrincipal User user, @PathVariable("date") String date) throws JsonProcessingException {
-        String[] part = date.split("-");
-        int year = Integer.parseInt(part[0]);
-        int month = Integer.parseInt(part[1]);
-        List<CalendarResponse> data = calendarService.findAllCalendarDate(year, month, user.getId());
-        int monthlyCount = calendarService.getFishBunCountByMonth(year, month, user.getId());
+            (@AuthenticationPrincipal User user, @PathVariable("date") String date) {
+        List<CalendarResponse> data = calendarService.findAllCalendarDate(date, user.getId());
+        int monthlyCount = calendarService.getFishBunCountByMonth(date, user.getId());
         Map<Object, Object> map = Map.of("monthlyCount", monthlyCount);
         return ResponseEntity.ok(ResponseUtil.success(data, map));
     }

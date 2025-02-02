@@ -1,7 +1,5 @@
 package fish.common.calendar.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fish.common.detail.dto.DetailFlavor;
 import fish.common.detail.entity.DetailEntity;
 import fish.common.calendar.repository.CalendarRepository;
@@ -25,8 +23,8 @@ public class CalendarService {
     private final CalendarRepository calendarRepository;
     private final FileRepository fileRepository;
 
-    public List<CalendarResponse> findAllCalendarDate(int year, int month, Long userId) {
-        return calendarRepository.findAllByUserId(year, month, userId).stream()
+    public List<CalendarResponse> findAllCalendarDate(String date, Long userId) {
+        return calendarRepository.findAllByUserId(date, userId).stream()
                 .map(CalendarResponse::toResponseDTO)
                 .collect(Collectors.toList());
     }
@@ -42,9 +40,8 @@ public class CalendarService {
         return CalendarDetailResponse.toResDTO(detail, fileUrl);
     }
 
-    public int getFishBunCountByMonth(int year, int month, Long userId) throws JsonProcessingException {
-        List<DetailEntity> detailEntity = calendarRepository.getMonthlyCountByMonth(year, month, userId);
-
+    public int getFishBunCountByMonth(String date, Long userId) {
+        List<DetailEntity> detailEntity = calendarRepository.getMonthlyCountByMonth(date, userId);
         return detailEntity.stream().flatMap(entity -> entity.getFlavors().stream()).mapToInt(DetailFlavor::getCount).sum();
     }
 
