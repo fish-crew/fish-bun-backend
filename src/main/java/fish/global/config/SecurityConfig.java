@@ -44,6 +44,7 @@ public class SecurityConfig {
                 .ignoringRequestMatchers(
                         "/fish-bun/**"
                         , "/admin/**"           // CSRF 비활성화 경로
+                        , "/bungbal/stats/**"
                 )
         );
 
@@ -56,6 +57,7 @@ public class SecurityConfig {
                                     , "/images/**"
                                     , "/js/**"
                                     , "/admin/**"
+                                    , "/bungbal/stats/**"
                             ).permitAll() // 인증 없이 접근 가능
                     .requestMatchers("/fish-bun/**").authenticated()
             ;
