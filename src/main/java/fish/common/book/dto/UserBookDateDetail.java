@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserBookDateDetail {
+    private Long id;
     private String date;
     private Integer count;
 }

@@ -12,9 +12,9 @@ import java.util.List;
 public interface UserBookRepository extends JpaRepository<UserBook, Long> {
     List<UserBook> findAllByUserId(Long userId);
 
-    @Query(value = "SELECT JSON_OBJECT('date', aggregated_data.date, 'count', aggregated_data.total_count) AS jsonData " +
+    @Query(value = "SELECT JSON_OBJECT('id', aggregated_data.id, 'date', aggregated_data.date, 'count', aggregated_data.total_count) AS jsonData " +
             "FROM ( " +
-            "    SELECT FBD.date, SUM(jt.count) AS total_count " +
+            "    SELECT FBD.id, FBD.date, SUM(jt.count) AS total_count " +
             "    FROM FISH_BUN_DETAIL FBD, " +
             "    JSON_TABLE(FBD.flavors, '$[*]' " +
             "    COLUMNS (" +
@@ -22,7 +22,7 @@ public interface UserBookRepository extends JpaRepository<UserBook, Long> {
             "       count INT PATH '$.count' " +
             "    )) AS jt " +
             "    WHERE jt.flavorId = :flavorId AND FBD.userId = :userId " +
-            "    GROUP BY FBD.date " +
+            "    GROUP BY FBD.id, FBD.date " +
             "    ORDER BY FBD.date ASC " +
             ") AS aggregated_data", nativeQuery = true)
     List<String> findUserBookDetail(@Param("userId") Long userId, @Param("flavorId") Long flavorId);
