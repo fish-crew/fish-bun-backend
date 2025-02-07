@@ -28,7 +28,7 @@ public class UserController {
         return ResponseUtil.success();
     }
 
-    @PatchMapping("/update-fist-login")
+    @PostMapping("/update-first-login")
     public ResponseUtil<String> updateFirstLogin(@AuthenticationPrincipal User user) {
         userService.updateFirstLogin(user);
         return ResponseUtil.success();

@@ -1,9 +1,11 @@
 package fish.common.book.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import fish.common.book.dto.UserBookDateDetail;
 import fish.common.book.entity.UserBook;
 import fish.common.book.repository.UserBookRepository;
+import fish.common.book.response.UserBookDetailResponse;
 import fish.common.book.response.UserBookResponse;
-import fish.common.detail.response.DetailResponse;
 import fish.common.flavor.entity.FishBunFlavor;
 import fish.common.flavor.repository.FlavorRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class BookService {
+    private final ObjectMapper objectMapper = new ObjectMapper();
     private final UserBookRepository userBookRepository;
     private final FlavorRepository flavorRepository;
 
@@ -40,5 +43,23 @@ public class BookService {
                 userBookRepository.save(UserBook.toEntity(userId, id));
             }
         }
+    }
+
+    public UserBookDetailResponse findUserBookDetail(Long userId, Long flavorId) {
+        List<String> list = userBookRepository.findUserBookDetail(userId, flavorId);
+        FishBunFlavor flavor = flavorRepository.findById(flavorId).orElse(null);
+        return convertToResponse(list, flavor);
+    }
+    private UserBookDetailResponse convertToResponse(List<String> rawData, FishBunFlavor flavor) {
+        List<UserBookDateDetail> dateList = rawData.stream()
+                .map(json -> {
+                    try {
+                        return objectMapper.readValue(json, UserBookDateDetail.class);
+                    } catch (Exception e) {
+                        throw new RuntimeException("JSON 변환 실패: " + json, e);
+                    }
+                })
+                .collect(Collectors.toList());
+        return new UserBookDetailResponse(dateList, flavor);
     }
 }

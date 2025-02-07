@@ -1,5 +1,6 @@
 package fish.common.main.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import fish.common.main.response.FishBunDayCountResponse;
 import fish.common.main.service.MainService;
 import fish.common.user.entity.User;
@@ -17,7 +18,7 @@ public class MainController {
     private final MainService mainService;
 
     @GetMapping(value = "/main")
-    public ResponseUtil<FishBunDayCountResponse> countFishBunDaysInWeek(@AuthenticationPrincipal User user) {
+    public ResponseUtil<FishBunDayCountResponse> countFishBunDaysInWeek(@AuthenticationPrincipal User user) throws JsonProcessingException {
         FishBunDayCountResponse data = mainService.countFishBunDaysInWeek(user.getId());
         return ResponseUtil.success(data);
     }

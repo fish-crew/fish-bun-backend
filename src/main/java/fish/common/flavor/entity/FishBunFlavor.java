@@ -22,4 +22,6 @@ public class FishBunFlavor {
     private int seq;
     @CreationTimestamp
     private LocalDateTime regDate;
+    private String description;
+    private String highlight;
 }

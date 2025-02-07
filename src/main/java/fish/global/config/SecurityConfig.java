@@ -29,7 +29,10 @@ public class SecurityConfig {
                             "https://bunglog.me"
                             , "http://localhost:3000"
                     ));
-                    configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+                    configuration.setAllowedMethods(List.of(
+                            "GET", "POST", "PUT"
+                            , "PATCH", "DELETE", "OPTIONS"
+                    ));
                     configuration.setAllowedHeaders(List.of("*"));
                     configuration.setAllowCredentials(true);
                     return configuration;
@@ -41,6 +44,7 @@ public class SecurityConfig {
                 .ignoringRequestMatchers(
                         "/fish-bun/**"
                         , "/admin/**"           // CSRF 비활성화 경로
+                        , "/bungbal/stats/**"
                 )
         );
 
@@ -53,6 +57,7 @@ public class SecurityConfig {
                                     , "/images/**"
                                     , "/js/**"
                                     , "/admin/**"
+                                    , "/bungbal/stats/**"
                             ).permitAll() // 인증 없이 접근 가능
                     .requestMatchers("/fish-bun/**").authenticated()
             ;

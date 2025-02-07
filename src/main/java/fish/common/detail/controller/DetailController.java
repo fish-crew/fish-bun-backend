@@ -1,6 +1,5 @@
 package fish.common.detail.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fish.common.book.service.BookService;
 import fish.common.detail.dto.DetailFlavor;
 import fish.common.detail.dto.DetailRequest;
@@ -15,7 +14,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController

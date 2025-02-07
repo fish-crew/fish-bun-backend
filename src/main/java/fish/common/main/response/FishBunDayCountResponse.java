@@ -2,12 +2,12 @@ package fish.common.main.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import java.util.List;
+import java.util.Map;
 
 @Getter
 @AllArgsConstructor
 public class FishBunDayCountResponse {
-    private List<String> daysInWeek;
+    private Map<String, Object> daysInWeek;
     private int weeklyCount;
     private int monthlyCount;
 }

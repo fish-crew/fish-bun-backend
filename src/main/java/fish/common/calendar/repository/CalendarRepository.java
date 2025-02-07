@@ -11,15 +11,15 @@ import java.util.Optional;
 
 @Repository
 public interface CalendarRepository extends JpaRepository<DetailEntity, Long> {
-    @Query(value = "SELECT F.id, F.regDate " +
+    @Query(value = "SELECT F.id, F.date " +
             "FROM FISH_BUN_DETAIL F " +
-            "WHERE YEAR(`regDate`) = ?1 AND MONTH(`regDate`) = ?2 AND F.userId = ?3", nativeQuery = true)
-    List<Map<String, Object>> findAllByUserId(int year, int month, Long userId);
+            "WHERE DATE_FORMAT(F.date, '%Y-%m') =?1 AND F.userId = ?2", nativeQuery = true)
+    List<Map<String, Object>> findAllByUserId(String date, Long userId);
 
     @Query("SELECT f " +
             "FROM DetailEntity f " +
-            "WHERE YEAR(f.regDate) = ?1 AND MONTH(f.regDate) = ?2 AND f.userId = ?3")
-    List<DetailEntity> getMonthlyCountByMonth(int year, int month, Long userId);
+            "WHERE  DATE_FORMAT(f.date, '%Y-%m') =?1 AND f.userId = ?2")
+    List<DetailEntity> getMonthlyCountByMonth(String date, Long userId);
 
     Optional<DetailEntity> findByIdAndUserId(Long id, Long userId);
 }

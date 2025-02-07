@@ -24,6 +24,7 @@ public class DetailEntity {
     private List<DetailFlavor> flavors;
     @CreationTimestamp
     private LocalDateTime regDate;
+    private String date;
     private Long fileId;
     public void addFileId(Long fileId) {
         this.fileId = fileId;
