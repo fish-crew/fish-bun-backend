@@ -16,6 +16,7 @@ public class DetailRequest {
     private String flavors;
     private MultipartFile picture;
     private String date;
+    private String contents;
 
     ObjectMapper objectMapper = new ObjectMapper();
 
@@ -25,6 +26,7 @@ public class DetailRequest {
                 .flavors(detailFlavors)
                 .userId(userId)
                 .date(date)
+                .contents(contents)
                 .build();
     }
 }
