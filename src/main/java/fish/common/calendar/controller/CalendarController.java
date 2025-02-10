@@ -1,5 +1,6 @@
 package fish.common.calendar.controller;
 
+import fish.common.calendar.request.CalendarModifyRequest;
 import fish.common.calendar.response.CalendarDetailResponse;
 import fish.common.calendar.response.CalendarResponse;
 import fish.common.calendar.service.CalendarService;
@@ -8,10 +9,7 @@ import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -36,5 +34,12 @@ public class CalendarController {
             @AuthenticationPrincipal User user, @PathVariable("calendarId") Long calendarId) {
         CalendarDetailResponse data = calendarService.findCalendarDetail(calendarId, user.getId());
         return ResponseEntity.ok(ResponseUtil.success(data));
+    }
+
+    @PostMapping(value = "/detail/mod-contents")
+    public ResponseEntity<ResponseUtil<CalendarDetailResponse>> addCalendarDetail(
+            @AuthenticationPrincipal User user, @RequestBody CalendarModifyRequest request) {
+        calendarService.modifyContents(user.getId(), request);
+        return ResponseEntity.ok(ResponseUtil.success());
     }
 }

@@ -30,4 +30,8 @@ public class DetailEntity {
     public void addFileId(Long fileId) {
         this.fileId = fileId;
     }
+
+    public void modifyContents(String contents) {
+        this.contents = contents;
+    }
 }
