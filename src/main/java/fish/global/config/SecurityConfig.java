@@ -58,6 +58,7 @@ public class SecurityConfig {
                                     , "/js/**"
                                     , "/admin/**"
                                     , "/bungbal/stats/**"
+                                    , "/ws/**"
                             ).permitAll() // 인증 없이 접근 가능
                     .requestMatchers("/fish-bun/**").authenticated()
             ;
