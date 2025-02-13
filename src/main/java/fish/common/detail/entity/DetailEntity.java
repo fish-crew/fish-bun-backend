@@ -26,7 +26,12 @@ public class DetailEntity {
     private LocalDateTime regDate;
     private String date;
     private Long fileId;
+    private String contents;
     public void addFileId(Long fileId) {
         this.fileId = fileId;
+    }
+
+    public void modifyContents(String contents) {
+        this.contents = contents;
     }
 }

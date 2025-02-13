@@ -12,13 +12,15 @@ public class CalendarDetailResponse {
     private String fileUrl;
     private String date;
     private List<DetailFlavor> flavors;
+    private String contents;
 
     @Builder
-    public CalendarDetailResponse(Long id, String fileUrl, String date, List<DetailFlavor> flavors) {
+    public CalendarDetailResponse(Long id, String fileUrl, String date, String contents, List<DetailFlavor> flavors) {
         this.id = id;
         this.fileUrl = fileUrl;
         this.date = date;
         this.flavors = flavors;
+        this.contents = contents;
     }
 
     public static CalendarDetailResponse toResDTO(DetailEntity fishBunDetail, String fileUrl) {
@@ -26,6 +28,7 @@ public class CalendarDetailResponse {
                 .id(fishBunDetail.getId())
                 .fileUrl(fileUrl)
                 .date(fishBunDetail.getDate())
+                .contents(fishBunDetail.getContents())
                 .flavors(fishBunDetail.getFlavors())
                 .build();
     }
