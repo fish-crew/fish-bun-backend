@@ -3,7 +3,7 @@ $(document).ready(function () {
 });
 
 var mainObj = {
-    listURL : "/admin/report/list.json",
+    listURL : "/admin/community/post/list.json",
     getData : function () {
         $.ajax({
             type: "GET",
@@ -15,9 +15,9 @@ var mainObj = {
                 result.data.forEach((row, index) => {
                 console.log("row : " + JSON.stringify(row) +"index : " +index);
                 var rows = "<tr>";
-                rows += `<td>${row.nickname}</td>`;
-                rows += `<td>${row.flavor}</td>`;
-                rows += `<td>${row.status}</td>`;
+                rows += `<td>${row.id}</td>`;
+                rows += `<td><a href="/admin/community/post/detail/${row.id}">${row.title}</a></td>`;
+                rows += `<td>${row.regDate}</td>`;
                 rows += "</tr>";
                 tableBody.append(rows);
             });

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
+<th:block layout:fragment="views">
+    <script th:src="@{/js/main/post-list.js}"></script>
+
+    <section class="page-section" id="portfolio">
+        <div class="container">
+            <div style="margin: 20px">
+                <button class="custom-btn btn-1" onclick="location.href='/admin/community/post/save'">
+                    게시글 등록하기
+                </button>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>게시글 ID</th>
+                    <th>제목</th>
+                    <th>등록 날짜</th>
+                </tr>
+                </thead>
+                <tbody id="table">
+                </tbody>
+            </table>
+        </div>
+    </section>
+</th:block>
+</html>

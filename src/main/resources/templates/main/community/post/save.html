@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<th:block layout:fragment="views">
+    <section class="page-section" id="portfolio">
+        <div class="container">
+            <form action="/admin/community/post/save.json" method="post">
+                <label for="title">제목:</label>
+                <input type="text" id="title" name="title" required><br>
+
+                <label for="content">내용:</label>
+                <textarea id="content" name="content"></textarea><br>
+
+                <label for="firstOption">투표 A:</label>
+                <input type="text" id="firstOption" name="firstOption"><br>
+
+                <label for="secondOption">투표 B:</label>
+                <input type="text" id="secondOption" name="secondOption"><br>
+
+                <button type="submit">등록하기</button>
+            </form>
+        </div>
+    </section>
+</th:block>
+</html>
