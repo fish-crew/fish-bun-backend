@@ -23,11 +23,9 @@ public class PostEntity {
     private Long id;
     @NotNull
     private String title;
-    private String content;
+    private String contents;
     private String firstOption;
     private String secondOption;
-    private Long firstOptionCount;
-    private Long secondOptionCount;
     private String fileIdList;
     @CreationTimestamp
     private LocalDateTime regDate;
@@ -39,11 +37,9 @@ public class PostEntity {
     public static PostEntity toEntity(PostRequest request) {
         return PostEntity.builder()
                 .title(request.getTitle())
-                .content(request.getContent())
+                .contents(request.getContents())
                 .firstOption(request.getFirstOption())
                 .secondOption(request.getSecondOption())
-                .firstOptionCount(0L)
-                .secondOptionCount(0L)
                 .build();
     }
 }
