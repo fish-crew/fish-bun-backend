@@ -10,8 +10,6 @@ import fish.common.flavor.service.FlavorService;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
