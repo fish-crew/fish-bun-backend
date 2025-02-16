@@ -10,7 +10,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostRequest {
     private String title;
-    private String content;
+    private String contents;
     private String firstOption;
     private String secondOption;
     private List<MultipartFile> pictures;
