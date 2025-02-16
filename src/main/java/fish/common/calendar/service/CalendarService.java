@@ -37,7 +37,7 @@ public class CalendarService {
         FileEntity fileEntity = fileRepository.findById(detail.getFileId())
                 .orElseThrow(() -> new IllegalArgumentException("File data not found with id: " + detail.getFileId()));
 
-        String fileUrl = fileUri + fileEntity.getFilePath() + "/" +fileEntity.getSystemFileName();
+        String fileUrl = fileUri + fileEntity.getFilePath() + fileEntity.getSystemFileName();
 
         return CalendarDetailResponse.toResDTO(detail, fileUrl);
     }

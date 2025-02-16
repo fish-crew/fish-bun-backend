@@ -3,20 +3,30 @@
 <th:block layout:fragment="views">
     <section class="page-section" id="portfolio">
         <div class="container">
-            <form action="/admin/community/post/save.json" method="post">
-                <label for="title">제목:</label>
-                <input type="text" id="title" name="title" required><br>
+            <form action="/admin/community/post/save.json" method="post" enctype="multipart/form-data">
+                <div class="form-floating mb-3">
+                    <input type="text" name="title" class="form-control" id="title" placeholder="제목을 입력해주세요." required>
+                    <label for="title">제목</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea name="content" class="form-control" id="content" style="height : 500px;"></textarea>
+                    <label for="content">내용</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="file" name="pictures" class="form-control" id="pictures" multiple>
+                    <label for="pictures">이미지 업로드</label>
+                </div>
 
-                <label for="content">내용:</label>
-                <textarea id="content" name="content"></textarea><br>
+                <div class="form-floating mb-2">
+                    <textarea name="firstOption" class="form-control" id="firstOption"></textarea>
+                    <label for="firstOption">투표 A</label>
+                </div>
 
-                <label for="firstOption">투표 A:</label>
-                <input type="text" id="firstOption" name="firstOption"><br>
-
-                <label for="secondOption">투표 B:</label>
-                <input type="text" id="secondOption" name="secondOption"><br>
-
-                <button type="submit">등록하기</button>
+                <div class="form-floating mb-5">
+                    <textarea name="secondOption" class="form-control" id="secondOption"></textarea>
+                    <label for="secondOption">투표 B</label>
+                </div>
+                <button class="custom-btn btn-1" type="submit">등록하기</button>
             </form>
         </div>
     </section>

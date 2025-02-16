@@ -28,8 +28,13 @@ public class Post {
     private String secondOption;
     private Long firstOptionCount;
     private Long secondOptionCount;
+    private String fileIdList;
     @CreationTimestamp
     private LocalDateTime regDate;
+
+    public void setFileIdList(String fileIdList) {
+        this.fileIdList = fileIdList;
+    }
 
     public static Post toEntity(PostRequest request) {
         return Post.builder()

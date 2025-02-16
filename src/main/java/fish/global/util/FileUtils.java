@@ -62,7 +62,7 @@ public class FileUtils {
         // 파일패스가 있는경우에 saveFilePath에 전달받은 filePath 추가해서 전달
         String filePath;
 
-        filePath = fileDomain + uploadFolder + saveFilePath;
+        filePath = fileDomain + uploadFolder + saveFilePath + "/";
 
         return new FileEntity(originFileName, systemFileName, filePath, multipartFile.getSize(), originFileExtension);
 

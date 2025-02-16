@@ -1,17 +1,22 @@
 package fish.admin.main.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import fish.common.community.post.entity.Post;
 import fish.common.community.post.request.PostRequest;
+import fish.common.community.post.response.PostDetailResponse;
 import fish.common.community.post.response.PostResponse;
 import fish.common.community.post.service.PostService;
 import fish.common.flavor.service.FlavorService;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,9 +70,10 @@ public class AdminController {
     }
 
     @GetMapping(value = "/community/post/detail/{postId}")
-    public String getPostDetail(@PathVariable Long postId, Model model) {
-        PostResponse postResponse = postService.findPost(postId);
-        model.addAttribute("post", postResponse);
+    public String getPostDetail(@PathVariable Long postId, Model model) throws JsonProcessingException {
+        PostDetailResponse postDetailResponse = postService.findPost(postId);
+        model.addAttribute("post", postDetailResponse);
+
         return "main/community/post/detail";
     }
 
@@ -76,10 +82,10 @@ public class AdminController {
         return "main/community/post/save";
     }
 
-    @PostMapping(value = "community/post/save.json")
-    public String savePost(@ModelAttribute PostRequest request) {
+    @PostMapping(value = "community/post/save.json", consumes = {"multipart/form-data"})
+    public String savePost(@ModelAttribute PostRequest request) throws IOException {
         Post post = Post.toEntity(request);
-        Long postId = postService.savePost(post);
+        Long postId = postService.savePost(post, request.getPictures());
 
         return "redirect:/admin/community/post/detail/" + postId;
     }
