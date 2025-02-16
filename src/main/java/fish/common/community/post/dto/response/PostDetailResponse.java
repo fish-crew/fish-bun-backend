@@ -12,23 +12,19 @@ import java.util.Optional;
 public class PostDetailResponse {
     private Long id;
     private String title;
-    private String content;
+    private String contents;
     private String firstOption;
     private String secondOption;
-    private Long firstOptionCount;
-    private Long secondOptionCount;
     private List<String> fileUrls;
     private LocalDateTime regDate;
 
     @Builder
-    public PostDetailResponse(Long id, String title, String content, String firstOption, String secondOption, Long firstOptionCount, Long secondOptionCount, List<String> fileUrls, LocalDateTime regDate) {
+    public PostDetailResponse(Long id, String title, String contents, String firstOption, String secondOption, List<String> fileUrls, LocalDateTime regDate) {
         this.id = id;
         this.title = title;
-        this.content = content;
+        this.contents = contents;
         this.firstOption = firstOption;
         this.secondOption = secondOption;
-        this.firstOptionCount = firstOptionCount;
-        this.secondOptionCount = secondOptionCount;
         this.fileUrls = fileUrls;
         this.regDate = regDate;
     }
@@ -37,11 +33,9 @@ public class PostDetailResponse {
         return PostDetailResponse.builder()
                 .id(post.getId())
                 .title(post.getTitle())
-                .content(post.getContent())
+                .contents(post.getContents())
                 .firstOption(Optional.ofNullable(post.getFirstOption()).orElse(""))
                 .secondOption(Optional.ofNullable(post.getSecondOption()).orElse(""))
-                .firstOptionCount(Optional.ofNullable(post.getFirstOptionCount()).orElse(0L))
-                .secondOptionCount(Optional.ofNullable(post.getSecondOptionCount()).orElse(0L))
                 .fileUrls(fileUrls)
                 .regDate(post.getRegDate())
                 .build();
