@@ -1,8 +1,8 @@
 package fish.common.calendar.controller;
 
-import fish.common.calendar.request.CalendarModifyRequest;
-import fish.common.calendar.response.CalendarDetailResponse;
-import fish.common.calendar.response.CalendarResponse;
+import fish.common.calendar.dto.request.CalendarModifyRequest;
+import fish.common.calendar.dto.response.CalendarDetailResponse;
+import fish.common.calendar.dto.response.CalendarResponse;
 import fish.common.calendar.service.CalendarService;
 import fish.common.user.entity.User;
 import fish.global.util.ResponseUtil;

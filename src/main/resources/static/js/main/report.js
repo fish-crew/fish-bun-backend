@@ -10,7 +10,6 @@ var mainObj = {
             contentType:"application/json",
             url: mainObj.listURL,
             success: function (result, status, xhr) {
-                console.log("success 호출~");
                 const tableBody = $("#table");
                 tableBody.html();
                 result.data.forEach((row, index) => {

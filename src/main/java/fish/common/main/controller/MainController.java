@@ -1,7 +1,7 @@
 package fish.common.main.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import fish.common.main.response.FishBunDayCountResponse;
+import fish.common.main.dto.response.FishBunDayCountResponse;
 import fish.common.main.service.MainService;
 import fish.common.user.entity.User;
 import fish.global.util.ResponseUtil;

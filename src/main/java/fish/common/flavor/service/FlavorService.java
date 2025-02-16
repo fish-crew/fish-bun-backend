@@ -1,9 +1,9 @@
 package fish.common.flavor.service;
 
-import fish.common.flavor.entity.FishBunFlavorReport;
+import fish.common.flavor.entity.FishBunFlavorReportEntity;
 import fish.common.flavor.repository.FlavorReportRepository;
 import fish.common.flavor.repository.FlavorRepository;
-import fish.common.flavor.response.FlavorResponse;
+import fish.common.flavor.dto.response.FlavorResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +30,7 @@ public class FlavorService {
 
 
     public void saveReportData(String flavor, Long userId) {
-        FishBunFlavorReport flavorReport = FishBunFlavorReport.toEntity(flavor, userId);
+        FishBunFlavorReportEntity flavorReport = FishBunFlavorReportEntity.toEntity(flavor, userId);
         flavorReportRepository.save(flavorReport);
     }
 }

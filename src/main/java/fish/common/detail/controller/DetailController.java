@@ -2,9 +2,9 @@ package fish.common.detail.controller;
 
 import fish.common.book.service.BookService;
 import fish.common.detail.dto.DetailFlavor;
-import fish.common.detail.dto.DetailRequest;
+import fish.common.detail.dto.request.DetailRequest;
 import fish.common.detail.entity.DetailEntity;
-import fish.common.detail.response.DetailResponse;
+import fish.common.detail.dto.response.DetailResponse;
 import fish.common.detail.service.DetailService;
 import fish.common.user.entity.User;
 import fish.global.util.ResponseUtil;

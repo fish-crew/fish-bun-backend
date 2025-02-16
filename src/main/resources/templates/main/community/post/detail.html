@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<th:block layout:fragment="views">
+    <section class="page-section" id="portfolio">
+        <div class="container">
+            <h1 style="text-align: center" th:text="${post.title}"></h1>
+            <hr style="color: gray"/>
+            <br>
+            <p style="text-align: right">등록일: <span th:text="${post.regDate}"></span></p>
+            <p class="content" th:text="${post.content}"></p>
+            <br><br>
+
+            <div th:each="fileUrl : ${post.fileUrls}">
+                <img th:src="${fileUrl}" alt="첨부 이미지" style="max-width: 100%; height: auto;">
+            </div>
+
+
+            <h3 style="text-align: center"> &lt; 밸런스 투표 &gt; </h3>
+            <div class="vote">
+                <p>투표 A: <span th:text="${post.firstOption}"></span></p>
+                <p>투표 B: <span th:text="${post.secondOption}"></span></p>
+            </div>
+
+            <button class="custom-btn btn-1" onclick="location.href='/admin/community/post/list'">
+                목록으로 돌아가기
+            </button>
+        </div>
+    </section>
+</th:block>
+</html>

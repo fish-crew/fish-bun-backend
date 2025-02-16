@@ -1,11 +1,11 @@
 package fish.common.calendar.service;
 
-import fish.common.calendar.request.CalendarModifyRequest;
+import fish.common.calendar.dto.request.CalendarModifyRequest;
 import fish.common.detail.dto.DetailFlavor;
 import fish.common.detail.entity.DetailEntity;
 import fish.common.calendar.repository.CalendarRepository;
-import fish.common.calendar.response.CalendarDetailResponse;
-import fish.common.calendar.response.CalendarResponse;
+import fish.common.calendar.dto.response.CalendarDetailResponse;
+import fish.common.calendar.dto.response.CalendarResponse;
 import fish.common.file.entity.FileEntity;
 import fish.common.file.repository.FileRepository;
 import jakarta.transaction.Transactional;
@@ -37,7 +37,7 @@ public class CalendarService {
         FileEntity fileEntity = fileRepository.findById(detail.getFileId())
                 .orElseThrow(() -> new IllegalArgumentException("File data not found with id: " + detail.getFileId()));
 
-        String fileUrl = fileUri + fileEntity.getFilePath() + "/" +fileEntity.getSystemFileName();
+        String fileUrl = fileUri + fileEntity.getFilePath() + fileEntity.getSystemFileName();
 
         return CalendarDetailResponse.toResDTO(detail, fileUrl);
     }

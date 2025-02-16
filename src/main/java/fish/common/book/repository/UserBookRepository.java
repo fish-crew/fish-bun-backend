@@ -1,6 +1,6 @@
 package fish.common.book.repository;
 
-import fish.common.book.entity.UserBook;
+import fish.common.book.entity.UserBookEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -9,8 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface UserBookRepository extends JpaRepository<UserBook, Long> {
-    List<UserBook> findAllByUserId(Long userId);
+public interface UserBookRepository extends JpaRepository<UserBookEntity, Long> {
+    List<UserBookEntity> findAllByUserId(Long userId);
 
     @Query(value = "SELECT JSON_OBJECT('id', aggregated_data.id, 'date', aggregated_data.date, 'count', aggregated_data.total_count) AS jsonData " +
             "FROM ( " +

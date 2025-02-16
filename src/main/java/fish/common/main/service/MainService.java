@@ -3,7 +3,7 @@ package fish.common.main.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fish.common.main.repository.MainRepository;
-import fish.common.main.response.FishBunDayCountResponse;
+import fish.common.main.dto.response.FishBunDayCountResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

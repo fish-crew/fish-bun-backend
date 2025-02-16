@@ -1,7 +1,7 @@
 package fish.common.book.controller;
 
-import fish.common.book.response.UserBookDetailResponse;
-import fish.common.book.response.UserBookResponse;
+import fish.common.book.dto.response.UserBookDetailResponse;
+import fish.common.book.dto.response.UserBookResponse;
 import fish.common.book.service.BookService;
 import fish.common.user.entity.User;
 import fish.global.util.ResponseUtil;

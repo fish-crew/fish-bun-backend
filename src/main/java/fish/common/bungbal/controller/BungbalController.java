@@ -1,6 +1,6 @@
 package fish.common.bungbal.controller;
 
-import fish.common.bungbal.dto.BungbalRequest;
+import fish.common.bungbal.dto.request.BungbalRequest;
 import fish.common.bungbal.service.BungbalService;
 import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;

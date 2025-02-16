@@ -2,11 +2,11 @@ package fish.common.book.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fish.common.book.dto.UserBookDateDetail;
-import fish.common.book.entity.UserBook;
+import fish.common.book.entity.UserBookEntity;
 import fish.common.book.repository.UserBookRepository;
-import fish.common.book.response.UserBookDetailResponse;
-import fish.common.book.response.UserBookResponse;
-import fish.common.flavor.entity.FishBunFlavor;
+import fish.common.book.dto.response.UserBookDetailResponse;
+import fish.common.book.dto.response.UserBookResponse;
+import fish.common.flavor.entity.FishBunFlavorEntity;
 import fish.common.flavor.repository.FlavorRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
@@ -24,33 +24,33 @@ public class BookService {
 
     public List<UserBookResponse> findAllUserFishBunBook(Long userId) {
         return userBookRepository.findAllByUserId(userId).stream()
-                .map((userBook) -> {
-                    Long flavorId = userBook.getCompletedFlavorId();
-                    FishBunFlavor flavor = flavorRepository.findById(flavorId).orElseThrow(() -> new EntityNotFoundException("FishBun Flavor Entity not found with ID: " + flavorId));
-                    return UserBookResponse.toResponseDTO(userBook, flavor);
+                .map((userBookEntity) -> {
+                    Long flavorId = userBookEntity.getCompletedFlavorId();
+                    FishBunFlavorEntity flavor = flavorRepository.findById(flavorId).orElseThrow(() -> new EntityNotFoundException("FishBun Flavor Entity not found with ID: " + flavorId));
+                    return UserBookResponse.toResponseDTO(userBookEntity, flavor);
                 })
                 .collect(Collectors.toList());
     }
 
     public void saveUserCompletedFlavor(List<Long> flavorIdList, Long userId) {
         List<Long> completedFlavorIdList = userBookRepository.findAllByUserId(userId).stream()
-                .map(UserBook::getCompletedFlavorId)
+                .map(UserBookEntity::getCompletedFlavorId)
                 .toList();
 
         // Save the newly tried flavor as a completed flavor ID
         for (Long id : flavorIdList) {
             if (!completedFlavorIdList.contains(id)) {
-                userBookRepository.save(UserBook.toEntity(userId, id));
+                userBookRepository.save(UserBookEntity.toEntity(userId, id));
             }
         }
     }
 
     public UserBookDetailResponse findUserBookDetail(Long userId, Long flavorId) {
         List<String> list = userBookRepository.findUserBookDetail(userId, flavorId);
-        FishBunFlavor flavor = flavorRepository.findById(flavorId).orElse(null);
+        FishBunFlavorEntity flavor = flavorRepository.findById(flavorId).orElse(null);
         return convertToResponse(list, flavor);
     }
-    private UserBookDetailResponse convertToResponse(List<String> rawData, FishBunFlavor flavor) {
+    private UserBookDetailResponse convertToResponse(List<String> rawData, FishBunFlavorEntity flavor) {
         List<UserBookDateDetail> dateList = rawData.stream()
                 .map(json -> {
                     try {

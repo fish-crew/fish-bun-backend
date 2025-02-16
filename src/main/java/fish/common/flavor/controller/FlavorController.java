@@ -1,7 +1,7 @@
 package fish.common.flavor.controller;
 
-import fish.common.flavor.request.FlavorReportRequest;
-import fish.common.flavor.response.FlavorResponse;
+import fish.common.flavor.dto.request.FlavorReportRequest;
+import fish.common.flavor.dto.response.FlavorResponse;
 import fish.common.flavor.service.FlavorService;
 import fish.common.user.entity.User;
 import fish.global.util.ResponseUtil;
