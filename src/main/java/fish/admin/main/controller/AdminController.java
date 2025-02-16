@@ -1,10 +1,10 @@
 package fish.admin.main.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import fish.common.community.post.entity.Post;
-import fish.common.community.post.request.PostRequest;
-import fish.common.community.post.response.PostDetailResponse;
-import fish.common.community.post.response.PostResponse;
+import fish.common.community.post.entity.PostEntity;
+import fish.common.community.post.dto.request.PostRequest;
+import fish.common.community.post.dto.response.PostDetailResponse;
+import fish.common.community.post.dto.response.PostResponse;
 import fish.common.community.post.service.PostService;
 import fish.common.flavor.service.FlavorService;
 import fish.common.user.entity.User;
@@ -82,7 +82,7 @@ public class AdminController {
 
     @PostMapping(value = "community/post/save.json", consumes = {"multipart/form-data"})
     public String savePost(@ModelAttribute PostRequest request) throws IOException {
-        Post post = Post.toEntity(request);
+        PostEntity post = PostEntity.toEntity(request);
         Long postId = postService.savePost(post, request.getPictures());
 
         return "redirect:/admin/community/post/detail/" + postId;

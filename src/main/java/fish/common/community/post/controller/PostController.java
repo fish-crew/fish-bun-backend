@@ -2,8 +2,8 @@ package fish.common.community.post.controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import fish.common.community.post.response.PostDetailResponse;
-import fish.common.community.post.response.PostResponse;
+import fish.common.community.post.dto.response.PostDetailResponse;
+import fish.common.community.post.dto.response.PostResponse;
 import fish.common.community.post.service.PostService;
 import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;

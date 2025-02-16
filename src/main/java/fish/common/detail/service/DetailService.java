@@ -1,7 +1,7 @@
 package fish.common.detail.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import fish.common.detail.response.DetailResponse;
+import fish.common.detail.dto.response.DetailResponse;
 import fish.common.file.entity.FileEntity;
 import fish.common.file.service.FileService;
 import fish.common.detail.entity.DetailEntity;

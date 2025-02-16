@@ -2,10 +2,10 @@ package fish.common.community.post.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fish.common.community.post.entity.Post;
+import fish.common.community.post.entity.PostEntity;
 import fish.common.community.post.repository.PostRepository;
-import fish.common.community.post.response.PostDetailResponse;
-import fish.common.community.post.response.PostResponse;
+import fish.common.community.post.dto.response.PostDetailResponse;
+import fish.common.community.post.dto.response.PostResponse;
 import fish.common.file.entity.FileEntity;
 import fish.common.file.service.FileService;
 import fish.global.util.FileUtils;
@@ -32,12 +32,12 @@ public class PostService {
 
 
     public List<PostResponse> findPostList() {
-        List<Post> posts = postRepository.findAll();
+        List<PostEntity> posts = postRepository.findAll();
         return posts.stream().map(PostResponse::toResponse).toList();
     }
 
     public PostDetailResponse findPost(Long postId) throws JsonProcessingException {
-        Post post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post Entity not founded with Id: " + postId));
+        PostEntity post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post Entity not founded with Id: " + postId));
 
         ObjectMapper objectMapper = new ObjectMapper();
         List<Long> fileIdList = Arrays.asList(objectMapper.readValue(post.getFileIdList(), Long[].class));
@@ -49,7 +49,7 @@ public class PostService {
         return PostDetailResponse.toResponse(post, fileUrls);
     }
 
-    public Long savePost(Post post, List<MultipartFile> pictures) throws IOException {
+    public Long savePost(PostEntity post, List<MultipartFile> pictures) throws IOException {
         List<Long> fileIdList = new ArrayList<>();
         for (MultipartFile pic : pictures) {
             FileEntity fileEntity = FileUtils.fileUpload(pic, "community");

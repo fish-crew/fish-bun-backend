@@ -1,6 +1,6 @@
 package fish.common.user.controller;
 
-import fish.common.user.dto.UserRequest;
+import fish.common.user.dto.request.UserRequest;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
 import fish.global.util.ResponseUtil;
