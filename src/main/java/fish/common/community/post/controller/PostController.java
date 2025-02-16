@@ -1,6 +1,8 @@
 package fish.common.community.post.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import fish.common.community.post.response.PostDetailResponse;
 import fish.common.community.post.response.PostResponse;
 import fish.common.community.post.service.PostService;
 import fish.global.util.ResponseUtil;
@@ -25,7 +27,7 @@ public class PostController {
     }
 
     @GetMapping(value = "/{postId}")
-    public ResponseEntity<ResponseUtil<PostResponse>> findPost(@PathVariable Long postId) {
+    public ResponseEntity<ResponseUtil<PostDetailResponse>> findPost(@PathVariable Long postId) throws JsonProcessingException {
         return ResponseEntity.ok(ResponseUtil.success(postService.findPost(postId)));
     }
 
