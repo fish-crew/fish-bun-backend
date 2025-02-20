@@ -1,0 +1,40 @@
+server:
+  port: 8080  # 개발 서버 포트
+  context-path: / # 컨텍스트 경로 (필요시 설정)
+  servlet:
+    context-parameters:
+      app.base-url: https://bunglog.me  #  애플리케이션 URL 설정
+front-url: https://bunglog.me
+file-uri: https://bunglog.me/file
+spring:
+  sql:
+    init:
+      mode: always
+  profiles:
+    active: local
+  config:
+    import: application-prod.yml
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        show-sql: true
+        format-sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+  # 타임리프
+  thymeleaf:
+    check-template-location: true
+    prefix: classpath:/templates/   # .html 파일을 불러오기 위한 경로 설정(src/main/resources/templates)
+    suffix: .html   # 파일 확장자
+    cache: false
+    encoding: UTF-8
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+logging:
+  level:
+    org:
+      springframework: debug

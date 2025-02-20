@@ -1,0 +1,180 @@
+@charset "UTF-8";
+/*!
+* Start Bootstrap - Freelancer v7.0.7 (https://startbootstrap.com/theme/freelancer)
+* Copyright 2013-2023 Start Bootstrap
+* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-freelancer/blob/master/LICENSE)
+*/
+/*!
+ * Bootstrap  v5.2.3 (https://getbootstrap.com/)
+ * Copyright 2011-2022 The Bootstrap Authors
+ * Copyright 2011-2022 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+.aBtn {
+    display: inline-block;           /* 링크를 블록처럼 보이게 설정 */
+    padding: 10px 20px;              /* 내부 여백을 추가하여 버튼 크기 조절 */
+    color: black;                    /* 텍스트 색상 */
+    background-color: #d4d4d4;       /* 버튼 배경색 */
+    border: none;                    /* 기본 테두리 제거 */
+    border-radius: 5px;              /* 모서리를 둥글게 */
+    text-decoration: none;           /* 링크 밑줄 제거 */
+    font-size: 16px;                 /* 폰트 크기 조절 */
+    cursor: pointer;                 /* 마우스를 올렸을 때 손가락 모양 */
+    transition: background-color 0.3s ease; /* 배경색 전환 효과 */
+}
+
+.aBtn:hover {
+    background-color: #ddd;       /* 마우스를 올렸을 때 배경색 변경 */
+}
+
+.main-logo {
+    float: left;
+    height: 100%;
+    width: 100px;
+    border-radius: 1.5rem;
+    margin-right: 10px;
+}
+
+.main-logo a {
+    display: block;
+}
+
+.main-logo a img {
+    height: 100%;
+    width: 100px;
+}
+
+.customCon {
+    display: flex;
+    width: 100%;
+}
+
+.customBox1 {
+    flex: 1;
+    width: 80%;
+    text-align: center;
+    padding: 20px;
+}
+
+.customBox2 {
+    flex: 1;
+    width: 12%;
+    text-align: right;
+    padding: 20px;
+}
+
+.customBox3 {
+    flex: 1;
+    width: 8%;
+    text-align: left;
+    padding: 20px;
+}
+
+.bigFontP {
+    font-size: 30px;
+}
+
+.boardCardImg {
+    padding:20px;
+    height:250px;
+}
+
+.myCardImg {
+    width:27%;
+    height: 250px;
+    padding:10px;
+}
+
+.loadingImg {
+    position: fixed;
+    width: 30%;
+    display: block;
+    top: 50vh;
+    transform: translateY(-50%);
+}
+
+.mask {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: #0002;
+    position: fixed;
+}
+
+.content {
+    display: flex;
+    margin: 10px auto;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    border: 1px solid lightgray;
+    white-space: pre-line;
+}
+
+.vote {
+    display: flex;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
+    align-items: center;
+    padding: 3px;
+    text-align: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+    border: 1px solid lightgray;
+}
+
+.custom-btn {
+    width: 250px;
+    height: 40px;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 25px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+    7px 7px 20px 0px rgba(0,0,0,.1),
+    4px 4px 5px 0px rgba(0,0,0,.1);
+    outline: none;
+}
+
+.btn-1 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 30px;
+    background: rgb(6,14,131);
+    background: linear-gradient(0deg, rgba(6,14,131,1) 0%, rgba(12,25,180,1) 100%);
+    border: none;
+}
+
+.btn-1:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    direction: rtl;
+    z-index: -1;
+    box-shadow:
+    -7px -7px 20px 0px #fff9,
+    -4px -4px 5px 0px #fff9,
+    7px 7px 20px 0px #0002,
+    4px 4px 5px 0px #0001;
+    transition: all 0.3s ease;
+}

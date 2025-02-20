@@ -1,0 +1,30 @@
+
+package fish.global.oauth.dto;
+
+import lombok.Getter;
+import java.util.Map;
+
+@Getter
+public class KakaoUserInfo implements OAuth2UserInfo {
+
+    private Map<String, Object> attributes; // getAttributes()
+    public KakaoUserInfo(Map<String, Object> attributes) {
+        this.attributes = attributes;
+    }
+
+    @Override
+    public String getProviderId() {
+        return attributes.get("id").toString();
+    }
+
+    @Override
+    public String getProviderType() {
+        return "kakao";
+    }
+
+    @Override
+    public String getProviderProfile() {
+        return ((Map)attributes.get("properties")).get("profile_image").toString();
+    }
+
+}

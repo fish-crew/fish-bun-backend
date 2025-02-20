@@ -1,0 +1,43 @@
+package fish.common.detail.controller;
+
+import fish.common.book.service.BookService;
+import fish.common.detail.dto.DetailFlavor;
+import fish.common.detail.dto.request.DetailRequest;
+import fish.common.detail.entity.DetailEntity;
+import fish.common.detail.dto.response.DetailResponse;
+import fish.common.detail.service.DetailService;
+import fish.common.user.entity.User;
+import fish.global.util.ResponseUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.List;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping(value = "/fish-bun/detail")
+public class DetailController {
+    private final DetailService detailService;
+    private final BookService bookService;
+
+    @PostMapping(value = "/save", consumes = {"multipart/form-data"})
+    public ResponseEntity<ResponseUtil<Long>> save(@ModelAttribute DetailRequest request,
+                                                   @AuthenticationPrincipal User user) throws IOException {
+        DetailEntity entity = request.toEntity(request, user.getId());
+        Long id = detailService.save(entity, request.getPicture());
+        // Update the user book for a new flavor
+        List<Long> flavorIdList = entity.getFlavors().stream().map(DetailFlavor::getFlavorId).toList();
+        bookService.saveUserCompletedFlavor(flavorIdList, user.getId());
+
+        return ResponseEntity.ok(ResponseUtil.success(id));
+    }
+
+    @GetMapping(value = "/save-success/{detailId}")
+    public ResponseEntity<ResponseUtil<List<DetailResponse>>> findRegistrationData(@PathVariable Long detailId,
+                               @AuthenticationPrincipal User user) throws IOException {
+        return ResponseEntity.ok(ResponseUtil.success(detailService.findRegistrationData(detailId, user.getId())));
+    }
+}

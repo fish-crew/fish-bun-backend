@@ -1,0 +1,45 @@
+package fish.common.calendar.controller;
+
+import fish.common.calendar.dto.request.CalendarModifyRequest;
+import fish.common.calendar.dto.response.CalendarDetailResponse;
+import fish.common.calendar.dto.response.CalendarResponse;
+import fish.common.calendar.service.CalendarService;
+import fish.common.user.entity.User;
+import fish.global.util.ResponseUtil;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping(value = "/fish-bun/calendar")
+public class CalendarController {
+    private final CalendarService calendarService;
+
+    @GetMapping(value = "/{date}")
+    public ResponseEntity<ResponseUtil<List<CalendarResponse>>> getCalendarList
+            (@AuthenticationPrincipal User user, @PathVariable("date") String date) {
+        List<CalendarResponse> data = calendarService.findAllCalendarDate(date, user.getId());
+        int monthlyCount = calendarService.getFishBunCountByMonth(date, user.getId());
+        Map<Object, Object> map = Map.of("monthlyCount", monthlyCount);
+        return ResponseEntity.ok(ResponseUtil.success(data, map));
+    }
+
+    @GetMapping(value = "/detail/{calendarId}")
+    public ResponseEntity<ResponseUtil<CalendarDetailResponse>> getCalendarDetail(
+            @AuthenticationPrincipal User user, @PathVariable("calendarId") Long calendarId) {
+        CalendarDetailResponse data = calendarService.findCalendarDetail(calendarId, user.getId());
+        return ResponseEntity.ok(ResponseUtil.success(data));
+    }
+
+    @PostMapping(value = "/detail/mod-contents")
+    public ResponseEntity<ResponseUtil<CalendarDetailResponse>> addCalendarDetail(
+            @AuthenticationPrincipal User user, @RequestBody CalendarModifyRequest request) {
+        calendarService.modifyContents(user.getId(), request);
+        return ResponseEntity.ok(ResponseUtil.success());
+    }
+}
