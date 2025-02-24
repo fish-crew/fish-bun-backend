@@ -10,6 +10,7 @@ import fish.common.flavor.service.FlavorService;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -86,5 +87,14 @@ public class AdminController {
         Long postId = postService.savePost(post, request.getPictures());
 
         return "redirect:/admin/community/post/detail/" + postId;
+    }
+
+    // For Redirect Using Get Method
+    @ResponseStatus(HttpStatus.SEE_OTHER)
+    @DeleteMapping(value = "community/{postId}/del-post")
+    public String deletePost(@PathVariable Long postId) {
+        postService.deletePost(postId);
+
+        return "redirect:/admin/community/post/list";
     }
 }

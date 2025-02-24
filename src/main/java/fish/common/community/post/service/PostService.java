@@ -13,6 +13,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -52,6 +53,8 @@ public class PostService {
     public Long savePost(PostEntity post, List<MultipartFile> pictures) throws IOException {
         List<Long> fileIdList = new ArrayList<>();
         for (MultipartFile pic : pictures) {
+            if (pic.isEmpty() || pic.getSize() == 0) continue;
+
             FileEntity fileEntity = FileUtils.fileUpload(pic, "community");
             fileService.save(fileEntity);
             fileIdList.add(fileEntity.getId());
@@ -62,5 +65,10 @@ public class PostService {
         post.setFileIdList(jsonFileIdList);
 
         return postRepository.save(post).getId();
+    }
+
+    @Transactional
+    public void deletePost(Long postId) {
+        postRepository.deleteById(postId);
     }
 }
