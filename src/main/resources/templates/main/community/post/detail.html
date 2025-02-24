@@ -8,7 +8,7 @@
             <hr style="color: gray"/>
             <br>
             <p style="text-align: right">등록일: <span th:text="${post.regDate}"></span></p>
-            <p class="content" th:text="${post.content}"></p>
+            <p class="content" th:text="${post.contents}"></p>
             <br><br>
 
             <div th:each="fileUrl : ${post.fileUrls}">
