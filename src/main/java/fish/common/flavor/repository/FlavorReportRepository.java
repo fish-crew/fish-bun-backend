@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface FlavorReportRepository extends JpaRepository<FishBunFlavorReportEntity, Long> {
-    @Query(value = "SELECT FBFR.flavor AS flavor, FBFR.status AS status, U.nickname AS nickname " +
+    @Query(value = "SELECT FBFR.flavor AS flavor, FBFR.status AS status, U.nickname AS nickname , FBFR.regDate AS regDate " +
             "FROM FISH_BUN_FLAVOR_REPORT FBFR " +
             "LEFT JOIN USER U ON FBFR.userId = U.id", nativeQuery = true)
     List<Map<String, Object>> findAllReports();

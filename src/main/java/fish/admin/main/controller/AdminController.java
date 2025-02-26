@@ -6,7 +6,9 @@ import fish.common.community.post.dto.request.PostRequest;
 import fish.common.community.post.dto.response.PostDetailResponse;
 import fish.common.community.post.dto.response.PostResponse;
 import fish.common.community.post.service.PostService;
+import fish.common.detail.service.DetailService;
 import fish.common.flavor.service.FlavorService;
+import fish.common.main.service.MainService;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,7 @@ public class AdminController {
     private final FlavorService flavorService;
     private final UserService userService;
     private final PostService postService;
+    private final DetailService detailService;
 
     @GetMapping(value = "/report/list")
     public String viewReport() {
@@ -47,10 +50,16 @@ public class AdminController {
 
     @GetMapping(value = "/user/list.json")
     @ResponseBody
-    public Map<String, List<User>> listUser() {
-        Map<String, List<User>> result = new HashMap<>();
-        result.put("data", userService.findAllUsers());
+    public Map<String, List<Map<String, Object>>> listUser() {
+        Map<String, List<Map<String, Object>>> result = new HashMap<>();
+        result.put("data", detailService.findAllUserStats());
         return result;
+    }
+
+    @GetMapping(value="/user/detail")
+    public String viewUserDetail(@RequestParam Long userId, Model model) {
+        model.addAttribute("data", detailService.findUserStats(userId));
+        return "main/user/detail";
     }
 
     @GetMapping("/community/post/list")
@@ -87,4 +96,10 @@ public class AdminController {
 
         return "redirect:/admin/community/post/detail/" + postId;
     }
+
+    /**
+     * 유저별 일지 데이터를 볼 수 있는 기능
+     * @param model
+     * @return String
+     */
 }

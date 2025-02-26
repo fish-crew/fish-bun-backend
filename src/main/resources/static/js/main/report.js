@@ -17,6 +17,7 @@ var mainObj = {
                 var rows = "<tr>";
                 rows += `<td>${row.nickname}</td>`;
                 rows += `<td>${row.flavor}</td>`;
+                rows += `<td>${row.regDate}</td>`;
                 rows += `<td>${row.status}</td>`;
                 rows += "</tr>";
                 tableBody.append(rows);
