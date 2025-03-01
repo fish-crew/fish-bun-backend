@@ -25,7 +25,7 @@ public class CommentController {
     }
 
 
-    @GetMapping(value = "/{postId}/comment")
+    @GetMapping(value = "/{postId}/comments")
     public ResponseEntity<ResponseUtil<List<CommentResponse>>> findAllComments(@PathVariable Long postId) {
         return ResponseEntity.ok(ResponseUtil.success(commentService.findAllComments(postId)));
     }
