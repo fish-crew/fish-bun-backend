@@ -27,7 +27,6 @@ CREATE TABLE `COMMENT` (
 
 CREATE TABLE `VOTE` (
 	`id` bigint NOT NULL AUTO_INCREMENT,
-  	`title` varchar(50) NOT NULL,
   	`postId` bigint NOT NULL,
     `userId` bigint NOT NULL,
     `voteOption` varchar(30) DEFAULT NULL,
