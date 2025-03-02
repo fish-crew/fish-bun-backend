@@ -35,4 +35,10 @@ public class CommentController {
         commentService.modifyComment(commentId, request);
         return ResponseEntity.ok(ResponseUtil.success());
     }
+
+    @DeleteMapping(value = "/comments/{commentId}")
+    public ResponseEntity<ResponseUtil> deleteComment(@PathVariable Long commentId) {
+        commentService.deleteComment(commentId);
+        return ResponseEntity.ok(ResponseUtil.success());
+    }
 }
