@@ -35,10 +35,11 @@ public interface DetailRepository extends JpaRepository<DetailEntity, Long> {
             "MAX(FBD.date) AS lastEatenDate, " +
             "U.lastDate AS lastDate, " +
             "MAX(FBD.date) AS lastEatenDate, " +
-            "U.providerType AS providerType, " +
-            "U.regDate AS regDate " +
+            "U.regDate AS regDate, " +
+            "JSON_OBJECTAGG(FBD.id, FBD.date) AS dateMap " +
             "FROM USER U " +
             "LEFT JOIN FISH_BUN_DETAIL FBD " +
-            "ON U.id = FBD.userId ", nativeQuery = true)
-    List<Map<String, Object>> findUserStats(Long userId);
+            "ON U.id = FBD.userId " +
+            "WHERE U.id = ?1", nativeQuery = true)
+    Map<String, Object> findUserStats(Long userId);
 }

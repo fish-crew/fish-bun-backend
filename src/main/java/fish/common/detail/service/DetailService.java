@@ -52,7 +52,7 @@ public class DetailService {
         return detailRepository.findAllUserStats();
     }
 
-    public List<Map<String, Object>> findUserStats(Long userId) {
+    public Map<String, Object> findUserStats(Long userId) {
         return detailRepository.findUserStats(userId);
     }
 }
