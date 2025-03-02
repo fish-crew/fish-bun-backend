@@ -30,10 +30,14 @@
                 삭제하기
             </button>
 
+            <button class="custom-btn btn-1" th:onclick="|location.href='/admin/community/edit/' + ${post.id}|">
+                수정하기
+            </button>
+
             <script th:inline="javascript">
                 var postId = [[${post.id}]];
                 function deletePost() {
-                fetch(`/admin/community/${postId}/del-post`, {
+                fetch(`/admin/community/${postId}`, {
                 method: "DELETE"
                 }).then(response => {
                 if (response.ok) {

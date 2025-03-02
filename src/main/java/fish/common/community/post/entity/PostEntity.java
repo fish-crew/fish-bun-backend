@@ -34,6 +34,19 @@ public class PostEntity {
         this.fileIdList = fileIdList;
     }
 
+    public void updateFileIdList(String JsonFileIdList) {
+        this.fileIdList = "[" + this.fileIdList.substring(1, this.fileIdList.length() - 1) + ","
+                + JsonFileIdList.substring(1, JsonFileIdList.length() - 1) + "]";
+    }
+
+    public void modify(PostRequest request) {
+        this.title = request.getTitle();
+        this.contents = request.getContents();
+        this.firstOption = request.getFirstOption();
+        this.secondOption = request.getSecondOption();
+        this.regDate = LocalDateTime.now();
+    }
+
     public static PostEntity toEntity(PostRequest request) {
         return PostEntity.builder()
                 .title(request.getTitle())
