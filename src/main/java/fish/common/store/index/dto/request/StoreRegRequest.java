@@ -1,10 +1,9 @@
 package fish.common.store.index.dto.request;
 
-import lombok.Data;
 import lombok.Getter;
 
 @Getter
-public class StoreRequest {
+public class StoreRegRequest {
     private String address;
     private String name;
     private String detail;

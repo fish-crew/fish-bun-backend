@@ -7,8 +7,15 @@ CREATE TABLE STORE (
                lat DOUBLE NOT NULL,
                lng DOUBLE NOT NULL,
                regDate datetime(6) DEFAULT NULL,
+               modDate datetime(6) DEFAULT NULL,
                PRIMARY KEY (`id`)
             )
             ;
 
-CREATE TABLE STORE
+CREATE TABLE STORE_LIKES (
+             id BIGINT AUTO_INCREMENT,
+             userId BIGINT NOT NULL,
+             storeId BIGINT NOT NULL,
+             regDate datetime(6) DEFAULT NULL,
+             PRIMARY KEY (`id`)
+);
