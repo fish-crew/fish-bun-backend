@@ -7,6 +7,7 @@ import fish.common.community.comment.repository.CommentRepository;
 import fish.common.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,13 +16,23 @@ import java.util.List;
 public class CommentService {
     private final CommentRepository commentRepository;
 
-    public void saveComment(Long postId, CommentRequest request, User user) {
+    @Transactional
+    public Long saveComment(Long postId, CommentRequest request, User user) {
         CommentEntity entity = CommentEntity.toEntity(postId, request, user);
-        commentRepository.save(entity);
+        return commentRepository.save(entity).getId();
     }
 
     public List<CommentResponse> findAllComments(Long postId) {
         List<CommentEntity> commentEntities = commentRepository.findAllByPostId(postId);
         return commentEntities.stream().map(CommentResponse::toResponse).toList();
+    }
+
+    @Transactional
+    public void modifyComment(Long commentId, CommentRequest request) {
+        CommentEntity entity = commentRepository.findById(commentId)
+                .orElseThrow(() -> new IllegalArgumentException("Comment data not found with id: " + commentId));
+
+        entity.modifyContents(request.getContents());
+        commentRepository.save(entity);
     }
 }

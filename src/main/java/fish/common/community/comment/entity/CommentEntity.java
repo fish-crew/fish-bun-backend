@@ -43,4 +43,8 @@ public class CommentEntity {
                 .userNickName(user.getNickname())
                 .build();
     }
+
+    public void modifyContents(String contents) {
+        this.contents = contents;
+    }
 }

@@ -19,14 +19,20 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping(value = "/{postId}/comment/save")
-    public ResponseEntity<ResponseUtil> save(@PathVariable Long postId, @RequestBody CommentRequest request, @AuthenticationPrincipal User user) {
-        commentService.saveComment(postId, request, user);
-        return ResponseEntity.ok(ResponseUtil.success());
+    public ResponseEntity<ResponseUtil<Long>> save(@PathVariable Long postId, @RequestBody CommentRequest request, @AuthenticationPrincipal User user) {
+        Long id = commentService.saveComment(postId, request, user);
+        return ResponseEntity.ok(ResponseUtil.success(id));
     }
 
 
     @GetMapping(value = "/{postId}/comments")
     public ResponseEntity<ResponseUtil<List<CommentResponse>>> findAllComments(@PathVariable Long postId) {
         return ResponseEntity.ok(ResponseUtil.success(commentService.findAllComments(postId)));
+    }
+
+    @PatchMapping(value = "/comments/{commentId}")
+    public ResponseEntity<ResponseUtil> modifyComment(@PathVariable Long commentId, @RequestBody CommentRequest request) {
+        commentService.modifyComment(commentId, request);
+        return ResponseEntity.ok(ResponseUtil.success());
     }
 }
