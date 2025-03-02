@@ -27,7 +27,7 @@ public class StoreController {
     }
 
     @GetMapping
-    public ResponseUtil<List<StoreResponse>> findAll(@RequestBody StoreSearchRequest request) {
+    public ResponseUtil<List<StoreResponse>> findAll(@ModelAttribute StoreSearchRequest request) {
         return ResponseUtil.success(storeService.findAllByBounds(request));
     }
 
