@@ -88,7 +88,7 @@ public class AdminController {
 
         return "redirect:/admin/community/post/detail/" + postId;
     }
-
+  
     // For Redirect Using Get Method
     @ResponseStatus(HttpStatus.SEE_OTHER)
     @DeleteMapping(value = "community/{postId}")
@@ -111,5 +111,10 @@ public class AdminController {
         postService.updatePost(postId, request, request.getPictures());
 
         return "redirect:/admin/community/post/detail/" + postId;
+    }
+  
+    @GetMapping(value = "test/ws")
+    public String viewTestWS() {
+        return "main/ws/test";
     }
 }

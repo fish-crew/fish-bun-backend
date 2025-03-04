@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>찬반투표</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+<h1>찬반투표</h1>
+<p>찬성 또는 반대를 선택해주세요!</p>
+
+<!-- 찬반투표 버튼 -->
+<button id="supportBtn">팥붕</button>
+<button id="againstBtn">슈붕</button>
+
+<script type="text/javascript">
+    // WebSocket 연결 설정
+    const socket = new SockJS('/ws');
+    const stompClient = Stomp.over(socket);
+
+    // WebSocket 연결 시
+    stompClient.connect({}, function (frame) {
+        console.log('Connected: ' + frame);
+    });
+
+    // 찬성 버튼 클릭 시
+    document.getElementById("supportBtn").onclick = function () {
+        const postId = 4; // 예시로 postId 4
+        const voteRequest = { voteOption: '팥붕' }; // 찬성
+        stompClient.send(`/ws-community/vote/${postId}`, {}, JSON.stringify(voteRequest));
+        console.log("찬성 투표 전송");
+    };
+
+    // 반대 버튼 클릭 시
+    document.getElementById("againstBtn").onclick = function () {
+        const postId = 4; // 예시로 postId 4
+        const voteRequest = { voteOption: '슈붕' }; // 반대
+        stompClient.send(`/ws-community/vote/${postId}`, {}, JSON.stringify(voteRequest));
+        console.log("반대 투표 전송");
+    };
+</script>
+</body>
+</html>
