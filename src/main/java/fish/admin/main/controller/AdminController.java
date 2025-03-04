@@ -87,4 +87,9 @@ public class AdminController {
 
         return "redirect:/admin/community/post/detail/" + postId;
     }
+
+    @GetMapping(value = "test/ws")
+    public String viewTestWS() {
+        return "main/ws/test";
+    }
 }
