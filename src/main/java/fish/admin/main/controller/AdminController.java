@@ -10,6 +10,7 @@ import fish.common.flavor.service.FlavorService;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -87,7 +88,31 @@ public class AdminController {
 
         return "redirect:/admin/community/post/detail/" + postId;
     }
+  
+    // For Redirect Using Get Method
+    @ResponseStatus(HttpStatus.SEE_OTHER)
+    @DeleteMapping(value = "community/{postId}")
+    public String deletePost(@PathVariable Long postId) {
+        postService.deletePost(postId);
 
+        return "redirect:/admin/community/post/list";
+    }
+
+    @GetMapping(value = "community/edit/{postId}")
+    public String viewEditPost(@PathVariable Long postId, Model model) throws IOException {
+        PostDetailResponse postDetailResponse = postService.findPost(postId);
+        model.addAttribute("post", postDetailResponse);
+
+        return "main/community/post/edit";
+    }
+
+    @PostMapping(value = "community/edit/{postId}", consumes = {"multipart/form-data"})
+    public String modifyPost(@PathVariable Long postId, @ModelAttribute PostRequest request) throws IOException {
+        postService.updatePost(postId, request, request.getPictures());
+
+        return "redirect:/admin/community/post/detail/" + postId;
+    }
+  
     @GetMapping(value = "test/ws")
     public String viewTestWS() {
         return "main/ws/test";

@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<th:block layout:fragment="views">
+    <section class="page-section" id="portfolio">
+        <div class="container">
+            <form th:action="@{/admin/community/edit/{id}(id=${post.id})}" method="post" enctype="multipart/form-data">
+                <div class="form-floating mb-3">
+                    <input type="text" name="title" class="form-control" id="title" th:value="${post.title}" required>
+                    <label for="title">제목</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea name="contents" class="form-control" id="contents" style="height : 500px;"
+                              th:text="${post.contents}"></textarea>
+                    <label for="contents">내용</label>
+                </div>
+
+                <div>
+                    <h5>기존 이미지</h5>
+                    <div th:each="fileUrl : ${post.fileUrls}">
+                        <img th:src="${fileUrl}" alt="첨부 이미지" style="max-width: 100%; height: auto;">
+                    </div>
+                </div>
+
+
+                <div class="form-floating mb-3">
+                    <input type="file" name="pictures" class="form-control" id="pictures" multiple>
+                    <label for="pictures">이미지 업로드</label>
+                </div>
+
+                <div class="form-floating mb-2">
+                    <textarea name="firstOption" class="form-control" id="firstOption"
+                              th:text="${post.firstOption}"> </textarea>
+                    <label for="firstOption">투표 A</label>
+                </div>
+
+
+                <div class="form-floating mb-5">
+                    <textarea name="secondOption" class="form-control" id="secondOption"
+                              th:text="${post.secondOption}"></textarea>
+                    <label for="secondOption">투표 B</label>
+                </div>
+                <button class="custom-btn btn-1" type="submit">수정 완료</button>
+            </form>
+        </div>
+    </section>
+</th:block>
+</html>
