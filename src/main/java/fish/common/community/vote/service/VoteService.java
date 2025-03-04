@@ -28,6 +28,6 @@ public class VoteService {
         }
 
         // 현재 집계 수 소켓 메세지로 보내주기
-        return voteRepository.countVotesByPostId(postId);
+        return voteRepository.findVoteCountsByPostId(postId);
     }
 }

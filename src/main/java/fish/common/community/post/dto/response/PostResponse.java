@@ -1,27 +1,25 @@
 package fish.common.community.post.dto.response;
 
 import fish.common.community.post.entity.PostEntity;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
+@AllArgsConstructor
+@Builder
 public class PostResponse {
     private Long id;
     private String title;
+    private int voteCount;
     private LocalDateTime regDate;
 
-    @Builder
-    public PostResponse(Long id, String title, LocalDateTime regDate) {
-        this.id = id;
-        this.title = title;
-        this.regDate = regDate;
-    }
-
-    public static PostResponse toResponse(PostEntity post) {
+    public static PostResponse toResponse(PostEntity post, int voteCount) {
         return PostResponse.builder()
                 .id(post.getId())
                 .title(post.getTitle())
+                .voteCount(voteCount)
                 .regDate(post.getRegDate())
                 .build();
     }

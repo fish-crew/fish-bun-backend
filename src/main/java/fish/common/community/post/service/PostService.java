@@ -7,6 +7,7 @@ import fish.common.community.post.entity.PostEntity;
 import fish.common.community.post.repository.PostRepository;
 import fish.common.community.post.dto.response.PostDetailResponse;
 import fish.common.community.post.dto.response.PostResponse;
+import fish.common.community.vote.repository.VoteRepository;
 import fish.common.file.entity.FileEntity;
 import fish.common.file.service.FileService;
 import fish.global.util.FileUtils;
@@ -29,13 +30,19 @@ public class PostService {
     private String fileUri;
 
     private final PostRepository postRepository;
+    private final VoteRepository voteRepository;
     private final FileService fileService;
 
 
-
     public List<PostResponse> findPostList() {
+        List<PostResponse> responses = new ArrayList<>();
         List<PostEntity> posts = postRepository.findAll();
-        return posts.stream().map(PostResponse::toResponse).toList();
+        for (PostEntity post : posts) {
+            int voteCount = voteRepository.findTotalVoteCountByPostId(post.getId());
+            responses.add(PostResponse.toResponse(post, voteCount));
+        }
+
+        return responses;
     }
 
     public PostDetailResponse findPost(Long postId) throws JsonProcessingException {

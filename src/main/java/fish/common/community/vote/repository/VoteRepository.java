@@ -18,7 +18,14 @@ public interface VoteRepository extends JpaRepository<VoteEntity, Long> {
             WHERE VOTE.postId = :postId
             GROUP BY VOTE.voteOption
             """, nativeQuery = true)
-    List<Map<String, Object>> countVotesByPostId(@Param("postId") Long postId);
+    List<Map<String, Object>> findVoteCountsByPostId(@Param("postId") Long postId);
+
+    @Query(value = """
+            SELECT IFNULL(COUNT(*), 0)
+            FROM VOTE
+            WHERE VOTE.postId = :postId
+            """, nativeQuery = true)
+    int findTotalVoteCountByPostId(@Param("postId") Long postId);
 
     Optional<VoteEntity> findByPostIdAndUserId(Long postId, Long userId);
 }
