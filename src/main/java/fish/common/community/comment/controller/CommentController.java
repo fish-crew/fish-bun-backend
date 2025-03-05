@@ -18,7 +18,7 @@ import java.util.List;
 public class CommentController {
     private final CommentService commentService;
 
-    @PostMapping(value = "/{postId}/comment/save")
+    @PostMapping(value = "/{postId}/comment")
     public ResponseEntity<ResponseUtil<Long>> save(@PathVariable Long postId, @RequestBody CommentRequest request, @AuthenticationPrincipal User user) {
         Long id = commentService.saveComment(postId, request, user);
         return ResponseEntity.ok(ResponseUtil.success(id));
