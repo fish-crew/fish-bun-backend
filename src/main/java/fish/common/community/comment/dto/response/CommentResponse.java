@@ -1,9 +1,8 @@
 package fish.common.community.comment.dto.response;
 
-import fish.common.community.comment.entity.CommentEntity;
 import lombok.Builder;
 import lombok.Data;
-import java.time.LocalDateTime;
+import java.util.Map;
 
 @Data
 @Builder
@@ -12,15 +11,15 @@ public class CommentResponse {
     private String contents;
     private int likeCount;
     private String userNickName;
-    private LocalDateTime regDate;
+    private String regDate;
 
-    public static CommentResponse toResponse(CommentEntity entity) {
+    public static CommentResponse toResponse(Map<String, Object> data) {
         return CommentResponse.builder()
-                .id(entity.getId())
-                .contents(entity.getContents())
-                .likeCount(entity.getLikeCount())
-                .userNickName(entity.getUserNickName())
-                .regDate(entity.getRegDate())
+                .id(Long.parseLong(data.get("id").toString()))
+                .contents(data.get("contents").toString())
+                .likeCount(Integer.parseInt(data.get("likeCount").toString()))
+                .userNickName(data.get("userNickName").toString())
+                .regDate(data.get("regDate").toString())
                 .build();
     }
 }

@@ -24,7 +24,6 @@ public class CommentEntity {
     private Long id;
     @NotNull
     private String contents;
-    private int likeCount;
     @NotNull
     private Long postId;
     @NotNull
@@ -37,7 +36,6 @@ public class CommentEntity {
     public static CommentEntity toEntity(Long postId, CommentRequest request, User user) {
         return CommentEntity.builder()
                 .contents(request.getContents())
-                .likeCount(0)
                 .postId(postId)
                 .userId(user.getId())
                 .userNickName(user.getNickname())
