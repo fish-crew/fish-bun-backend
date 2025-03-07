@@ -42,7 +42,7 @@ public class CommentController {
         return ResponseEntity.ok(ResponseUtil.success());
     }
 
-    @PostMapping(value = "/comments/{commentId}/like")
+    @PostMapping(value = "/comments-like/{commentId}")
     public ResponseUtil<?> save(@PathVariable Long commentId, @AuthenticationPrincipal User user) {
         commentService.saveCommentLike(commentId, user.getId());
         return ResponseUtil.success();
