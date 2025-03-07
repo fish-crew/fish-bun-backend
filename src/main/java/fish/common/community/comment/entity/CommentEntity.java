@@ -29,7 +29,7 @@ public class CommentEntity {
     @NotNull
     private Long userId;
     @NotNull
-    private String userNickName;
+    private String userNickname;
     @CreationTimestamp
     private LocalDateTime regDate;
 
@@ -38,7 +38,7 @@ public class CommentEntity {
                 .contents(request.getContents())
                 .postId(postId)
                 .userId(user.getId())
-                .userNickName(user.getNickname())
+                .userNickname(user.getNickname())
                 .build();
     }
 

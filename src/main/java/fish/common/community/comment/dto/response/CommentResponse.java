@@ -10,7 +10,7 @@ public class CommentResponse {
     private Long id;
     private String contents;
     private int likeCount;
-    private String userNickName;
+    private String userNickname;
     private String regDate;
 
     public static CommentResponse toResponse(Map<String, Object> data) {
@@ -18,7 +18,7 @@ public class CommentResponse {
                 .id(Long.parseLong(data.get("id").toString()))
                 .contents(data.get("contents").toString())
                 .likeCount(Integer.parseInt(data.get("likeCount").toString()))
-                .userNickName(data.get("userNickName").toString())
+                .userNickname(data.get("userNickname").toString())
                 .regDate(data.get("regDate").toString())
                 .build();
     }
