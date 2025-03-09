@@ -27,13 +27,14 @@ public class StoreController {
     }
 
     @GetMapping
-    public ResponseUtil<List<StoreResponse>> findAll(@ModelAttribute StoreSearchRequest request) {
-        return ResponseUtil.success(storeService.findAllByBounds(request));
+    public ResponseUtil<List<StoreResponse>> findAll(@ModelAttribute StoreSearchRequest request
+            , @AuthenticationPrincipal User user) {
+        return ResponseUtil.success(storeService.findAllByBounds(request, user.getId()));
     }
 
     @GetMapping("{storeId}")
-    public ResponseUtil<StoreResponse> findOne(@PathVariable Long storeId) {
-        return ResponseUtil.success(storeService.findById(storeId));
+    public ResponseUtil<StoreResponse> findOne(@PathVariable Long storeId, @AuthenticationPrincipal User user) {
+        return ResponseUtil.success(storeService.findById(storeId, user.getId()));
     }
 
     @DeleteMapping("{storeId}")

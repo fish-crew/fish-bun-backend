@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+
 @Service
 @RequiredArgsConstructor
 public class StoreService {
@@ -18,14 +19,20 @@ public class StoreService {
         storeRepository.save(entity);
     }
 
-    public List<StoreResponse> findAllByBounds(StoreSearchRequest request) {
+    public List<StoreResponse> findAllByBounds(StoreSearchRequest request, Long userId) {
         List<Map<String, Object>> stores = storeRepository
-                .findByLatLngBounds(request.getMinLat(), request.getMaxLat(), request.getMinLng(), request.getMaxLng());
+                .findByLatLngBounds(
+                                request.getMinLat(),
+                                request.getMaxLat(),
+                                request.getMinLng(),
+                                request.getMaxLng(),
+                                userId
+                        );
         return StoreResponse.toResponseList(stores);
     }
 
-    public StoreResponse findById(Long storeId) {
-        Map<String, Object> data = storeRepository.findByStoreId(storeId);
+    public StoreResponse findById(Long storeId, Long userId) {
+        Map<String, Object> data = storeRepository.findByStoreId(storeId, userId);
         return StoreResponse.toResponse(data);
     }
 
@@ -39,5 +46,4 @@ public class StoreService {
         storeEntity.modifyDetail(entity);
         storeRepository.save(storeEntity);
     }
-
 }
