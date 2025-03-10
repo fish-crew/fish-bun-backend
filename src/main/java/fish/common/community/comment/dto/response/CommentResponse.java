@@ -11,6 +11,7 @@ public class CommentResponse {
     private String contents;
     private int likeCount;
     private String userNickname;
+    private char likeYN;
     private String regDate;
 
     public static CommentResponse toResponse(Map<String, Object> data) {

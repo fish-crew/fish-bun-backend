@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -27,9 +28,17 @@ public class CommentService {
         return commentRepository.save(entity).getId();
     }
 
-    public List<CommentResponse> findAllComments(Long postId) {
+    public List<CommentResponse> findAllComments(Long postId, Long userId) {
         List<Map<String, Object>> comments = commentRepository.findCommentsByPostId(postId);
-        return comments.stream().map(CommentResponse::toResponse).toList();
+        List<CommentResponse> result = new ArrayList<>();
+
+        for (Map<String, Object> comment : comments) {
+            CommentResponse response = CommentResponse.toResponse(comment);
+            response.setLikeYN(commentLikesRepository.isLikedByUserId(response.getId(), userId));
+            result.add(response);
+        }
+
+        return result;
     }
 
     @Transactional
