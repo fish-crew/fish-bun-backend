@@ -1,6 +1,6 @@
-package fish.common.book.dto.response;
+package fish.common.book.index.dto.response;
 
-import fish.common.book.entity.UserBookEntity;
+import fish.common.book.index.entity.UserBookEntity;
 import fish.common.flavor.entity.FishBunFlavorEntity;
 import lombok.Builder;
 import lombok.Getter;

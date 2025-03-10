@@ -1,9 +1,10 @@
-package fish.common.book.entity;
+package fish.common.book.index.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,8 @@ public class UserBookEntity {
     private Long completedFlavorId;
     @CreationTimestamp
     private LocalDateTime regDate;
+    @Setter
+    private Double rating;
 
     @Builder
     public UserBookEntity(Long userId, Long completedFlavorId) {

@@ -1,6 +1,6 @@
 package fish.common.detail.controller;
 
-import fish.common.book.service.BookService;
+import fish.common.book.index.service.BookService;
 import fish.common.detail.dto.DetailFlavor;
 import fish.common.detail.dto.request.DetailRequest;
 import fish.common.detail.entity.DetailEntity;
