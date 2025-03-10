@@ -15,11 +15,12 @@ public class StoreResponse {
     private String address;
     private Double lat;
     private Double lng;
+    private String likeYn;
     private int likes;
     private String regDate;
 
     @Builder
-    public StoreResponse(Long id, String name, String detail, String nickname, String address, Double lat, Double lng, int likes, String regDate) {
+    public StoreResponse(Long id, String name, String detail, String nickname, String address, Double lat, Double lng, String likeYn, int likes, String regDate) {
         this.id = id;
         this.name = name;
         this.detail = detail;
@@ -27,6 +28,7 @@ public class StoreResponse {
         this.address = address;
         this.lat = lat;
         this.lng = lng;
+        this.likeYn = likeYn;
         this.likes = likes;
         this.regDate = regDate;
     }
@@ -41,6 +43,7 @@ public class StoreResponse {
                         .address(data.get("address").toString())
                         .lat(Double.parseDouble(data.get("lat").toString()))
                         .lng(Double.parseDouble(data.get("lng").toString()))
+                        .likeYn(data.get("likeYn").toString())
                         .likes(Integer.parseInt(data.get("likes").toString()))
                         .regDate(data.get("regDate").toString())
                         .build())
@@ -57,6 +60,7 @@ public class StoreResponse {
                 .address(data.get("address").toString())
                 .lat(Double.parseDouble(data.get("lat").toString()))
                 .lng(Double.parseDouble(data.get("lng").toString()))
+                .likeYn(data.get("likeYn").toString())
                 .likes(Integer.parseInt(data.get("likes").toString()))
                 .regDate(data.get("regDate").toString())
                 .build()
