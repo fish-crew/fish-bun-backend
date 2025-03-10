@@ -1,11 +1,12 @@
-package fish.common.book.service;
+package fish.common.book.index.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fish.common.book.dto.UserBookDateDetail;
-import fish.common.book.entity.UserBookEntity;
-import fish.common.book.repository.UserBookRepository;
-import fish.common.book.dto.response.UserBookDetailResponse;
-import fish.common.book.dto.response.UserBookResponse;
+import fish.common.book.rating.dto.UserBookRatingDetail;
+import fish.common.book.index.dto.UserBookDateDetail;
+import fish.common.book.index.entity.UserBookEntity;
+import fish.common.book.index.repository.UserBookRepository;
+import fish.common.book.index.dto.response.UserBookDetailResponse;
+import fish.common.book.index.dto.response.UserBookResponse;
 import fish.common.flavor.entity.FishBunFlavorEntity;
 import fish.common.flavor.repository.FlavorRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -47,10 +49,11 @@ public class BookService {
 
     public UserBookDetailResponse findUserBookDetail(Long userId, Long flavorId) {
         List<String> list = userBookRepository.findUserBookDetail(userId, flavorId);
-        FishBunFlavorEntity flavor = flavorRepository.findById(flavorId).orElse(null);
-        return convertToResponse(list, flavor);
+        Map<String, Object> ratingDetail = userBookRepository.findUserBookRatingDetail(userId, flavorId);
+        return convertToResponse(list, ratingDetail);
     }
-    private UserBookDetailResponse convertToResponse(List<String> rawData, FishBunFlavorEntity flavor) {
+
+    private UserBookDetailResponse convertToResponse(List<String> rawData, Map<String, Object> ratingDetailMap) {
         List<UserBookDateDetail> dateList = rawData.stream()
                 .map(json -> {
                     try {
@@ -60,6 +63,8 @@ public class BookService {
                     }
                 })
                 .collect(Collectors.toList());
-        return new UserBookDetailResponse(dateList, flavor);
+        //붕어빵 정보 +
+        UserBookRatingDetail ratingDetail = objectMapper.convertValue(ratingDetailMap, UserBookRatingDetail.class);
+        return new UserBookDetailResponse(dateList, ratingDetail);
     }
 }

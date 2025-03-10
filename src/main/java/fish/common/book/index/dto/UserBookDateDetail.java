@@ -1,4 +1,4 @@
-package fish.common.book.dto;
+package fish.common.book.index.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

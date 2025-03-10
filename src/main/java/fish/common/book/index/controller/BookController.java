@@ -1,8 +1,8 @@
-package fish.common.book.controller;
+package fish.common.book.index.controller;
 
-import fish.common.book.dto.response.UserBookDetailResponse;
-import fish.common.book.dto.response.UserBookResponse;
-import fish.common.book.service.BookService;
+import fish.common.book.index.dto.response.UserBookDetailResponse;
+import fish.common.book.index.dto.response.UserBookResponse;
+import fish.common.book.index.service.BookService;
 import fish.common.user.entity.User;
 import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
