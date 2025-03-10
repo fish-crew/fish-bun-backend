@@ -1,4 +1,4 @@
-package fish.common.community.comment.dto.response;
+package fish.common.community.comment.index.dto.response;
 
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +11,7 @@ public class CommentResponse {
     private String contents;
     private int likeCount;
     private String userNickname;
-    private char likeYN;
+    private String likeYN;
     private String regDate;
 
     public static CommentResponse toResponse(Map<String, Object> data) {
@@ -20,6 +20,7 @@ public class CommentResponse {
                 .contents(data.get("contents").toString())
                 .likeCount(Integer.parseInt(data.get("likeCount").toString()))
                 .userNickname(data.get("userNickname").toString())
+                .likeYN(data.get("likeYN").toString())
                 .regDate(data.get("regDate").toString())
                 .build();
     }

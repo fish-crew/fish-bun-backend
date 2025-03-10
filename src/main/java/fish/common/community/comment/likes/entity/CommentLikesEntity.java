@@ -1,4 +1,4 @@
-package fish.common.community.comment.entity;
+package fish.common.community.comment.likes.entity;
 
 
 import jakarta.persistence.*;

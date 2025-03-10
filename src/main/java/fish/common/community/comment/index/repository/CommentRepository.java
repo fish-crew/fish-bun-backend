@@ -1,6 +1,6 @@
-package fish.common.community.comment.repository;
+package fish.common.community.comment.index.repository;
 
-import fish.common.community.comment.entity.CommentEntity;
+import fish.common.community.comment.index.entity.CommentEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,10 +12,10 @@ import java.util.Map;
 @Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
     @Query(value = """
-            SELECT c.id, c.contents, c.userNickname, IFNULL(COUNT(cl.id), 0) AS likeCount, c.regDate
+            SELECT c.id, c.contents, c.userNickname, IFNULL(COUNT(cl.id), 0) AS likeCount, c.regDate, MAX(CASE WHEN cl.userId = :userId THEN 'Y' ELSE 'N' END) AS likeYN
             FROM COMMENT c LEFT JOIN COMMENT_LIKES cl ON c.id = cl.commentId
             WHERE c.postId = :postId
             GROUP BY c.id;
             """, nativeQuery = true)
-    List<Map<String, Object>> findCommentsByPostId(@Param("postId") Long postId);
+    List<Map<String, Object>> findCommentsByPostId(@Param("postId") Long postId, @Param("userId") Long userId);
 }

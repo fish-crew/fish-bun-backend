@@ -1,6 +1,6 @@
-package fish.common.community.comment.entity;
+package fish.common.community.comment.index.entity;
 
-import fish.common.community.comment.dto.request.CommentRequest;
+import fish.common.community.comment.index.dto.request.CommentRequest;
 import fish.common.user.entity.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
