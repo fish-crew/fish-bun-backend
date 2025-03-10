@@ -1,4 +1,4 @@
-package fish.common.community.comment.dto.request;
+package fish.common.community.comment.index.dto.request;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

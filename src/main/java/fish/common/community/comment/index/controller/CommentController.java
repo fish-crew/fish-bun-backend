@@ -1,8 +1,8 @@
-package fish.common.community.comment.controller;
+package fish.common.community.comment.index.controller;
 
-import fish.common.community.comment.dto.request.CommentRequest;
-import fish.common.community.comment.dto.response.CommentResponse;
-import fish.common.community.comment.service.CommentService;
+import fish.common.community.comment.index.dto.request.CommentRequest;
+import fish.common.community.comment.index.dto.response.CommentResponse;
+import fish.common.community.comment.index.service.CommentService;
 import fish.common.user.entity.User;
 import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
@@ -26,8 +26,8 @@ public class CommentController {
 
 
     @GetMapping(value = "/{postId}/comments")
-    public ResponseEntity<ResponseUtil<List<CommentResponse>>> findAllComments(@PathVariable Long postId) {
-        return ResponseEntity.ok(ResponseUtil.success(commentService.findAllComments(postId)));
+    public ResponseEntity<ResponseUtil<List<CommentResponse>>> findAllComments(@PathVariable Long postId, @AuthenticationPrincipal User user) {
+        return ResponseEntity.ok(ResponseUtil.success(commentService.findAllComments(postId, user.getId())));
     }
 
     @PatchMapping(value = "/comments/{commentId}")

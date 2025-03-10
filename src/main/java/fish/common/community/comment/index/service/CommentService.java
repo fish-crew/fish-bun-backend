@@ -1,15 +1,16 @@
-package fish.common.community.comment.service;
+package fish.common.community.comment.index.service;
 
-import fish.common.community.comment.dto.request.CommentRequest;
-import fish.common.community.comment.dto.response.CommentResponse;
-import fish.common.community.comment.entity.CommentEntity;
-import fish.common.community.comment.repository.CommentRepository;
+import fish.common.community.comment.index.dto.request.CommentRequest;
+import fish.common.community.comment.index.dto.response.CommentResponse;
+import fish.common.community.comment.index.entity.CommentEntity;
+import fish.common.community.comment.index.repository.CommentRepository;
 import fish.common.user.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -22,9 +23,10 @@ public class CommentService {
         return commentRepository.save(entity).getId();
     }
 
-    public List<CommentResponse> findAllComments(Long postId) {
-        List<CommentEntity> commentEntities = commentRepository.findAllByPostId(postId);
-        return commentEntities.stream().map(CommentResponse::toResponse).toList();
+    public List<CommentResponse> findAllComments(Long postId, Long userId) {
+        List<Map<String, Object>> comments = commentRepository.findCommentsByPostId(postId, userId);
+
+        return comments.stream().map(CommentResponse::toResponse).toList();
     }
 
     @Transactional
