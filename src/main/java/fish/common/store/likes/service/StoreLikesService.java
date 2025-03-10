@@ -1,7 +1,7 @@
-package fish.common.store.index.service;
+package fish.common.store.likes.service;
 
-import fish.common.store.index.entity.StoreLikesEntity;
-import fish.common.store.index.repository.StoreLikesRepository;
+import fish.common.store.likes.entity.StoreLikesEntity;
+import fish.common.store.likes.repository.StoreLikesRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

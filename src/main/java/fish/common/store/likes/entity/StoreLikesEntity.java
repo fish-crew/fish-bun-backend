@@ -1,4 +1,4 @@
-package fish.common.store.index.entity;
+package fish.common.store.likes.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

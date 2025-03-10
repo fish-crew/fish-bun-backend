@@ -1,7 +1,7 @@
-package fish.common.store.index.controller;
+package fish.common.store.likes.controller;
 
-import fish.common.store.index.entity.StoreLikesEntity;
-import fish.common.store.index.service.StoreLikesService;
+import fish.common.store.likes.entity.StoreLikesEntity;
+import fish.common.store.likes.service.StoreLikesService;
 import fish.common.user.entity.User;
 import fish.global.util.ResponseUtil;
 import lombok.RequiredArgsConstructor;
