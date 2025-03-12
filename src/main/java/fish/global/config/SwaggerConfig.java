@@ -20,7 +20,7 @@ public class SwaggerConfig {
     public GroupedOpenApi adminGroup() {
         // 관리자 API 그룹
         List<Tag> tags = List.of(
-                new Tag().name("[관리자] Login Controller"),
+                new Tag().name("[관리자] Login API"),
                 new Tag().name("[관리자] 기능 API")
         );
 
