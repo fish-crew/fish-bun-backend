@@ -9,6 +9,8 @@ import fish.common.community.post.service.PostService;
 import fish.common.flavor.service.FlavorService;
 import fish.common.user.entity.User;
 import fish.common.user.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,7 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(value = "/admin")
+@Tag(name = "[관리자] 기능 API")
 public class AdminController {
     private final FlavorService flavorService;
     private final UserService userService;
@@ -33,6 +36,7 @@ public class AdminController {
         return "main/report/list";
     }
 
+    @Operation(summary = "[관리자] 제보된 붕어빵 조회")
     @GetMapping(value = "/report/list.json")
     @ResponseBody
     public Map<String, List<Map<String, Object>>> listReport() {
@@ -46,6 +50,7 @@ public class AdminController {
         return "main/user/list";
     }
 
+    @Operation(summary = "[관리자] 유저 리스트 조회")
     @GetMapping(value = "/user/list.json")
     @ResponseBody
     public Map<String, List<User>> listUser() {
@@ -59,6 +64,7 @@ public class AdminController {
         return "main/community/post/list";
     }
 
+    @Operation(summary = "[관리자] 커뮤니티 게시글 리스트 조회")
     @GetMapping(value = "/community/post/list.json")
     @ResponseBody
     public Map<String, List<PostResponse>> listPost() {

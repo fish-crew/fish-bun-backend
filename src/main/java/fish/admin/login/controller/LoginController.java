@@ -1,5 +1,7 @@
 package fish.admin.login.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +16,7 @@ import java.util.Map;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping(value = "/admin")
+@Tag(name = "[관리자] Login Controller")
 public class LoginController {
 
     @Value("${admin.id}")
@@ -35,6 +38,7 @@ public class LoginController {
 
     @ResponseBody
     @PostMapping("/login")
+    @Operation(summary = "관리자 페이지 로그인")
     public Map<String, Object> login(@RequestBody Map<String, String> map,
                                      HttpServletRequest request) {
         Map<String, Object> result = new HashMap<>();

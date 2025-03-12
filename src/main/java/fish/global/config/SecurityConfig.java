@@ -59,6 +59,9 @@ public class SecurityConfig {
                                     , "/admin/**"
                                     , "/bungbal/stats/**"
                                     , "/ws/**"
+                                    , "/api-test/**"
+                                    , "/swagger-ui/**"
+                                    , "/v3/api-docs/**"
                             ).permitAll() // 인증 없이 접근 가능
                     .requestMatchers("/fish-bun/**").authenticated()
             ;
