@@ -12,7 +12,7 @@ import java.util.Map;
 @Repository
 public interface CommentRepository extends JpaRepository<CommentEntity, Long> {
     @Query(value = """
-            SELECT c.id, c.contents, c.userNickname, IFNULL(COUNT(cl.id), 0) AS likeCount, c.regDate, MAX(CASE WHEN cl.userId = :userId THEN 'Y' ELSE 'N' END) AS likeYN
+            SELECT c.id, c.contents, c.userId, c.userNickname, IFNULL(COUNT(cl.id), 0) AS likeCount, c.regDate, MAX(CASE WHEN cl.userId = :userId THEN 'Y' ELSE 'N' END) AS likeYN
             FROM COMMENT c LEFT JOIN COMMENT_LIKES cl ON c.id = cl.commentId
             WHERE c.postId = :postId
             GROUP BY c.id;
