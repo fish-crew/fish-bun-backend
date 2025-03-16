@@ -6,8 +6,10 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import io.swagger.v3.oas.models.servers.Server;
 import io.swagger.v3.oas.models.tags.Tag;
 import org.springdoc.core.models.GroupedOpenApi;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -16,6 +18,11 @@ import java.util.List;
 
 @Configuration
 public class SwaggerConfig {
+    @Value("http://localhost:8080")
+    private String localUrl;
+    @Value("${swagger.prodUrl}")
+    private String prodUrl;
+
     @Bean
     public GroupedOpenApi adminGroup() {
         // 관리자 API 그룹
@@ -76,7 +83,9 @@ public class SwaggerConfig {
         return new OpenAPI()
                 .info(apiInfo())
                 .addSecurityItem(securityRequirement)
-                .components(components);
+                .components(components)
+                .addServersItem(new Server().url(localUrl).description("Local Swagger API"))
+                .addServersItem(new Server().url(prodUrl).description("Product Swagger API"));
     }
 
     private Info apiInfo() {
