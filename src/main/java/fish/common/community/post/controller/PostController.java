@@ -2,20 +2,21 @@ package fish.common.community.post.controller;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import fish.common.community.post.dto.request.PostReportRequest;
 import fish.common.community.post.dto.response.PostDetailResponse;
 import fish.common.community.post.dto.response.PostResponse;
 import fish.common.community.post.service.PostService;
+import fish.common.user.entity.User;
 import fish.global.util.ResponseUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -38,6 +39,11 @@ public class PostController {
         return ResponseEntity.ok(ResponseUtil.success(postService.findPost(postId)));
     }
 
+    @Operation(summary = "주제 추천")
+    @PostMapping(value = "/post/report")
+    public ResponseEntity<?> report(@RequestBody PostReportRequest request, @AuthenticationPrincipal User user) {
+        postService.savePostReport(request, user.getId());
 
-
+        return ResponseEntity.ok(ResponseUtil.success());
+    }
 }
