@@ -2,8 +2,11 @@ package fish.common.community.post.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fish.common.community.post.dto.request.PostReportRequest;
 import fish.common.community.post.dto.request.PostRequest;
 import fish.common.community.post.entity.PostEntity;
+import fish.common.community.post.entity.PostReportEntity;
+import fish.common.community.post.repository.PostReportRepository;
 import fish.common.community.post.repository.PostRepository;
 import fish.common.community.post.dto.response.PostDetailResponse;
 import fish.common.community.post.dto.response.PostResponse;
@@ -30,6 +33,7 @@ public class PostService {
     private String fileUri;
 
     private final PostRepository postRepository;
+    private final PostReportRepository postReportRepository;
     private final VoteRepository voteRepository;
     private final FileService fileService;
 
@@ -95,5 +99,11 @@ public class PostService {
             entity.updateFileIdList(jsonFileIdList);
         }
         entity.modify(request);
+    }
+
+    @Transactional
+    public void savePostReport(PostReportRequest request, Long userId) {
+        PostReportEntity entity = PostReportEntity.toEntity(request, userId);
+        postReportRepository.save(entity);
     }
 }
