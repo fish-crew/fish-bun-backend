@@ -29,6 +29,11 @@ public class WebSocketHandler extends TextWebSocketHandler {
     }
 
     @Override
+    public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+        log.info("Websocket Transport Error with = {}, exception = {}", session.getId(), exception.toString());
+    }
+
+    @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
         String payload = message.getPayload();
         if ("Ping".equalsIgnoreCase(payload)) {

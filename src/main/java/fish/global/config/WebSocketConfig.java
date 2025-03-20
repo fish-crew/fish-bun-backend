@@ -15,7 +15,7 @@ public class WebSocketConfig implements WebSocketConfigurer {
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
         registry
-                .addHandler(webSocketHandler, "ws")
-                .setAllowedOrigins("*");
+                .addHandler(webSocketHandler, "/ws")
+                .setAllowedOrigins("https://bunglog.me", "http://localhost:3000", "http://localhost:8080");
     }
 }

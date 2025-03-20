@@ -17,12 +17,16 @@
 
 <script type="text/javascript">
     // WebSocket 연결 설정
-    const socket = new SockJS('/ws');
+    const postId = 4;
+    const socket = new SockJS('http://localhost:8080/ws');
     const stompClient = Stomp.over(socket);
 
     // WebSocket 연결 시
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
+        stompClient.subscribe(`/topic/vote/${postId}`, function (msg) {
+            console.log(msg)
+        });
     });
 
     // 찬성 버튼 클릭 시
