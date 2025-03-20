@@ -6,12 +6,9 @@ import fish.common.detail.entity.DetailEntity;
 import fish.common.calendar.repository.CalendarRepository;
 import fish.common.calendar.dto.response.CalendarDetailResponse;
 import fish.common.calendar.dto.response.CalendarResponse;
-import fish.common.file.entity.FileEntity;
-import fish.common.file.repository.FileRepository;
 import fish.common.file.service.FileService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
