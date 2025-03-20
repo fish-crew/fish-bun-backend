@@ -20,6 +20,7 @@ public class DetailEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long userId;
+    private Long storeId;
     @Convert(converter = DetailFlavorConverter.class)
     private List<DetailFlavor> flavors;
     @CreationTimestamp

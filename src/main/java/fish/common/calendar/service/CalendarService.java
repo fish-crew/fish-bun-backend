@@ -8,6 +8,7 @@ import fish.common.calendar.dto.response.CalendarDetailResponse;
 import fish.common.calendar.dto.response.CalendarResponse;
 import fish.common.file.entity.FileEntity;
 import fish.common.file.repository.FileRepository;
+import fish.common.file.service.FileService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,11 +20,9 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class CalendarService {
-    @Value("${file-uri}")
-    private String fileUri;
 
     private final CalendarRepository calendarRepository;
-    private final FileRepository fileRepository;
+    private final FileService fileService;
 
     public List<CalendarResponse> findAllCalendarDate(String date, Long userId) {
         return calendarRepository.findAllByUserId(date, userId).stream()
@@ -34,11 +33,7 @@ public class CalendarService {
     public CalendarDetailResponse findCalendarDetail(Long calendarId, Long userId) {
         DetailEntity detail = calendarRepository.findByIdAndUserId(calendarId, userId)
                 .orElseThrow(() -> new IllegalArgumentException("Calendar data not found with id: " + calendarId));
-        FileEntity fileEntity = fileRepository.findById(detail.getFileId())
-                .orElseThrow(() -> new IllegalArgumentException("File data not found with id: " + detail.getFileId()));
-
-        String fileUrl = fileUri + fileEntity.getFilePath() + fileEntity.getSystemFileName();
-
+        String fileUrl = fileService.getFileUrl(detail.getFileId());
         return CalendarDetailResponse.toResDTO(detail, fileUrl);
     }
 

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class BookRatingController {
     private final BookRatingService bookRatingService;
 
-    @Operation(summary = "사용자별 붕어빵 도감 평점 조회")
+    @Operation(summary = "사용자별 붕어빵 도감 평점 수정")
     @PatchMapping("{flavorId}")
     public ResponseEntity<?> modify(@PathVariable Long flavorId, @AuthenticationPrincipal User user,
                      @RequestBody BookRatingRequest request) {
