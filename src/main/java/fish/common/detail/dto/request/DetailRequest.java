@@ -18,16 +18,18 @@ public class DetailRequest {
     private MultipartFile picture;
     private String date;
     private String contents;
+    private Long storeId;
 
-    ObjectMapper objectMapper = new ObjectMapper();
 
     public DetailEntity toEntity(DetailRequest request, Long userId) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
         List<DetailFlavor> detailFlavors = Arrays.asList(objectMapper.readValue(request.flavors, DetailFlavor[].class));
         return DetailEntity.builder()
                 .flavors(detailFlavors)
                 .userId(userId)
                 .date(date)
                 .contents(contents)
+                .storeId(storeId)
                 .build();
     }
 }

@@ -1,6 +1,5 @@
 package fish.common.detail.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import fish.common.detail.dto.response.DetailResponse;
 import fish.common.file.entity.FileEntity;
 import fish.common.file.service.FileService;
@@ -34,7 +33,7 @@ public class DetailService {
         return detailRepository.save(entity).getId();
     }
 
-    public List<DetailResponse> findRegistrationData(Long detailId, Long userId) throws JsonProcessingException {
+    public List<DetailResponse> findRegistrationData(Long detailId, Long userId) {
         DetailEntity detailEntity = detailRepository.findByIdAndUserId(detailId, userId)
                 .orElseThrow(() -> new EntityNotFoundException("Detail Entity not found with ID: " + detailId));
 
@@ -44,6 +43,11 @@ public class DetailService {
                     String iconCode = flavorRepository.findIconCodeById(flavorId).getIconCode();
                     return DetailResponse.toResponse(flavorId, iconCode);
                 })
-                .collect(Collectors.toList());
+                .collect(Collectors.toList())
+                ;
+    }
+
+    public List<DetailEntity> findByStoreId(Long storeId) {
+        return detailRepository.findByStoreId(storeId);
     }
 }
