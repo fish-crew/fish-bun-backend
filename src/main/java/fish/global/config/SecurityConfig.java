@@ -49,8 +49,6 @@ public class SecurityConfig {
                 )
         );
 
-        http.headers((headerConfig) -> headerConfig.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin));
-
         http.authorizeHttpRequests(authorize -> {
             authorize
                     .requestMatchers
