@@ -16,7 +16,7 @@ import fish.common.file.service.FileService;
 import fish.global.util.FileUtils;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,17 +25,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
-    @Value("${file-uri}")
-    private String fileUri;
 
     private final PostRepository postRepository;
     private final PostReportRepository postReportRepository;
     private final VoteRepository voteRepository;
     private final FileService fileService;
+
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
 
     public List<PostResponse> findPostList() {
@@ -49,21 +50,25 @@ public class PostService {
         return responses;
     }
 
-    public PostDetailResponse findPost(Long postId) throws JsonProcessingException {
-        PostEntity post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post Entity not founded with Id: " + postId));
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<Long> fileIdList = Arrays.asList(objectMapper.readValue(post.getFileIdList(), Long[].class));
+    public PostDetailResponse findPost(Long postId, Long userId) throws JsonProcessingException {
+        Map<String, Object> post = postRepository.getStatsByPostId(userId, postId);
+        List<Long> fileIdList = objectMapper.readValue(post.get("fileIdList").toString(), new TypeReference<List<Long>>() {});
         List<String> fileUrls = fileIdList.stream()
                 .map(fileService::findFileById)
-                .map(fileEntity -> fileUri + fileEntity.getFilePath() + fileEntity.getSystemFileName())
+                .map(fileEntity -> fileService.getFileUrl(fileEntity.getId()))
                 .toList();
 
         return PostDetailResponse.toResponse(post, fileUrls);
     }
 
-    public String getJsonFileIdList(List<MultipartFile> pictures) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
+    public Long savePost(PostEntity post, List<MultipartFile> pictures) throws IOException {
+        String jsonFileIdList = getJsonFileIdList(pictures);
+        post.setFileIdList(jsonFileIdList);
+
+        return postRepository.save(post).getId();
+    }
+
+    private String getJsonFileIdList(List<MultipartFile> pictures) throws IOException {
         List<Long> fileIdList = new ArrayList<>();
 
         for (MultipartFile pic : pictures) {
@@ -75,13 +80,6 @@ public class PostService {
         }
 
         return objectMapper.writeValueAsString(fileIdList);
-    }
-
-    public Long savePost(PostEntity post, List<MultipartFile> pictures) throws IOException {
-        String jsonFileIdList = getJsonFileIdList(pictures);
-        post.setFileIdList(jsonFileIdList);
-
-        return postRepository.save(post).getId();
     }
 
     @Transactional
@@ -105,5 +103,21 @@ public class PostService {
     public void savePostReport(PostReportRequest request, Long userId) {
         PostReportEntity entity = PostReportEntity.toEntity(request, userId);
         postReportRepository.save(entity);
+    }
+
+    /* admin service */
+    /**
+     * admin전용 Service (UserId로 핸들링 안해도 됨)
+     * */
+
+    public PostDetailResponse findPost(Long postId) throws JsonProcessingException {
+        PostEntity post = postRepository.findById(postId).orElseThrow(() -> new EntityNotFoundException("Post Entity not founded with Id: " + postId));
+        List<Long> fileIdList = Arrays.asList(objectMapper.readValue(post.getFileIdList(), Long[].class));
+        List<String> fileUrls = fileIdList.stream()
+                .map(fileService::findFileById)
+                .map(fileEntity -> fileService.getFileUrl(fileEntity.getId()))
+                .toList();
+
+        return PostDetailResponse.toResponse(post, fileUrls);
     }
 }

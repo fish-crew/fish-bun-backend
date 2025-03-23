@@ -35,8 +35,9 @@ public class PostController {
     @Operation(summary = "단일 게시글 상세 조회")
     @Parameter(name = "postId", description = "게시글 고유 ID")
     @GetMapping(value = "/{postId}")
-    public ResponseEntity<ResponseUtil<PostDetailResponse>> findPost(@PathVariable Long postId) throws JsonProcessingException {
-        return ResponseEntity.ok(ResponseUtil.success(postService.findPost(postId)));
+    public ResponseEntity<ResponseUtil<PostDetailResponse>> findPost(@PathVariable Long postId
+            , @AuthenticationPrincipal User user) throws JsonProcessingException {
+        return ResponseEntity.ok(ResponseUtil.success(postService.findPost(postId, user.getId())));
     }
 
     @Operation(summary = "주제 추천")
