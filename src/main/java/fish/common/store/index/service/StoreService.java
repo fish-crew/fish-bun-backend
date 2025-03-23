@@ -1,10 +1,9 @@
 package fish.common.store.index.service;
 
-import fish.common.calendar.dto.response.CalendarDetailResponse;
-import fish.common.detail.entity.DetailEntity;
 import fish.common.detail.service.DetailService;
 import fish.common.file.service.FileService;
 import fish.common.store.index.dto.request.StoreSearchRequest;
+import fish.common.store.index.dto.response.StoreDetailResponse;
 import fish.common.store.index.dto.response.StoreResponse;
 import fish.common.store.index.entity.StoreEntity;
 import fish.common.store.index.repository.StoreRepository;
@@ -40,7 +39,7 @@ public class StoreService {
 
     public StoreResponse findById(Long storeId, Long userId) {
         Map<String, Object> data = storeRepository.findByStoreId(storeId, userId);
-        List<DetailEntity> details = detailService.findByStoreId(storeId);
+        List<Map<String, Object>> details = detailService.findByStoreId(storeId);
         return StoreResponse.toResponse(data, convertDomain(details));
     }
 
@@ -49,11 +48,11 @@ public class StoreService {
      * 추가적으로 fileUrl이 추가적으로 들어가야 해서 일지상세 응답값을 재활용함
      * 붕어빵 등록 데이터 -> 일지 상세 응답값으로 변환 메소드
      * */
-    private List<CalendarDetailResponse> convertDomain(List<DetailEntity> details) {
-        List<CalendarDetailResponse> result = new ArrayList<>();
-        for (DetailEntity detail : details) {
-            String fileUrl = fileService.getFileUrl(detail.getFileId());
-            CalendarDetailResponse response = CalendarDetailResponse.toResDTO(detail, fileUrl);
+    private List<StoreDetailResponse> convertDomain(List<Map<String, Object>> details) {
+        List<StoreDetailResponse> result = new ArrayList<>();
+        for (Map<String, Object> detail : details) {
+            String fileUrl = fileService.getFileUrl(Long.parseLong(detail.get("fileId").toString()));
+            StoreDetailResponse response = StoreDetailResponse.toResDTO(detail, fileUrl);
             result.add(response);
         }
         return result;
