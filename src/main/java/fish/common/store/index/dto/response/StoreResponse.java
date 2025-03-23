@@ -1,6 +1,5 @@
 package fish.common.store.index.dto.response;
 
-import fish.common.calendar.dto.response.CalendarDetailResponse;
 import lombok.Builder;
 import lombok.Getter;
 import java.util.List;
@@ -18,11 +17,14 @@ public class StoreResponse {
     private Double lng;
     private String likeYn;
     private int likes;
+    private int diaryCount;
     private String regDate;
-    private List<CalendarDetailResponse> details;
+    private List<StoreDetailResponse> details;
 
     @Builder
-    public StoreResponse(Long id, String name, String detail, String nickname, String address, Double lat, Double lng, String likeYn, int likes, String regDate, List<CalendarDetailResponse> details) {
+    public StoreResponse(Long id, String name, String detail, String nickname, String address,
+                         Double lat, Double lng, String likeYn, int likes, int diaryCount,String regDate,
+                         List<StoreDetailResponse> details) {
         this.id = id;
         this.name = name;
         this.detail = detail;
@@ -32,6 +34,7 @@ public class StoreResponse {
         this.lng = lng;
         this.likeYn = likeYn;
         this.likes = likes;
+        this.diaryCount = diaryCount;
         this.regDate = regDate;
         this.details = details;
     }
@@ -48,13 +51,14 @@ public class StoreResponse {
                         .lng(Double.parseDouble(data.get("lng").toString()))
                         .likeYn(data.get("likeYn").toString())
                         .likes(Integer.parseInt(data.get("likes").toString()))
+                        .diaryCount(Integer.parseInt(data.get("diaryCount").toString()))
                         .regDate(data.get("regDate").toString())
                         .build())
                 .collect(Collectors.toList())
                 ;
     }
 
-    public static StoreResponse toResponse(Map<String, Object> data, List<CalendarDetailResponse> details) {
+    public static StoreResponse toResponse(Map<String, Object> data, List<StoreDetailResponse> details) {
         return StoreResponse.builder()
                 .id(Long.parseLong(data.get("id").toString()))
                 .name(data.get("name").toString())
