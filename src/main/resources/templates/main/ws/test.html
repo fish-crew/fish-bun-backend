@@ -32,7 +32,8 @@
     // 찬성 버튼 클릭 시
     document.getElementById("supportBtn").onclick = function () {
         const postId = 4; // 예시로 postId 4
-        const voteRequest = { voteOption: '팥붕' }; // 찬성
+        const userId = 1; // 예시로 userId 1
+        const voteRequest = { voteOption: '팥붕', userId: userId}; // 찬성
         stompClient.send(`/ws-community/vote/${postId}`, {}, JSON.stringify(voteRequest));
         console.log("찬성 투표 전송");
     };
@@ -40,7 +41,8 @@
     // 반대 버튼 클릭 시
     document.getElementById("againstBtn").onclick = function () {
         const postId = 4; // 예시로 postId 4
-        const voteRequest = { voteOption: '슈붕' }; // 반대
+        const userId = 1; // 예시로 userId 1
+        const voteRequest = { voteOption: '슈붕' , userId: userId}; // 반대
         stompClient.send(`/ws-community/vote/${postId}`, {}, JSON.stringify(voteRequest));
         console.log("반대 투표 전송");
     };

@@ -21,7 +21,7 @@ public class VoteController {
 
     @MessageMapping("/vote/{postId}")
     public void saveVote(@DestinationVariable Long postId, @AuthenticationPrincipal User user, VoteRequest request) {
-        List<Map<String, Object>> voteCount = voteService.saveVote(postId, user.getId(), request);
+        List<Map<String, Object>> voteCount = voteService.saveVote(postId, request);
         template.convertAndSend("/topic/vote/" + postId, voteCount);
     }
 }
