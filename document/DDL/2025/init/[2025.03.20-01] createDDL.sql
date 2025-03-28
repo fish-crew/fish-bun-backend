@@ -1,3 +1,0 @@
-ALTER TABLE FISH_BUN_DETAIL
-modify COLUMN storeId Long NULL AFTER userId
-;
