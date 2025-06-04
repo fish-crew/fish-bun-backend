@@ -1,14 +1,14 @@
 package fish.admin.main.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import fish.common.community.post.entity.PostEntity;
-import fish.common.community.post.dto.request.PostRequest;
-import fish.common.community.post.dto.response.PostDetailResponse;
-import fish.common.community.post.dto.response.PostResponse;
-import fish.common.community.post.service.PostService;
-import fish.common.flavor.service.FlavorService;
-import fish.common.user.entity.User;
-import fish.common.user.service.UserService;
+import fish.user.community.post.entity.PostEntity;
+import fish.user.community.post.dto.request.PostRequest;
+import fish.user.community.post.dto.response.PostDetailResponse;
+import fish.user.community.post.dto.response.PostResponse;
+import fish.user.community.post.service.PostService;
+import fish.user.flavor.service.FlavorService;
+import fish.user.user.entity.User;
+import fish.user.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

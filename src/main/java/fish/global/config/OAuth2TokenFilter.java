@@ -1,8 +1,8 @@
 package fish.global.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fish.common.user.entity.User;
-import fish.common.user.service.UserService;
+import fish.user.user.entity.User;
+import fish.user.user.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebFilter;
