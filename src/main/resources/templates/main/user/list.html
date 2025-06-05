@@ -2,21 +2,129 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/layout}">
 <th:block layout:fragment="views">
     <script th:src="@{/js/main/user.js}"></script>
-
-    <section class="page-section" id="portfolio">
-        <div class="container">
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>유저명</th>
-                    <th>가입한ID</th>
-                    <th>가입유형</th>
-                </tr>
-                </thead>
-                <tbody id="table">
-                </tbody>
-            </table>
+    <!--
+    <div class="sch_box2">
+        <div class="sch">
+            <dl class="date_w">
+                <dt>
+                    <button type="button"><span class="tit">등록기간</span> <span class="value"></span></button>
+                </dt>
+                <dd style="display: none;">
+                    <div class="sch_item_g">
+                        <h5>기간 선택</h5>
+                        <div class="sch_item">
+                            <div class="item">
+                                <div class="date">
+                                    <input type="text" class="srch_daterangepicker" name="searchDate" placeholder="기간선택" title="기간 선택" value="" id="calendar-1" hidden="">
+                                </div>
+                                <div class="daterange_bx"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sch_item_btn">
+                        <button type="button" class="buttons bt_reset">초기화</button>
+                        <button type="button" class="buttons primary_bg bt_save">저장</button>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="keyword">
+                <dt>
+                    <button type="button">
+                        <span class="tit">질문유형</span> <span class="value"></span>
+                    </button>
+                </dt>
+                <dd style="display: none;">
+                    <div class="sch_item_g">
+                        <h5>질문유형 선택</h5>
+                        <div class="sch_item">
+                            <fieldset class="item">
+                                <legend>질문유형 선택</legend>
+                                <select id="faqType" name="faqType">
+                                    <option value="">전체</option>
+                                    <option value="POLICY">정책</option>
+                                    <option value="CONSULTING">컨설팅</option>
+                                </select>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="sch_item_btn">
+                        <button type="button" class="buttons bt_reset">초기화</button>
+                        <button type="button" class="buttons primary_bg bt_save">선택</button>
+                    </div>
+                </dd>
+            </dl>
+            <dl class="keyword">
+                <dt>
+                    <button type="button">
+                        <span class="tit">검색어</span> <span class="value"></span>
+                    </button>
+                </dt>
+                <dd>
+                    <div class="sch_item_g">
+                        <h5>검색어 입력</h5>
+                        <div class="sch_item">
+                            <fieldset class="item">
+                                <input type="text" id="searchText" name="searchText"
+                                       placeholder="제목, 작성자로 검색 가능합니다." class="w300" />
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="sch_item_btn">
+                        <button type="button" class="buttons bt_reset">초기화</button>
+                        <button type="button" class="buttons primary_bg bt_save">저장</button>
+                    </div>
+                </dd>
+            </dl>
         </div>
-    </section>
+    </div>
+    -->
+
+    <div class="content_wrap simple" style="width: 100%">
+        <div class="content_bx">
+            <div class="page_header">
+                <div class="tit_box">
+                    <h2 class="tit" id="pageNm" th:text="${pageNm}">
+
+                    </h2>
+                </div>
+                <div class="breadcrumb_box">
+                    <span class="home"><a href="/">홈</a></span>
+                    <span id="1depth"  th:text="${pageNm}">신청서관리</span>
+                </div>
+                <div class="tool_box">
+                    <button type="button" class="bt_reset" title="새로고침" onclick="window.location.reload();">
+                        <span class="blind">새로고침</span>
+                    </button>
+                </div>
+            </div>
+            <div class="container_center" id="content">
+                <article class="list_w">
+                    <div class="table_bx">
+                        <div class="table_head">
+                            <div class="left">
+                            </div>
+                            <div class="right">
+                            </div>
+                        </div>
+
+                        <table id="userTable" class="listtable">
+                        </table>
+
+                        <div class="table_foot">
+                            <div class="left">
+                                <button type="button" class="buttons danger" id="delFaq">삭제</button>
+                            </div>
+                            <div class="right">
+                                <button type="button" class="buttons primary_bg" id="regFaq">등록</button>
+                                <div class="tfoot" id="pagination">
+                                    <!-- 페이지네이션이 여기에 동적으로 생성됩니다 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
 </th:block>
 </html>
