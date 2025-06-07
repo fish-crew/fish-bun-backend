@@ -34,9 +34,9 @@ CREATE TABLE `COMMENT_LIKES` (
 ) ENGINE=InnoDB AUTO_INCREMENT=602 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- fish_project.FISH_BUN_DETAIL definition
+-- fish_project.BUNG_DIARY definition
 
-CREATE TABLE `FISH_BUN_DETAIL` (
+CREATE TABLE `BUNG_DIARY` (
                                    `id` bigint NOT NULL AUTO_INCREMENT,
                                    `regDate` datetime(6) DEFAULT NULL,
                                    `fileId` bigint DEFAULT NULL,
@@ -49,9 +49,9 @@ CREATE TABLE `FISH_BUN_DETAIL` (
 ) ENGINE=InnoDB AUTO_INCREMENT=209 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- fish_project.FISH_BUN_FILE definition
+-- fish_project.BUNG_DIARY_FILE definition
 
-CREATE TABLE `FISH_BUN_FILE` (
+CREATE TABLE `BUNG_DIARY_FILE` (
                                  `id` bigint NOT NULL AUTO_INCREMENT,
                                  `fileSize` bigint DEFAULT NULL,
                                  `fileExtension` varchar(15) DEFAULT NULL,
@@ -63,9 +63,9 @@ CREATE TABLE `FISH_BUN_FILE` (
 ) ENGINE=InnoDB AUTO_INCREMENT=263 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- fish_project.FISH_BUN_FLAVOR definition
+-- fish_project.BUNG_FLAVOR definition
 
-CREATE TABLE `FISH_BUN_FLAVOR` (
+CREATE TABLE `BUNG_FLAVOR` (
                                    `id` bigint NOT NULL AUTO_INCREMENT COMMENT '파일 고유 ID',
                                    `flavor` varchar(30) NOT NULL COMMENT '붕어빵 맛',
                                    `iconCode` varchar(30) NOT NULL COMMENT '아이콘 코드',
@@ -77,9 +77,9 @@ CREATE TABLE `FISH_BUN_FLAVOR` (
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- fish_project.FISH_BUN_FLAVOR_REPORT definition
+-- fish_project.BUNG_FLAVOR_REPORT definition
 
-CREATE TABLE `FISH_BUN_FLAVOR_REPORT` (
+CREATE TABLE `BUNG_FLAVOR_REPORT` (
                                           `id` bigint NOT NULL AUTO_INCREMENT,
                                           `userId` bigint DEFAULT NULL,
                                           `flavor` varchar(30) DEFAULT NULL,
@@ -159,9 +159,9 @@ CREATE TABLE `USER` (
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
--- fish_project.USER_FISH_BUN_BOOK definition
+-- fish_project.BUNG_DIARY_BOOK definition
 
-CREATE TABLE `USER_FISH_BUN_BOOK` (
+CREATE TABLE `BUNG_DIARY_BOOK` (
                                       `id` bigint NOT NULL AUTO_INCREMENT,
                                       `regDate` datetime(6) DEFAULT NULL,
                                       `userId` bigint DEFAULT NULL,
@@ -194,7 +194,7 @@ CREATE TABLE `VOTE` (
 ) ENGINE=InnoDB AUTO_INCREMENT=252 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 
-INSERT INTO FISH_BUN_FLAVOR
+INSERT INTO BUNG_FLAVOR
 (flavor, iconCode, seq, description, highlight)
 VALUES
     ('팥 붕어빵', 'redbean', 1, '붕어빵의 원조이자 클래식의 정석! 겉은 바삭, 속은 달달한 팥이 가득 들어있어 한입 베어 물면 겨울 추위도 잊게 해주는 따뜻한 행복.', '붕어빵의 전통을 이어가는, 변함없는 국민 간식!'),

@@ -1,8 +1,8 @@
 package fish.global.oauth.service;
 
 import fish.global.oauth.dto.*;
-import fish.common.user.entity.User;
-import fish.common.user.service.UserService;
+import fish.domain.user.index.User;
+import fish.member.user.index.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;

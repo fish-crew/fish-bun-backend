@@ -57,7 +57,7 @@ public class SwaggerConfig {
 
         return GroupedOpenApi.builder()
                 .group("customer")
-                .pathsToMatch("/fish-bun/**", "/bungbal/**")
+                .pathsToMatch("/member/**", "/bungbal/**")
                 .addOpenApiCustomizer(openApi -> {
                     openApi.setTags(tags);
                 })

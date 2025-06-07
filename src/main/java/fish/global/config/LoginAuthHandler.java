@@ -1,11 +1,11 @@
 package fish.global.config;
 
-import fish.common.history.user.entity.UserHistory;
-import fish.common.history.user.serivce.UserHistoryService;
-import fish.common.user.entity.User;
-import fish.common.user.service.UserService;
+import fish.domain.user.history.UserHistory;
+import fish.domain.user.index.User;
+import fish.member.user.history.serivce.UserHistoryService;
+import fish.member.user.index.service.UserService;
 import fish.global.oauth.dto.AuthUserInfo;
-import fish.global.util.IpAddressUtil;
+import fish.common.util.IpAddressUtil;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

@@ -1,8 +1,8 @@
 package fish.global.config;
 
-import fish.global.dto.CustomException;
-import fish.global.dto.ErrorCode;
-import fish.global.dto.ResError;
+import fish.common.dto.CustomException;
+import fish.common.dto.ErrorCode;
+import fish.common.dto.ResError;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
