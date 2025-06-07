@@ -1,14 +1,14 @@
 package fish.admin.main.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import fish.user.community.post.entity.PostEntity;
-import fish.user.community.post.dto.request.PostRequest;
-import fish.user.community.post.dto.response.PostDetailResponse;
-import fish.user.community.post.dto.response.PostResponse;
-import fish.user.community.post.service.PostService;
-import fish.user.flavor.service.FlavorService;
-import fish.user.user.entity.User;
-import fish.user.user.service.UserService;
+import fish.domain.community.post.index.Post;
+import fish.member.community.post.index.dto.PostRequest;
+import fish.member.community.post.index.dto.PostDetailResponse;
+import fish.member.community.post.index.dto.PostResponse;
+import fish.member.community.post.index.service.PostService;
+import fish.member.flavor.service.BungFlavorService;
+import fish.domain.user.index.User;
+import fish.member.user.index.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ import java.util.Map;
 @RequestMapping(value = "/admin")
 @Tag(name = "[관리자] 기능 API")
 public class AdminController {
-    private final FlavorService flavorService;
+    private final BungFlavorService bungFlavorService;
     private final UserService userService;
     private final PostService postService;
 
@@ -41,7 +41,7 @@ public class AdminController {
     @ResponseBody
     public Map<String, List<Map<String, Object>>> listReport() {
         Map<String, List<Map<String, Object>>> result = new HashMap<>();
-        result.put("data", flavorService.findAllReports());
+        result.put("data", bungFlavorService.findAllReports());
         return result;
     }
 
@@ -89,7 +89,7 @@ public class AdminController {
 
     @PostMapping(value = "community/post/save.json", consumes = {"multipart/form-data"})
     public String savePost(@ModelAttribute PostRequest request) throws IOException {
-        PostEntity post = PostEntity.toEntity(request);
+        Post post = Post.toEntity(request);
         Long postId = postService.savePost(post, request.getPictures());
 
         return "redirect:/admin/community/post/detail/" + postId;

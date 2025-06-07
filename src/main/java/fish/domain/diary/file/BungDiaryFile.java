@@ -1,0 +1,34 @@
+package fish.domain.diary.file;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
+
+@Getter
+@Table(name="BUNG_DIARY_FILE")
+@Entity
+@NoArgsConstructor
+public class BungDiaryFile {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;                   //파일넘버
+    private String originFileName;     //사용자가 등록한 파일 이름
+    private String systemFileName;     //시스템 상 파일 이름
+    private String filePath;           //파일 경로
+    private Long fileSize;             //파일 사이즈
+    private String fileExtension;      //파일 확장자
+    @CreationTimestamp
+    private LocalDateTime regDate;
+
+    public BungDiaryFile(String originFileName, String systemFileName, String filePath, Long fileSize, String fileExtension) {
+        this.originFileName = originFileName;
+        this.systemFileName = systemFileName;
+        this.filePath = filePath;
+        this.fileSize = fileSize;
+        this.fileExtension = fileExtension;
+    }
+}

@@ -1,8 +1,8 @@
 package fish.global.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fish.user.user.entity.User;
-import fish.user.user.service.UserService;
+import fish.domain.user.index.User;
+import fish.member.user.index.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebFilter;
@@ -21,7 +21,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Map;
 
-@WebFilter(urlPatterns = "/fish-bun/**")
+@WebFilter(urlPatterns = "/member/**")
 @Component
 public class OAuth2TokenFilter extends OncePerRequestFilter {
 
@@ -31,7 +31,7 @@ public class OAuth2TokenFilter extends OncePerRequestFilter {
 
     public OAuth2TokenFilter(UserService userService) {
         // 필터를 적용할 경로 설정
-        RequestMatcher fishBunMatcher = new AntPathRequestMatcher("/fish-bun/**");
+        RequestMatcher fishBunMatcher = new AntPathRequestMatcher("/member/**");
         // 두 조건 중 하나라도 만족하면 필터를 적용
         this.shouldFilterMatcher = fishBunMatcher;
         this.userService = userService;

@@ -29,6 +29,26 @@
 ## 🛠 기술 스택 (Tech Stack)
 - Java17, SpringBoot, JPA, Jenkins, Mysql, AWS, WebSocket
 
+## 패키지 구조 설명
+- 비로그인 사용자가 추가되어 좀 더 사용자 관점으로 패키지를 분리하는 것이 핵심으로 잡았습니다.
+- 간략한 패키지 구조에 대해 설명 드립니다.
+fish
+├── admin(Path : /admin/**)# 관리자용 기능         
+│   ├── controller
+│   ├── service
+│   └── dto
+├── member(Path : /member/**)# 로그인 사용자용 기능
+│   ├── controller
+│   ├── service
+│   └── dto
+├── guest(Path : /guess/**)# 비로그인 사용자용 기능
+│   ├── controller
+│   ├── service
+│   └── dto
+├── common        # 공통 유틸, 설정, 예외 등
+├── domain        # 엔티티 + 레포지토리
+├── global        # 시큐리티, 인터셉터, 필터 설정 등
+
 ## 📢 기타 참고 사항 (Additional Notes)
 - 🚀 이후 업데이트에서는 성능 최적화 및 추가 기능이 포함될 예정입니다.
 - 🔗 [프로젝트 문서](https://bunglog.me/docs) 참고

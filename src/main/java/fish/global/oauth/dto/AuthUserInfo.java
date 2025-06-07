@@ -1,7 +1,7 @@
 
 package fish.global.oauth.dto;
 
-import fish.user.user.entity.User;
+import fish.domain.user.index.User;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;

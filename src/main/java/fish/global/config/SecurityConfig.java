@@ -43,7 +43,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
                 .ignoringRequestMatchers(
-                        "/fish-bun/**"
+                        "/member/**"
                         , "/admin/**"           // CSRF 비활성화 경로
                         , "/bungbal/stats/**"
                 )
@@ -64,7 +64,7 @@ public class SecurityConfig {
                                     , "/swagger-ui/**"
                                     , "/v3/api-docs/**"
                             ).permitAll() // 인증 없이 접근 가능
-                    .requestMatchers("/fish-bun/**").authenticated()
+                    .requestMatchers("/member/**").authenticated()
             ;
         });
 
