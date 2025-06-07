@@ -3,6 +3,7 @@ window.addEventListener("load", () => {
         columns: col,
         ajaxInfo,
         columnOrders: "Y",
+        responsive: true,
         searchOption: [
             'searchText',
             'faqTypeCd',
@@ -17,16 +18,14 @@ let ajaxInfo = {
     contentType:"application/json",
     url: '/admin/user/list.json',
     data: function (d) {
-        d.length = $('select[name=faqTable_length]').val();
-        d.searchText = $('#searchText').val();
-        d.faqTypeCd = $("select#faqType").val();
+        d.length = $('select[name=userTable_length]').val();
     },
     dataSrc: function (json) {
         //리턴 값 재조정
         // debugger;
-        // json.recordsTotal = json.data.recordsTotal;
-        // json.recordsFiltered = json.data.recordsFiltered;
-        // json.data = json.data.data;
+        json.recordsTotal = json.data.recordsTotal;
+        json.recordsFiltered = json.data.recordsFiltered;
+        json.data = json.data.data;
         return json.data;
     },
     error: function (e) {
@@ -49,7 +48,3 @@ let col = [
     {data: "regDate", title: "가입일", width: '10%', align: "center"},
     {data: "lastDate", title: "최근접속일시", width: '10%', align: "center"},
 ]
-
-var mainObj = {
-    listURL : "/admin/user/list.json",
-}
