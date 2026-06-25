@@ -25,6 +25,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @WebFilter(urlPatterns = "/fish-bun/**")
@@ -35,9 +36,15 @@ public class OAuth2TokenFilter extends OncePerRequestFilter {
 
     private final UserService userService;
     private final RequestMatcher shouldFilterMatcher;
+    private final List<RequestMatcher> publicGetMatchers;
 
     public OAuth2TokenFilter(UserService userService) {
         this.shouldFilterMatcher = new AntPathRequestMatcher("/fish-bun/**");
+        this.publicGetMatchers = List.of(
+                new AntPathRequestMatcher("/fish-bun/flavors", HttpMethod.GET.name()),
+                new AntPathRequestMatcher("/fish-bun/store", HttpMethod.GET.name()),
+                new AntPathRequestMatcher("/fish-bun/community", HttpMethod.GET.name())
+        );
         this.userService = userService;
     }
 
@@ -46,6 +53,11 @@ public class OAuth2TokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         if (!shouldFilterMatcher.matches(request)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        if (publicGetMatchers.stream().anyMatch(matcher -> matcher.matches(request))) {
             filterChain.doFilter(request, response);
             return;
         }

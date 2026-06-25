@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
@@ -66,6 +67,11 @@ public class SecurityConfig {
                         "/api-test/**",
                         "/swagger-ui/**",
                         "/v3/api-docs/**"
+                ).permitAll()
+                .requestMatchers(HttpMethod.GET,
+                        "/fish-bun/flavors",
+                        "/fish-bun/store",
+                        "/fish-bun/community"
                 ).permitAll()
                 .requestMatchers("/fish-bun/**").authenticated()
         );

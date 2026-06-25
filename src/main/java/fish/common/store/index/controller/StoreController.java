@@ -32,15 +32,16 @@ public class StoreController {
 
     @Operation(summary = "가게 조회")
     @GetMapping
-    public ResponseUtil<List<StoreResponse>> findAll(@ModelAttribute StoreSearchRequest request
-            , @AuthenticationPrincipal User user) {
-        return ResponseUtil.success(storeService.findAllByBounds(request, user.getId()));
+    public ResponseUtil<List<StoreResponse>> findAll(@ModelAttribute StoreSearchRequest request,
+                                                     @AuthenticationPrincipal User user) {
+        return ResponseUtil.success(storeService.findAllByBounds(request, user != null ? user.getId() : null));
     }
 
     @Operation(summary = "가게 상세 조회")
     @GetMapping("{storeId}")
-    public ResponseUtil<StoreResponse> findOne(@PathVariable Long storeId, @AuthenticationPrincipal User user) {
-        return ResponseUtil.success(storeService.findById(storeId, user.getId()));
+    public ResponseUtil<StoreResponse> findOne(@PathVariable Long storeId,
+                                               @AuthenticationPrincipal User user) {
+        return ResponseUtil.success(storeService.findById(storeId, user != null ? user.getId() : null));
     }
 
     @Operation(summary = "가게 삭제")
@@ -52,8 +53,9 @@ public class StoreController {
 
     @Operation(summary = "가게 수정")
     @PatchMapping("{storeId}")
-    public ResponseUtil<?> update(@PathVariable Long storeId, @RequestBody StoreRegRequest request
-            , @AuthenticationPrincipal User user) {
+    public ResponseUtil<?> update(@PathVariable Long storeId,
+                                  @RequestBody StoreRegRequest request,
+                                  @AuthenticationPrincipal User user) {
         StoreEntity entity = StoreEntity.toEntity(request, user.getId(), storeId);
         storeService.modify(entity);
         return ResponseUtil.success();

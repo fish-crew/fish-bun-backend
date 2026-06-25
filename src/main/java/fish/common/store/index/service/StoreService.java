@@ -28,26 +28,26 @@ public class StoreService {
     public List<StoreResponse> findAllByBounds(StoreSearchRequest request, Long userId) {
         List<Map<String, Object>> stores = storeRepository
                 .findByLatLngBounds(
-                                request.getMinLat(),
-                                request.getMaxLat(),
-                                request.getMinLng(),
-                                request.getMaxLng(),
-                                userId
-                        );
+                        request.getMinLat(),
+                        request.getMaxLat(),
+                        request.getMinLng(),
+                        request.getMaxLng(),
+                        userId
+                );
         return StoreResponse.toResponseList(stores);
     }
 
     public StoreResponse findById(Long storeId, Long userId) {
         Map<String, Object> data = storeRepository.findByStoreId(storeId, userId);
-        List<Map<String, Object>> details = detailService.findByStoreId(storeId);
+        List<Map<String, Object>> details;
+        try {
+            details = detailService.findByStoreId(storeId);
+        } catch (Exception e) {
+            details = List.of();
+        }
         return StoreResponse.toResponse(data, convertDomain(details));
     }
 
-    /**
-     * 가게와 매핑된 N개의 일지 데이터를 가져다
-     * 추가적으로 fileUrl이 추가적으로 들어가야 해서 일지상세 응답값을 재활용함
-     * 붕어빵 등록 데이터 -> 일지 상세 응답값으로 변환 메소드
-     * */
     private List<StoreDetailResponse> convertDomain(List<Map<String, Object>> details) {
         List<StoreDetailResponse> result = new ArrayList<>();
         for (Map<String, Object> detail : details) {
