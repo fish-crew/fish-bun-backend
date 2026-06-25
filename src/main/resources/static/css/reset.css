@@ -1,0 +1,456 @@
+@charset "UTF-8";
+/*@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@200;400;600&display=fallback');*/
+@import url("../font/remixicon.css");/* 기본 아이콘 : http://remixicon.com/에서 확인가능 */
+@import url("../font/pretendard-subset.css");
+
+/*  RESET */
+*{-webkit-text-size-adjust:none;-moz-text-size-adjust:none;-ms-text-size-adjustbox-sizing:none;box-sizing:border-box; line-height: 1.6; }
+*:before, *:after{ box-sizing: border-box}
+* {font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif !important;font-variant-ligatures: none;-webkit-font-variant-ligatures: none;-moz-osx-font-smoothing: grayscale;-webkit-font-smoothing: antialiased;}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video{margin:0;padding:0;border:0;vertical-align:baseline;font-size:inherit;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%; height: 100%; font-size: 15px; min-width: 1400px}
+body{ -webkit-overflow-scrolling: touch;; height: 100%;color: var(--color)}
+dl, ul, ol, menu, li{list-style:none}
+fieldset, img{border:0 none;box-sizing:border-box}
+input, select, textarea, button{vertical-align:middle;margin:0;padding:0;font-family:inherit;box-sizing:border-box}
+button{border:0 none;background-color:transparent;cursor:pointer;box-sizing:border-box}
+address, caption, cite, code, dfn, em, var{font-style:normal;font-weight:normal;box-sizing:border-box}
+input, textarea, img{max-width:100%}
+a, a:visited{ color: inherit}
+a:hover, a:focus, a:active{ color: var(--font-strong) }
+
+
+sup{font-size:small;vertical-align:text-top}
+sub{font-size:small;vertical-align:text-bottom}
+button, select{-webkit-appearance:none;appearance:none}
+select{padding:0 30px 0 5px;border:1px solid #999;background:#fff url("../img/select.svg")no-repeat right 10px top 50%;box-sizing:border-box; background-size: 7px; font-size: 1rem ; border-radius: 0px; height: 36px }
+select::-ms-expand {display: none;/* 화살표 없애기 for IE10, 11*/}
+select.disabled,select:disabled{color:#999 !important;background-color:#f3f3f3; opacity: 1}
+a[target="_blank"]:after{font-style: normal;font-weight: normal;speak: none; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;font-family: "remixicon";content:"\EA70"; font-size:0.8125rem !important; }
+table{width:100%;border-collapse:collapse;border-spacing:0}
+table caption{overflow:hidden;width:0px;height:0px;clip:rect(1px, 1px, 1px, 1px)}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{display:block}
+input:disabled, textarea:disabled{opacity:1;-webkit-text-fill-color:inherit}
+textarea, input{border-radius:0}
+small{font-size:80%}
+sub, sup{position:relative;line-height:0;font-size:60%;vertical-align:baseline}
+sub{bottom:-0.25em}
+sup{top:-0.5em}
+button, input, optgroup, select, textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}
+button, input{overflow:visible}
+button, select{text-transform:none;border-radius: 0.33rem}
+button, [type="button"], [type="reset"], [type="submit"]{-webkit-appearance:button}
+button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner{border-style:none;padding:0}
+/*button:-moz-focusring, [type="button"]:-moz-focusring, [type="reset"]:-moz-focusring, [type="submit"]:-moz-focusring{outline:1px dotted ButtonText} */
+textarea{overflow:auto;border-radius: 0.33rem}
+input::-ms-clear, input::-ms-reveal{display:none;width:0;height:0}
+input::-webkit-search-decoration, input::-webkit-search-cancel-button, input::-webkit-search-results-button, input::-webkit-search-results-decoration{display:none}
+[type="checkbox"]{border-radius: 0.33rem}
+[type="checkbox"], [type="radio"]{box-sizing:border-box;padding:0;}
+[type="search"]{-webkit-appearance:textfield;outline-offset:-2px}
+[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+input[type="number"]{-webkit-appearance:none;appearance:none;box-shadow:none}
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;height:auto}
+::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}
+abbr[title]{border-bottom:none;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}
+progress{vertical-align:baseline}
+details{display:block}
+summary{display:list-item}
+[hidden], template, hr{display:none}
+:focus {outline: thin dotted #ddd;}
+button:disabled{ opacity: 0.6 !important; cursor: auto}
+/* root a6b7cb*/
+:root {
+    color-scheme: normal;
+    --background-color: #fff;
+    --bg-secondary:#F9FBFF;
+    --foot:#f9fafc ;
+    --color: #444;
+    --font-strong: #111;
+    --logo-color: #fff;
+    --gnb: rgba(255, 255, 255, 0.65);
+    --gnb-hover: rgba(255, 255, 0, 1);
+    --gnb-focus: rgba(255, 255, 255, 0.85);
+    --lnb-background-color:#fff;
+    --lnb-color:#303030;
+
+    --td-hover:#f3f5f9;
+    --primary: #004DE5;
+    --primary-hover: #0743ba;
+    --primary-focus: rgba(75,132,255, 0.125);
+    --primary-inverse: #fff;
+    --secondary: #0035AD;
+    --secondary-hover: #002b8c;
+    --secondary-focus: rgba(78, 109, 131, 0.125);
+    --secondary-inverse: #fff;
+    --warning:#FFC115;
+    --danger:#E71825;
+    --contrast: #172936;
+    --contrast-hover: #000;
+    --contrast-focus: rgba(78, 109, 131, 0.125);
+    --contrast-inverse: #fff;
+    --mark-background-color: #fff2ca;
+    --mark-color: #513b29;
+    --del-color: #c62828;
+    --schbtn:#4b84ff;
+    --schbtn-hover:#193165;
+    --ins-color: #003675;
+    --ins-color-hover: #dfeeff;
+    --gray:#999;
+    --gray-dark:#606060;
+    --gray-light:#f2f2f2;
+    --gray-1:#E8E8E8;
+    --gray-2:#D7D7D7;
+    --gray-disabled:#f5f5f5;
+    --border-line:#ddd;
+    --border-line-dark:rgba(0, 0, 0, 0.25);
+    --border-line-light:#E7E7E7;
+
+}
+
+
+
+
+/*  Input */
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="tel"], input[type="time"]{height:36px;padding:0 10px;border:1px solid #999;background-color:#fff;box-sizing:border-box;font-size: 1rem;color:#000; border-radius: 0.33rem}
+input[type="text"]:-ms-input-placeholder, input[type="password"]:-ms-input-placeholder, input[type="number"]:-ms-input-placeholder, input[type="email"]:-ms-input-placeholder, input[type="tel"]:-ms-input-placeholder,  input[type="time"]:-ms-input-placeholder{color:#999}
+input[type="text"]::placeholder, input[type="password"]::placeholder, input[type="number"]::placeholder, input[type="email"]::placeholder, input[type="tel"]::placeholder, input[type="time"]::placeholder{color:#999}
+
+input[type="text"].full, input[type="password"].full, input[type="number"].full, input[type="email"].full, input[type="tel"].full{width:100%}
+input[type="text"].t01:-ms-input-placeholder, input[type="password"].t01:-ms-input-placeholder, input[type="number"].t01:-ms-input-placeholder, input[type="email"].t01:-ms-input-placeholder, input[type="tel"].t01:-ms-input-placeholder{color:#444}
+input[type="text"].t01::placeholder, input[type="password"].t01::placeholder, input[type="number"].t01::placeholder, input[type="email"].t01::placeholder, input[type="tel"].t01::placeholder{color:#444}
+label{font-size: 1rem;color:#000}
+label.essential::before{content:'*';display:inline-block;margin-right:4px;vertical-align:middle}
+input[type="text"]:read-only:not(.dates):not(.datepicker):not(.daterangepicker),input[type="password"]:read-only, input[type="number"]:read-only, input[type="email"]:read-only, input[type="text"]:disabled, input[type="password"]:disabled, input[type="number"]:disabled, input[type="email"]:disabled, input[type="tel"]:disabled,input[type="time"]:disabled{background-color:#f3f3f3;color:#999}
+textarea{resize:none;width:100%;height:100px;padding:5px 10px;border:1px solid #999;background-color:#fff;box-sizing:border-box;font-size: 1rem;line-height:24px;color:#000}
+::-webkit-input-placeholder { color:#999 !important; font-weight:normal; font-style: normal }
+::-moz-placeholder { color:#999 !important; font-weight:normal; font-style: normal }
+:-ms-input-placeholder { color:#999 !important; font-weight:normal !important; font-style: normal }
+:-moz-placeholder { color:#999 !important; font-weight:normal; font-style: normal }
+
+/* radio */
+.chk, label.default, td label{position:relative;display:inline-block;z-index:0; text-align: left; overflow: hidden; vertical-align: top; margin-bottom: 0 !important; font-weight: 400 !important; margin-left: 0;
+    input + span{ padding-right: 15px}
+    input + span.blind{ padding-right: 0px}
+    input[type="radio"]{position:absolute;top:2px;left:2px;width:10px;height:10px;background:none;border:none;z-index:1; opacity: 0}
+    input[type="radio"] + span{position:relative;display:inline-block;font-size: 1rem;vertical-align:middle;cursor:pointer;z-index:2;text-align: left;  color: #454545; height: 100%; padding-left: 20px}
+    input[type="radio"] + span:before{content:"";display:block;cursor:pointer; border: 1px solid #cdd0db;width:16px; height: 16px; box-sizing: border-box; border-radius: 100%; background: #fff; position: absolute; left: 0; top: 50%; transform: translateY(-50%)}
+    input[type="radio"]:checked + span{}
+    span i{ font-style: normal}
+    input[type="radio"]:checked + span:before{ border-color: var(--primary)}
+    input[type="radio"]:checked + span:after{ background:var(--primary); position: absolute; left: 4px; top:50%; width:8px; height: 8px; display: block; content: ""; border-radius: 100%; transform: translateY(-50%)}
+    input[type="radio"]:disabled + span:before{ opacity: 0.75; background:#fff; border-color:#ccc}
+    input[type="radio"]:checked:disabled + span:after{ border-color:var(--primary-focus); background:var(--primary-focus)}
+    input[type="radio"]:disabled + span{ font-weight: 400; color: #c3c6d0}
+
+
+}
+
+
+
+
+/* check_btn */
+
+.chkbtn,.chk_btn{ position: relative; overflow: hidden;  width: auto; margin: 0}
+.chk_btn input[type="radio"], .chk_btn input[type="checkbox"], .chkbtn input, td label.chkbtn input {position:absolute; top:3px;left:2px;width:10px;height:10px;background:none;border:none;z-index:1; opacity: 0;
+    & + span{position:relative;display:inline-block;font-size:1rem;vertical-align:middle;cursor:pointer;z-index:2; background: #fff; text-align: center; border: 1px solid #cdd0db; height: 36px; line-height: 36px; padding: 0 15px !important; font-size:0.9375rem; white-space: nowrap;border-radius: 0.33rem;}
+    &:checked + span{background:var(--primary); font-weight: 400; color: #fff; border-color: var(--primary)}
+    &:checked + span *{ color: #fff}
+    & + span:before,& + span:after{ display: none !important}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/*check*/
+.chk:first-child{margin-left:0;}
+.chk, label.default, td label{
+    input[type="checkbox"]{position:absolute;top:3px;left:2px;width:10px;height:10px;background:none;border:none;z-index:1;; opacity: 0}
+    input[type="checkbox"] + span{position:relative;display:inline-block;font-size: 1rem;vertical-align:middle;cursor:pointer;z-index:2;  text-align: left;  color: #454545; height: 100%; padding-left: 20px; min-height: 24px}
+    input[type="checkbox"] + span:before{content:"";display:block;background:#fff;cursor:pointer; border: 1px solid #cdd0db;width: 16px; height: 16px; box-sizing: border-box; position: absolute; left: 0; top:4px; }
+    input[type="checkbox"]:checked + span{ color: #454545}
+    input[type="checkbox"]:checked + span:before{background:var(--primary);border: 1px solid var(--primary); }
+    input[type="checkbox"]:checked + span:after{ position: absolute; left:0; top:1px; width: 16px; height: 16px; display: block;font-family: "remixicon"; font-style: normal; speak: none;  text-decoration: inherit; text-align: center; font-variant: normal;  text-transform: none; -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing: grayscale; content: "\EB7B"; color: #fff; font-weight: bold; font-size:1rem; }
+    input[type="checkbox"]:disabled + span:before{ opacity: 0.75; background:#d7dbe6; border-color: #ccc }
+    input[type="checkbox"]:checked:disabled + span:after{ color: #fff; background:var(--primary-focus); border-color:var(--primary-focus); }
+    input[type="checkbox"]:disabled + span{ font-weight: 400; color: #c3c6d0}}
+
+
+/* 보여주기용 */
+label.default.disabled{
+    input{position:absolute;top:3px;left:2px;width:10px;height:10px;background:none;border:none;z-index:1;; opacity: 0}
+    input + span{position:relative;display:inline-block;font-size: 1rem;vertical-align:middle;cursor:default;z-index:2;  text-align: left;  color: var(--gray); height: 100%; padding-left: 20px}
+    input + span:after,  input + span:before{ line-height: 16px}
+    input + span:before{content:"";display:block;background:none;cursor:pointer; border:none;width: 16px; height: 16px; box-sizing: border-box; position: absolute; left: 0; top:50%; transform: translateY(-50%) }
+    input:checked + span{ color:var(--primary) !important; font-weight: bold}
+    input:checked + span:before{border: none; }
+    input + span:after{ position: absolute; left:0 !important; top:50% !important;  width: 16px !important; height: 16px !important; display: block;font-family: "remixicon"; font-style: normal; speak: none;  text-decoration: inherit; text-align: center; font-variant: normal;   -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing: grayscale; content: "\EB7B" !important; font-size:1rem;  border-radius: 0 !important;transform: translateY(-50%); background: none !important }
+    input:checked:disabled + span:after{color:var(--primary) !important; font-weight: bold; }
+    input:disabled + span:before{ opacity: 0; }
+    input:disabled + span{ color:#CBCBCB !important}
+    input:checked:disabled + span,.disabled input:checked:disabled + span:after{ color:var(--primary) !important; }
+}
+
+
+
+
+
+
+/*img check*/
+.chk_img{margin-left:0; position: relative; margin: 2px 20px 2px 0; display: inline-block}
+.chk_img input[type="checkbox"]{position:absolute;top:50%;left:50%;width:10px;height:10px;background:none;border:none;z-index:1;; opacity: 0}
+.chk_img input[type="checkbox"] + span{position:relative;display:inline-block;vertical-align:middle;cursor:pointer;z-index:2;  text-align: center; font-size: 0.9rem; color: #666}
+.chk_img input[type="checkbox"] + span > i{ width: 70px; height: 70px; overflow: hidden; border: 1px solid #ddd;display: block; display: flex; align-items: center; margin-bottom: 5px}
+.chk_img input[type="checkbox"] + span > i:before{  width: 100%;    font-size:1.875rem }
+.chk_img input[type="checkbox"] + span > i > img{ max-width: none !important; min-width: 100%; min-height: 100%}
+.chk_img input[type="checkbox"] + span:before{display:block;margin:0; cursor:pointer; box-sizing: border-box;color: #ccc; position: absolute; left:0; top:0; font-size: 1.625rem;  width: 70px; height: 70px; line-height: 70px; border-radius: 100%; content: ""}
+.chk_img input[type="checkbox"] + span:after{display:block;margin:0; cursor:pointer; box-sizing: border-box;font-family: "remixicon"; font-style: normal; speak: none;  text-decoration: inherit; text-align: center; font-variant: normal;  text-transform: none; -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing: grayscale; content:"\EB80"; color: #ccc; position: absolute; left:-10px; top:-10px; font-size: 1.625rem;  border-radius: 100%;  line-height:26px; height: 26px; background: #fff}
+.chk_img input[type="checkbox"]:checked + span{color: var(--primary);}
+.chk_img input[type="checkbox"]:checked + span:after{ background: #fff; color: var(--primary)}
+.chk_img input[type="checkbox"]:checked + span > i{ border:2px solid var(--primary); color:var(--primary)  }
+.chk_img input[type="checkbox"]:disabled + span:before{ opacity: 0.5; background:#d7dbe6 }
+.chk_img input[type="checkbox"]:disabled + span{ font-weight: 400; color: #c3c6d0}
+
+
+/*img radio*/
+.chk_img input[type="radio"]{position:absolute;top:50%;left:50%;width:10px;height:10px;background:none;border:none;z-index:1;; opacity: 0}
+.chk_img input[type="radio"] + span{position:relative;display:inline-block;vertical-align:middle;cursor:pointer;z-index:2;  text-align: center; font-size: 0.9rem; color: #666; height: 70px}
+.chk_img input[type="radio"] + span > i{ width: 70px; height: 70px; overflow: hidden; border: 1px solid #ddd; display: block; display: flex; align-items: center; margin-bottom: 5px}
+.chk_img input[type="radio"] + span > i:before{  width: 100%;    font-size:1.875rem }
+.chk_img input[type="radio"] + span > i > img{ max-width: none !important; min-width: 100%; min-height: 100%}
+.chk_img input[type="radio"] + span:before{display:block;margin:0; cursor:pointer; box-sizing: border-box;color: #ccc; position: absolute; left:0; top:0; font-size: 1.625rem;  width: 70px; height: 70px; line-height: 70px; border-radius: 100%; content: ""}
+.chk_img input[type="radio"] + span:after{display:block;margin:0; cursor:pointer; box-sizing: border-box;font-family: "remixicon"; font-style: normal; speak: none;  text-decoration: inherit; text-align: center; font-variant: normal;  text-transform: none; -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing: grayscale; content:"\EB80"; color: #ccc; position: absolute; left:-10px; top:-10px; font-size: 1.625rem;  border-radius: 100%;  line-height:26px; height: 26px; background: #fff}
+.chk_img input[type="radio"]:checked + span{color: var(--primary);}
+.chk_img input[type="radio"]:checked + span:after{ background: #fff; color: var(--primary)}
+.chk_img input[type="radio"]:checked + span > i{ border:2px solid var(--primary); color:var(--primary)  }
+.chk_img input[type="radio"]:disabled + span:before{ opacity: 0.5; background:#d7dbe6 }
+.chk_img input[type="radio"]:disabled + span{ font-weight: 400; color: #c3c6d0}
+
+
+
+
+
+
+/*check _only*/
+.only.chk span, td .only.chk span, label.default input + span.blind{ font-size: 0 !important; height: 20px !important; visibility: visible !important; padding-right: 0 }
+.chk.only input + span:before{ margin-right: 0 !important}
+.chk.only input[type="radio"]:checked + span:after{    top: calc(50% + 0px);}
+label.default input[type="checkbox"]+ span.blind:after{top:50%}
+
+
+
+/*  table */
+table{border-top:1px solid #ccc;text-align:center}
+table th, table td{height: 50px;padding:0.5rem;vertical-align:middle;text-align:center; font-weight: 400;}
+table tbody th{}
+table tbody td + th{ }
+table td a{ text-decoration: underline; }
+table th{font-weight:400;text-align:center; font-size: 0.92rem; color:var(--color);}
+table th:nth-child(1), table tr td:nth-child(1){}
+table thead tr th{ font-size: 0.9rem; font-weight: 600; color: var(--gray-dark); outline: none !important }
+
+
+
+table th.border-line{border-bottom:1px solid #ccc}
+.al{ text-align: left !important} .ac{ text-align: center !important} .ar{ text-align: right !important}
+table td{ height:35px; padding:4px 9px; border-color: #ccc}
+table tr.alert td{ background:rgba(206, 62, 62,0.05)}
+table tr.primary td{ background:rgba(70, 165, 168,0.05)}
+
+table tbody td input[type="text"], table tbody td input[type="password"], table tbody td input[type="number"], table tbody td input[type="email"], table tbody td input[type="tel"], table tbody td select, table tbody td input[type="time"]{ border-radius: 0.25rem}
+table thead th .updn{ display: inline-block; font-size: 0; line-height: 0; width: 20px; height: 20px; color: #fff; margin-left: 5px }
+table thead th .updn:before{font-family: "remixicon"; font-style: normal; speak: none;  text-decoration: inherit; text-align: center; font-variant: normal;  text-transform: none; -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing: grayscale; content:"\EA73"; font-size: 0.75rem; line-height: 20px; }
+table thead th .updn.up:before{ content: "\EA75"}
+table thead th .updn.dn:before{ content: "\EA4B";}
+table thead th .updn.on{ color:#fff; background: rgba(0,0,0,0.25); border-radius: 4px}
+table tbody th{ border-right: 1px solid #ccc}
+
+
+/*file*/
+.file_bx {position:relative;overflow:hidden; display: flex; align-items: center}
+.file_bx input[type="file"] {position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.file_bx input[type='text']{ flex-basis: 100%}
+.file_bx input[type='text']:read-only{background:#fff !important;}
+.file_bx .button_type{ margin-left:20px;height: 30px;padding: 0 11px;border-radius: 4px;border: solid 1px var(--primary);background-color: #fff;font-size: 0.92rem;color: var(--primary); white-space: nowrap; line-height: 30px}
+.file_bx .button_type:hover{border-color: #007696;color:#fff;outline: none; background: #007696}
+
+
+
+/* old
+-------------------------------------------------------------- */
+.blind, .hidden, .hide{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:0;height:0;font-size:0;line-height:0}
+.soundOnly{display:block !important;position:absolute !important;top:-9999px !important;left:0 !important;margin:0 !important;padding:0 !important;font-size:0 !important;line-height:0 !important;border:0 !important;overflow:hidden !important;}
+.sr,.sr-only{clip: rect(1px, 1px, 1px, 1px);position: absolute;margin: -1px;height: 1px;width: 1px;border: 0;padding: 0;overflow: hidden;word-wrap: normal;}
+.flex{ display: flex; width: 100%}
+.gap50{ gap:3rem}
+.cmt {font-size:0.8125rem;font-weight: 400;display: inline-block;white-space: nowrap; color: #909090}
+.al{text-align:left !important;}
+.ar{text-align:right !important;}
+.ac{text-align:center !important;}
+.vat{vertical-align:top !important;}
+.vam{vertical-align:middle !important;}
+.f_ais{ align-items: flex-start !important}
+.f_aie{ align-items: flex-end!important}
+.f_aic{ align-items: center !important}
+.f_jcb{ display: flex; justify-content: space-between !important}
+.f_jcs{display: flex; justify-content: flex-start !important}
+.f_jce{ display: flex;justify-content: flex-end !important}
+.f_jce{ display: flex;justify-content: center !important}
+
+.f_dc{ flex-direction: column !important}
+.f_dr{ flex-direction: row !important}
+.db{display:block !important;}
+.dib{display:inline-block !important;}
+.ws_nowrap{ white-space: nowrap !important}
+.ws_wrap{ white-space: normal!important}
+.fsn{ font-style: normal }
+.clearfix:after{content:"";display:block;clear:both;visibility:hidden;line-height:0;height:0;}
+.clearfix{display:block;}
+.overlay{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:99;-webkit-transform: translateZ(0)}
+.need{font-size: 0.92rem;color:#fb5c54 !important;}
+span.need{font-size: 0;  }
+span.need:before{ font-size: 1.2rem; font-weight: 700; content: "*"; }
+
+
+
+.dotdot{ display: block; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis}
+.fl{ float: left !important}
+.fr{ float: right !important}
+.h50{height: 50px !important}.h70{height: 70px !important}.h100{height: 100px !important}.h150{height: 150px !important}.h200{height: 200px}.h300{height: 300px}
+.max{width:100%;}.half{width:50%;}
+.half + .half{ width: calc(50% - 5px);}
+.w50{width:50px;}.w70{width:70px;}.w100{width:100px;}.w138{width:138px;}.w140{width:140px !important;}.w150{width:150px;}.w200{width:200px !important;}.w240{width:240px;}.w270{width:270px;}.w300{width:300px;}.w350{width:350px;}.w400{width:400px;}.w520{width:520px;}
+
+span.alert, p.alert, div.alert{ font-size:0.8125rem;display: block;color: #ce3e3e; position: relative; padding-left: 15px}
+span.alert:before, p.alert:before, div.alert:before{ position: absolute; left: 0; top: 0px;font-family: "remixicon"; font-style: normal; font-weight: normal; speak: none; display:block;  text-decoration: inherit; text-align: center; font-variant: normal;  text-transform: none; -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing: grayscale; content:"\EA20";}
+span.alert.ok, p.alert.ok, div.alert.ok{ color:var(--primary) !important}
+span[class^="badge"]{ display: inline-flex; font-size:12px; padding: 0 0.5rem; background:var(--gray-dark);; color: #fff; border-radius: 4px; vertical-align: middle; margin: 1px; height: 24px; align-items: center; justify-content: center; min-width: 47px }
+[class^="badge"] + *{ margin-left: 5px}
+/* padding
+-------------------------------------------------------------- */
+.pdt0{padding-top:0px !important;}.pdt5{padding-top:5px !important;}.pdt10{padding-top:10px !important;}.pdt15{padding-top:15px !important;}.pdt20{padding-top:20px !important;}.pdb0{padding-bottom:0px !important;}.pdb5{padding-bottom:5px !important;}.pdb10{padding-bottom:10px !important;}.pdb15{padding-bottom:15px !important;}.pdb20{padding-bottom:20px !important;}.pdr0{padding-right:0px !important;}.pdr40{padding-right:40px !important;}.pdl0{padding-left:0px !important;}.pdl20{padding-left:20px !important;}
+/* margin
+-------------------------------------------------------------- */
+.mgt0{margin-top:0px !important;}.mgt5{margin-top:5px !important;}.mgt10{margin-top:10px !important;}.mgt15{margin-top:15px !important;}.mgt20{margin-top:20px !important;}.mgt30{margin-top:30px !important;}.mgt40{margin-top:40px !important;}.mgt45{margin-top:45px !important;}.mgt50{margin-top:50px !important;}.mgb0{margin-bottom:0px !important;}.mgb5{margin-bottom:5px !important;}.mgb10{margin-bottom:10px !important;}.mgb15{margin-bottom:15px !important;}.mgb20{margin-bottom:20px !important;}.mgl0{margin-left:0px !important;}.mgl5{margin-left:5px !important;}.mgl10{margin-left:10px !important;}.mgl15{margin-left:15px !important;}.mgl20{margin-left:20px !important;}.mgl40{margin-left:40px !important;}.mgl70{margin-left:70px !important;}.mgr0{margin-right:0px !important;}.mgr5{margin-right:5px !important;}.mgr10{margin-right:10px !important;}.mgr15{margin-right:15px !important;}.mgr20{margin-right:20px !important;}.mgb10{margin-bottom:10px;}
+
+/*  Common Layout */
+:lang(ko){word-wrap: break-word;word-break:keep-all}
+:lang(en){word-break:break-all}
+
+script{ position: absolute; }
+
+
+/* jQuery Date Range Picker */
+.date-picker {width: 170px; height: 25px; padding: 0; border: 0; line-height: 25px; padding-left: 10px; font-weight: bold; cursor: pointer; color: #303030; position: relative; z-index: 2}
+.date-picker-wrapper {position: absolute; z-index: 2; padding: 5px 0px;  line-height: 20px;  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); -webkit-box-sizing: initial; box-sizing: initial; background: #fff}
+
+.dp-clearfix {clear: both; height: 0; font-size: 0; display: none}
+.date-picker-wrapper.inline-wrapper {position: relative; -webkit-box-shadow: none; box-shadow: none; display: inline-block; padding: 5px 0; line-height: 20px}
+.date-picker-wrapper.single-date {width: auto}
+.date-picker-wrapper.no-shortcuts {padding-bottom: 12px}
+.date-picker-wrapper.no-topbar {padding-top: 12px}
+.date-picker-wrapper .footer {font-size: 11px; padding-top: 3px}
+.date-picker-wrapper b {color: #666; font-weight: 700}
+.date-picker-wrapper a {color: #6bb4d6; text-decoration: underline}
+.date-picker-wrapper .month-name {text-transform: uppercase; font-size: 1.08rem; font-weight: 700; color: #111; height: auto}
+.date-picker-wrapper .select-wrapper {position: relative; overflow: hidden; display: inline-block; vertical-align: middle}
+.date-picker-wrapper .select-wrapper:hover {text-decoration: underline}
+.date-picker-wrapper .month-element {display: inline-block; vertical-align: middle}
+.date-picker-wrapper .select-wrapper select {position: absolute; margin: 0; padding: 0; left: 0; top: -1px; font-size: inherit; font-style: inherit; font-weight: inherit; text-transform: inherit; color: inherit; cursor: pointer; -webkit-appearance: none; -moz-appearance: none; appearance: none; background: transparent; border: 0; outline: 0; -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)"; filter: alpha(opacity=1); opacity: 0.01}
+.date-picker-wrapper .month-wrapper {border-radius: 3px; background-color: #fff; padding:0 0 5px 0; cursor: default; position: relative; _overflow: hidden; display: flex; justify-content: space-between; flex-wrap: wrap}
+.date-picker-wrapper .month-wrapper table {width: 224px; border: none; flex: none}
+.date-picker-wrapper.single-date  .month-wrapper table{ width: 260px}
+
+.date-picker-wrapper .month-wrapper table.month2 {flex: none }
+.date-picker-wrapper .month-wrapper table th, .date-picker-wrapper .month-wrapper table td {vertical-align: middle; text-align: center; line-height: 14px; margin: 0px; padding: 0px; height: auto}
+.date-picker-wrapper .month-wrapper table .day {padding: 5px 0; line-height: 1; font-size: 14px; margin-bottom: 1px; color: #ccc; cursor: default;  width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; flex: none}
+.date-picker-wrapper .month-wrapper table div.day.lastMonth, .date-picker-wrapper .month-wrapper table div.day.nextMonth {color: #999; cursor: default}
+.date-picker-wrapper .month-wrapper table .day.checked {background-color: #E7EFFF;}
+.date-picker-wrapper .month-wrapper table .week-name {height: 20px; line-height: 20px; font-weight: 100; text-transform: uppercase}
+.date-picker-wrapper .month-wrapper table .day.has-tooltip {cursor: help !important}
+.date-picker-wrapper .month-wrapper table .day.has-tooltip .tooltip {white-space: nowrap}
+.date-picker-wrapper .time label {white-space: nowrap; display: flex; width: 100%; gap:0.5rem; margin: 0; font-weight: 400}
+.date-picker-wrapper .month-wrapper table .day.toMonth.valid {color: #333; cursor: pointer}
+.date-picker-wrapper .month-wrapper table .day.toMonth.hovering {background-color: #E7EFFF}
+.date-picker-wrapper .month-wrapper table .day.nextMonth, .date-picker-wrapper .month-wrapper table .day.lastMonth {display: none}
+.date-picker-wrapper .month-wrapper table .day.real-today {background-color: #ffe684; border-radius: 100%}
+.date-picker-wrapper .month-wrapper table .day.real-today.checked, .date-picker-wrapper .month-wrapper table .day.real-today.hovering {background-color: #E7EFFF;border-radius: 0}
+.date-picker-wrapper .month-wrapper table .day.real-today.first-date-selected{border-radius: 100%}
+
+.date-picker-wrapper table .caption {height: 50px}
+.date-picker-wrapper table .caption > th{ padding:5px 0}
+.date-picker-wrapper table .caption > th:first-of-type, .date-picker-wrapper table .caption > th:last-of-type {width: 32px; }
+.date-picker-wrapper table .caption .next, .date-picker-wrapper table .caption .prev {padding: 0 5px; cursor: pointer;height:32px; width: 100%; display: block; line-height:30px; border-radius: 0.25rem}
+.date-picker-wrapper table .caption .next:hover, .date-picker-wrapper table .caption .prev:hover {background-color: #ccc; color: white}
+.date-picker-wrapper .gap {position: relative; z-index: 1; width: 15px; height: 100%; font-size: 0; line-height: 0; float: left; top: 15px; margin: 0 10px -10px; visibility: hidden; height: 0; flex: none}
+.date-picker-wrapper .gap .gap-lines {height: 100%; overflow: hidden}
+.date-picker-wrapper .gap .gap-line {height: 15px; width: 15px; position: relative}
+.date-picker-wrapper .gap .gap-line .gap-1 {z-index: 1; height: 0; border-left: 8px solid white; border-top: 8px solid #eee; border-bottom: 8px solid #eee}
+.date-picker-wrapper .gap .gap-line .gap-2 {position: absolute; right: 0; top: 0px; z-index: 2; height: 0; border-left: 8px solid transparent; border-top: 8px solid white}
+.date-picker-wrapper .gap .gap-line .gap-3 {position: absolute; right: 0; top: 8px; z-index: 2; height: 0; border-left: 8px solid transparent; border-bottom: 8px solid white}
+.date-picker-wrapper .gap .gap-top-mask {width: 6px; height: 1px; position: absolute; top: -1px; left: 1px; background-color: #eee; z-index: 3}
+.date-picker-wrapper .gap .gap-bottom-mask {width: 6px; height: 1px; position: absolute; bottom: -1px; left: 7px; background-color: #eee; z-index: 3}
+.date-picker-wrapper .selected-days {display: none; font-style: normal}
+.date-picker-wrapper .drp_top-bar {line-height: 1.4; position: relative; padding: 0px 0px 0px 0}
+.date-picker-wrapper .drp_top-bar .error-top, .date-picker-wrapper .drp_top-bar .normal-top {display: none}
+.date-picker-wrapper .drp_top-bar .default-top {display: block}
+.date-picker-wrapper .drp_top-bar.error .default-top {display: none}
+.date-picker-wrapper .drp_top-bar.error .error-top {display: block; color: red}
+.date-picker-wrapper .drp_top-bar.normal .default-top {display: none}
+.date-picker-wrapper .drp_top-bar.normal .normal-top {display: block; background: var(--gray-disabled); border-radius: 0.25rem; padding-left: 0.25rem}
+.date-picker-wrapper .drp_top-bar.normal .normal-top .selection-top {color: #333}
+
+
+
+.date-picker-wrapper .drp_top-bar .apply-btn{ height:30px; border: 1px solid var(--gray); font-size: 0.91rem; padding: 0 10px; background:var(--background-color); color:  var(--gray-dark); min-width: 45px; white-space: nowrap; border-radius: 0.25rem; position: absolute; right: 0rem; top: 0rem }
+.date-picker-wrapper .drp_top-bar .apply-btn:hover{background:var(--gray);color:  var(--primary-inverse) }
+.date-picker-wrapper .drp_top-bar .apply-btn.disabled{ opacity: 0.5; }
+
+
+.date-picker-wrapper .time {position: relative; width: 100%; flex: none;  justify-content: space-between; display: none}
+.date-range-9bit-time.date-picker-wrapper .time{display: flex;}
+.date-picker-wrapper.single-month .time {display: block}
+.date-picker-wrapper .time input[type=range] {vertical-align: middle; width: 100%; padding: 0; margin: 0; height: 20px}
+.date-picker-wrapper .time > div{ width: 100%; max-width: 224px; flex: none; border-radius: 0.5rem; padding: 10px;background: var(--gray-disabled);}
+.date-picker-wrapper.single-date  .time > div{ max-width: none}
+
+
+.date-picker-wrapper:not(.inline-wrapper){display: flex; flex-direction: column; ; position: absolute; padding: 1rem; border: 1px solid #444444; border-radius: 0.5rem; background: #fff; box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10); margin-top: 10px; margin-right: -25px;
+    .drp_top-bar{ padding-right:50px;min-height: 30px; display: flex; align-items: center; justify-content: flex-start  }
+    .drp_top-bar>div{ width: 100%}
+
+}
+
+.date-picker-wrapper.single-month .month-wrapper{ flex-direction: column; justify-content: flex-start}
+
+/*time styling*/
+
+
+.date-picker-wrapper .hour {text-align: right}
+.minute {text-align: right}
+.date-picker-wrapper .hide {display: none}
+.date-picker-wrapper .first-date-selected, .date-picker-wrapper .last-date-selected {background-color: var(--primary) !important; color: white !important; border-radius: 100%}
+.date-picker-wrapper .date-range-length-tip {position: absolute; margin-top: -4px; margin-left: -8px; -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); box-shadow: 0 0 3px rgba(0, 0, 0, 0.3); display: none; background-color: yellow; padding: 0 6px; border-radius: 2px; font-size: 12px; line-height: 16px; -webkit-filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3)); -moz-filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3)); -ms-filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3)); -o-filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3)); filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.3))}
+.date-picker-wrapper .date-range-length-tip:after {content: ''; position: absolute; border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 4px solid yellow; left: 50%; margin-left: -4px; bottom: -4px}
+.date-picker-wrapper.two-months.no-gap .month1 .next, .date-picker-wrapper.two-months.no-gap .month2 .prev {display: none}
+.date-picker-wrapper .week-number {padding: 5px 0; line-height: 1; font-size: 12px; margin-bottom: 1px; color: #999; cursor: pointer}
+.date-picker-wrapper .week-number.week-number-selected {color: #49e; font-weight: bold;}
+
+
+/* badge */
+.catebox [class^="cate"], .catebox > span, [value="게시중"]{background: var(--gray-1); color: var(--font-strong); min-height: 24px; padding:2px 8px; font-size: 12px; border-radius: 4px; align-items: center; justify-content: center; flex: none;
+    &.cate1{ background:#EFF5FF; color: var(--primary) }
+    &.cate2{ background:#EDF1F5; color: var(--secondary) }
+
+}
+[value="게시중"]{background:#EFF5FF; color: var(--primary); text-decoration: none; border: 1px solid #b2ccff;display: inline-block; vertical-align: baseline}
+.listtable td a span[value="게시중"]{ margin-right: 5px} 
+

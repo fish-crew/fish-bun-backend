@@ -17,7 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 @RequestMapping(value = "/admin")
 @Tag(name = "[관리자] Login API")
-public class LoginController {
+public class AdminLoginController {
 
     @Value("${admin.id}")
     private String adminId;

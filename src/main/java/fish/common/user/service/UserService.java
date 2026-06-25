@@ -2,9 +2,15 @@ package fish.common.user.service;
 
 import fish.common.user.entity.User;
 import fish.common.user.repository.UserRepository;
+import fish.global.dto.BasePageDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @RequiredArgsConstructor
 @Service
@@ -38,9 +44,27 @@ public class UserService {
         user.updateIsFirstLogin();
         userRepository.save(user);
     }
-  
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
+
+    /**
+     * Admin페이지의 유저 데이터를 가져오는 메소드
+     * */
+    public Map<String, Object> getList(BasePageDto dto) {
+        Map<String, Object> result = new HashMap<>();
+
+        int start = dto.getStart();
+        int length = dto.getLength();
+        if(start > 0) start = start/length;
+        String order = dto.getOrder() == null ? "id" : dto.getOrder();
+
+        Pageable pageable = PageRequest.of(start, length, Sort.by(Sort.Direction.ASC, order));
+        Page<User> page = userRepository.findAll(pageable);
+
+        long total = page.getTotalElements();
+        result.put("recordsTotal", total);
+        result.put("recordsFiltered", total);
+        result.put("data", page.stream().toList());
+
+        return result;
     }
   
 }
