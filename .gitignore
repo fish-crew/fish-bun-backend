@@ -6,8 +6,11 @@ build/
 !**/src/test/**/build/
 
 ### private file ####
+.env
+.env.*
 application-private.yml
 application-prod.yml
+*.log
 
 ### STS ###
 .apt_generated

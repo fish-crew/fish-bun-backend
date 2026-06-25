@@ -1,6 +1,5 @@
 package fish.global.config;
 
-
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
@@ -18,14 +17,14 @@ import java.util.List;
 
 @Configuration
 public class SwaggerConfig {
-    @Value("http://localhost:8080")
+    @Value("${swagger.localUrl:http://localhost:8080}")
     private String localUrl;
+
     @Value("${swagger.prodUrl}")
     private String prodUrl;
 
     @Bean
     public GroupedOpenApi adminGroup() {
-        // 관리자 API 그룹
         List<Tag> tags = List.of(
                 new Tag().name("[관리자] Login API"),
                 new Tag().name("[관리자] 기능 API")
@@ -34,15 +33,12 @@ public class SwaggerConfig {
         return GroupedOpenApi.builder()
                 .group("admin")
                 .pathsToMatch("/admin/**")
-                .addOpenApiCustomizer(openApi -> {
-                    openApi.setTags(tags);
-                })
+                .addOpenApiCustomizer(openApi -> openApi.setTags(tags))
                 .build();
     }
 
     @Bean
     public GroupedOpenApi customerGroup() {
-        // 사용자 API 그룹
         List<Tag> tags = List.of(
                 new Tag().name("붕어빵 취향 테스트 API"),
                 new Tag().name("붕어빵 사용자 API"),
@@ -58,9 +54,7 @@ public class SwaggerConfig {
         return GroupedOpenApi.builder()
                 .group("customer")
                 .pathsToMatch("/fish-bun/**", "/bungbal/**")
-                .addOpenApiCustomizer(openApi -> {
-                    openApi.setTags(tags);
-                })
+                .addOpenApiCustomizer(openApi -> openApi.setTags(tags))
                 .build();
     }
 

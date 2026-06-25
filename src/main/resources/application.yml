@@ -1,19 +1,28 @@
 server:
-  port: 8080  # 개발 서버 포트
-  context-path: / # 컨텍스트 경로 (필요시 설정)
+  port: ${SERVER_PORT:8080}
+  forward-headers-strategy: framework
   servlet:
+    context-path: /
     context-parameters:
-      app.base-url: https://bunglog.me  #  애플리케이션 URL 설정
-front-url: https://bunglog.me
-file-uri: https://bunglog.me/file
+      app.base-url: ${APP_BASE_URL:https://bunglog.coreluma.kr}
+
+front-url: ${FRONT_URL:https://bunglog.coreluma.kr}
+file-uri: ${FILE_URI:https://bunglog.coreluma.kr/file}
+
+app:
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:https://bunglog.coreluma.kr,http://localhost:3000,http://localhost:8080}
+  websocket:
+    allowed-origins: ${APP_WEBSOCKET_ALLOWED_ORIGINS:https://bunglog.coreluma.kr,http://localhost:3000,http://localhost:8080}
+
 spring:
   sql:
     init:
       mode: always
   profiles:
-    active: local
+    active: ${SPRING_PROFILES_ACTIVE:local}
   config:
-    import: application-prod.yml
+    import: optional:application-prod.yml
   jpa:
     hibernate:
       naming:
@@ -23,20 +32,25 @@ spring:
         show-sql: true
         format-sql: true
         dialect: org.hibernate.dialect.MySQLDialect
-  # 타임리프
   thymeleaf:
     check-template-location: true
-    prefix: classpath:/templates/   # .html 파일을 불러오기 위한 경로 설정(src/main/resources/templates)
-    suffix: .html   # 파일 확장자
+    prefix: classpath:/templates/
+    suffix: .html
     cache: false
     encoding: UTF-8
   servlet:
     multipart:
       max-file-size: 20MB
       max-request-size: 20MB
+
 springdoc:
   swagger-ui:
     path: /api-test
+
+swagger:
+  localUrl: ${SWAGGER_LOCAL_URL:http://localhost:8080}
+  prodUrl: ${SWAGGER_PROD_URL:https://bunglog.coreluma.kr/api}
+
 logging:
   level:
     org:
